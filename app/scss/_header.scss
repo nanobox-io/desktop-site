@@ -1,0 +1,13 @@
+.header                       { position:relative; padding:20px 0;
+  .logo                       { cursor:pointer; width:200px;
+    &:hover                   {
+      svg                     {
+        *                     { @include transition-duration(0); }
+        .st144                { fill:#3A86BA; }
+        .st44                 { fill:#40A2E8; }
+        .st79                 { fill:#245B80; }
+        .st126                { fill:#2B6C99; }
+      }
+    }
+  }
+}

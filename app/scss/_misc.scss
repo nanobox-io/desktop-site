@@ -1,0 +1,19 @@
+
+::-webkit-input-placeholder {color:#325366;}
+:-moz-placeholder           {color:#325366;  opacity:  1;}
+::-moz-placeholder          {color:#325366;  opacity:  1;}
+:-ms-input-placeholder      {color:#325366;}
+
+::selection      { background: #30474E; }
+::-moz-selection { background: #30474E; }
+
+html {
+  *:not(input):not(textarea) {
+    @include selectable(none);
+  }
+  body{
+    p, h1, h2, h3, h4, h5{
+      @include selectable(text);
+    }
+  }
+}

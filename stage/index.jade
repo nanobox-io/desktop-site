@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  
+  head
+    title New App
+
+    // build:css style.css
+    link(href="stage/css/stage.css", rel="stylesheet")
+    link(href="css/main.css", rel="stylesheet")
+    link(href='bower-libs/nanobox-svg-library/rel/nanobox.css' rel='stylesheet' type='text/css')
+    // endbuild
+    link(href='http://fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css')
+
+  body
+    .main-wrapper
+      .header
+        .logo
+          img.shadow-icon(data-src="logo-horizontal")
+
+    // build:js js/libs.js
+    script(src="bower-libs/jquery/dist/jquery.js")
+    script(src="bower-libs/jade/runtime.js")
+    script(src="bower-libs/shadow-icons-library/rel/app.js")
+    script(src="bower-libs/nanobox-svg-library/rel/nanobox.js")
+    script(src="bower-libs/prism/prism.js")
+    script(src="bower-libs/prism-langs/prism-yaml.js")
+    // endbuild
+    
+    script try{Typekit.load();}catch(e){}
+
+    // build:js2 js/app.js
+    script(src="js/jade-templates.js")
+    script(src="js/app.js")
+    script(src="stage/js/init.js")
+    // endbuild
+    
+    // build:remove 
+    script(src="http://localhost:35729/livereload.js")
+    // endbuild
