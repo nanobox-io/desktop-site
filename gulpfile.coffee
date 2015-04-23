@@ -136,7 +136,7 @@ server = ->
 launch = ->
   gulp.src("./stage/index.jade") # An actual file must be specified or gulp will overlook the task.
     .pipe(open("",
-      url: "http://0.0.0.0:3814/index.html",
+      url: "http://localhost:3814/index.html",
       app: "google chrome"
     ))
 
@@ -152,7 +152,6 @@ watchAndCompileFiles = (cb)->
   watch { glob:cssStagePath    },  -> cssStage(onComplete).pipe                      livereload()
   watch { glob:jadeStagePath   },  -> htmlStage(onComplete).pipe                     livereload()
   watch { glob:assetPath       },  -> copyAssets('server/assets', onComplete).pipe   livereload()
-
 
 # ----------- BUILD (rel) ----------- #
 
