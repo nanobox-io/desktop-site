@@ -162,7 +162,7 @@ gulp.task 'minify',['copyAssets'],  ()   -> minifyAndJoin();
 gulp.task 'rel', ['rel:clean', 'bumpVersion', 'minify'], -> #pushViaGit()
 
 
-  # ----------- MAIN ----------- #
+# ----------- MAIN ----------- #
 
 gulp.task 'clean',                  (cb) -> rimraf './server/*', cb
 gulp.task 'bowerLibs', ['clean'],   ()   -> copyBowerLibs()
