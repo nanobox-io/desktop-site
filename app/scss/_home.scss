@@ -23,7 +23,7 @@ $left-col-px    : 960px * $left;
 
 .main-wrapper                    { /* max-width:960px; height:300px; margin:0 auto; */
   .home                          { font-family:$lato;
-    h2                           { font-size:20px; line-height:1.4; color:#35B7B8; font-weight:bold; letter-spacing: 0.02em; font-style:italic;}
+    h2                           { font-size:20px; line-height:1.5; color:#7796AA; font-weight:bold; letter-spacing: 0.02em; font-style:italic;}
     p                            { font-size:15px; line-height: 1.7; color:#5A768A; font-weight:normal; }
     .code                        { font-family:$code; font-weight:bold; color:$turquoise; font-size: 21px;
       &:before                   { content:"$\00a0"; display: inline-block; color:#FF7FA8;  }
@@ -201,6 +201,7 @@ $vagrant-gray :#9CB7C5;
   }
 }
 
+
 @media only screen and (max-width: $global-max-width) {
   .overview                         {
     .info .blurb                    {
@@ -224,6 +225,8 @@ $vagrant-gray :#9CB7C5;
   }
 }
 
+// LARGE
+
 @media only screen and (max-width: 875px) {
   .overview                         {
     .info                           { position:absolute; left:20px;
@@ -245,7 +248,16 @@ $vagrant-gray :#9CB7C5;
   }
 }
 
+// MEDIUM
+
 @media only screen and (max-width: 650px) {
+  .main-wrapper                           {
+    .home                                 {
+      .main-summary                       {
+        .info                             { border-left:none;}
+      }
+    }
+  }
   .overview                        {
     .graphic                       { width: 70%; margin-left: 34%; margin-right: 0; padding-bottom: 200px; }
   }
@@ -260,7 +272,20 @@ $vagrant-gray :#9CB7C5;
   }
 }
 
+// SMALL
+
 @media only screen and (max-width: 500px) {
+  .main-wrapper                           {
+    .home                                 {
+      .main-summary                       {
+        .info                             { border-left:none;
+          h1                              { font-size: 24px; }
+          h4                              { font-size: 20px; line-height: 30px; }
+        }
+      }
+    }
+  }
+
   .overview                        {
     .info                          { display:block; position:relative; width: 92%;
       .blurb                       { margin: 0 auto; width: 90%;}
