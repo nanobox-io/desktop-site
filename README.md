@@ -18,7 +18,7 @@ gulp rel
 ```
 
 ## Project Details
-- [MIT License](http://opensource.org/licenses/MIT)
+- [MPL License](https://www.mozilla.org/MPL/)
 - [www.nanobox.io](http://www.nanobox.io)
 
 
