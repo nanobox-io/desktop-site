@@ -26,7 +26,7 @@ wrap         = require 'gulp-wrap'
 
 # Paths to source files
 
-jadeStagePath     = 'stage/index.jade'
+jadeStagePath     = 'stage/*.jade'
 jadePath          = 'app/jade/**/*.jade'
 cssPath           = 'app/scss/**/*.scss'
 cssStagePath      = 'stage/stage.scss'

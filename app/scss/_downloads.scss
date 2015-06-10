@@ -1,0 +1,17 @@
+@media only screen and (min-width: 650px) {
+  .downloads          { display:flex;
+    h1                { font-size:27px; font-weight:bold; }
+    .descript         { font-size:13px; }
+    .left             {  }
+    .right            {  }
+    .download-btns    { display:flex;
+      .btn            { background:blue; position:relative; background:#3E627A;
+        .icon         { display:inline-block; background:red; height:100%; padding:20px; width:10px; }
+        .details      { display:inline-block; }
+      }
+    }
+  }
+  .os-sections        { display:flex;
+    > div             { width:100%; }
+  }
+}
