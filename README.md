@@ -18,8 +18,9 @@ gulp rel
 ```
 
 ### Project Details
+[http://opensource.org/licenses/MIT](MIT License)
 [www.nanobox.io](http://www.nanobox.io)
 
 ---
 
-[![Foo](http://nano-assets.gopagoda.io/open-src/pagoda-opensrc.png)](http://pagodabox.io/open-source)
+[![Pagodabox Open Source](http://nano-assets.gopagoda.io/open-src/pagoda-opensrc.png)](http://pagodabox.io/open-source)
