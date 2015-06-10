@@ -20,4 +20,4 @@ gulp rel
 ### Project Details
 [www.nanobox.io](http://www.nanobox.io)
 
-[![Foo](http://nano-assets.gopagoda.io/open-src/pagoda-open-src.png)
+[![Foo](http://nano-assets.gopagoda.io/open-src/pagoda-open-src.png)](http://pagodabox.io/open-source)
