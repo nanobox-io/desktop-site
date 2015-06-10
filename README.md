@@ -1,4 +1,4 @@
-![header](http://http://nano-assets.gopagoda.io/readme-headers/nanobox-front-site.png)
+![header](http://nano-assets.gopagoda.io/readme-headers/nanobox-front-site.png)
 
 # Nanobox Simple Site
 Repo containing the nanobox static informational Site
