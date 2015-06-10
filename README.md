@@ -2,22 +2,22 @@
 
 
 ## Overview
-Repo containing the nanobox static informational Site
+Repo containing the nanobox static informational site
 
-### Local Dev
+## Local Dev
 ```
 npm install
 bower install
 gulp
 ```
 
-### Building
+## Building
 ```
 # Be sure to run 'gulp' before running gulp rel
 gulp rel
 ```
 
-### Project Details
+## Project Details
 - [MIT License](http://opensource.org/licenses/MIT)
 - [www.nanobox.io](http://www.nanobox.io)
 
