@@ -18,7 +18,8 @@ gulp rel
 ```
 
 ### Project Details
-[http://opensource.org/licenses/MIT](MIT License)
+[MIT License](http://opensource.org/licenses/MIT)
+
 [www.nanobox.io](http://www.nanobox.io)
 
 ---
