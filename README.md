@@ -16,3 +16,6 @@ gulp
 # Be sure to run 'gulp' before running gulp rel
 gulp rel
 ```
+
+### Project Details
+[www.nanobox.io](http://www.nanobox.io)
