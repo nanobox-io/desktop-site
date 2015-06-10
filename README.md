@@ -18,8 +18,8 @@ gulp rel
 ```
 
 ## Project Details
-- [MPL License](https://www.mozilla.org/MPL/)
+- [Mozilla Public License](https://www.mozilla.org/MPL/), Version 2.0
 - [www.nanobox.io](http://www.nanobox.io)
 
 
-[![Pagodabox Open Source](http://nano-assets.gopagoda.io/open-src/pagoda-opensrc.png)](http://pagodabox.io/open-source)
+[![Pagodabox Open Source](http://nano-assets.gopagoda.io/open-src/pagoda-open-src.png)](http://pagodabox.io/open-source)
