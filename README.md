@@ -1,6 +1,5 @@
 ![header](http://shots.delorum.com/client/view/nanobox-front-site.png)
 
-# Nanobox Front Site
 Repo containing the nanobox static informational Site
 
 # Local Dev
