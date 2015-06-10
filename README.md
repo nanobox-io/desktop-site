@@ -1,4 +1,4 @@
-![header](http://nano-assets.gopagoda.io/readme-headers/nanobox-front-site.png)
+![header](http://shots.delorum.com/client/view/nanobox-front-site.png)
 
 # Nanobox Front Site
 Repo containing the nanobox static informational Site
