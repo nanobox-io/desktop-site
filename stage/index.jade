@@ -5,10 +5,8 @@ html(lang="en")
 
   body
     .main-wrapper
-      .header
-        .logo
-          img.shadow-icon(data-src="logo-horizontal")
-
+      include ./_top.jade
+      
     // build:js js/libs.js
     script(src="bower-libs/jquery/dist/jquery.js")
     script(src="bower-libs/jade/runtime.js")

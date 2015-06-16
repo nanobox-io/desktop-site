@@ -77,7 +77,6 @@ jsStage = (cb)->
   gulp.src coffeeStagePath
     .pipe plumber()
     .pipe coffee( bare: true ).on('error', gutil.log).on( 'error', gutil.beep )
-    .pipe concat('init.js')
     .pipe gulp.dest('server/stage/js')
     .on('end', cb)
 

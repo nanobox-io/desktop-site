@@ -1,17 +1,114 @@
-@media only screen and (min-width: 650px) {
-  .downloads          { display:flex;
-    h1                { font-size:27px; font-weight:bold; }
-    .descript         { font-size:13px; }
-    .left             {  }
-    .right            {  }
-    .download-btns    { display:flex;
-      .btn            { background:blue; position:relative; background:#3E627A;
-        .icon         { display:inline-block; background:red; height:100%; padding:20px; width:10px; }
-        .details      { display:inline-block; }
+.downloads             {
+  > *                  { margin:0 0 80px; }
+  h1                   { font-size:17px; font-weight:bold; margin:0 0 20px; }
+  .descript            { font-size:13px; }
+  .left                {  }
+  .right               {
+    h1                 { color:#1FFFC2;}
+    .download-btns .btn .down-arrow:before { background:#1FFFC2;}
+  }
+  .download-btns       { display:flex; margin-top:10px; opacity :0;
+    .btn               { min-width: 165px; color:#212C33; font-size:13px; cursor:pointer; position:relative; background:#3E627A; border-radius:5px; margin-right:28px; @include transition(all, 0s);
+      *                { @include transition(all, 0s); }
+      .icon            { display:table-cell; vertical-align:middle; width: 45px; padding:10px; background:#355369; height:100%; border-radius:5px 0 0 5px; vertical-align:middle;
+        svg            {
+          *            { fill:#212C33; }
+        }
+      }
+      .sub             { }
+      .details         { display:table-cell; vertical-align:middle; position:relative; padding:10px;}
+      .down-arrow      { color:#355369; position:absolute; right:-20px; bottom:-20px; font-size:10px; text-align:center;
+        &:before       { content:""; padding-top:20px; display:block; width:28px; height:28px; text-align:center; background:#FFF5AD; border-radius:50%; }
+        svg            { position:absolute; top:6px; left:5px; }
+      }
+      $btn-hover : #5dbbf5;
+      &:hover          { background:#3d8abd;
+        .icon          { background:$btn-hover;
+          svg *        {  }
+        }
+        .down-arrow    {
+          &:before     { background:white; }
+          // svg *        { fill:white; }
+        }
       }
     }
   }
-  .os-sections        { display:flex;
-    > div             { width:100%; }
+}
+.os-sections           { margin-top:70px; margin-bottom:20px;
+  > div                { width:100%; font-size:12px; margin-bottom:40px; }
+  h1                   { font-size:15px; color:#3E627A; font-weight:bold; }
+  li                   { cursor:pointer; padding:4px 0 4px 8px; margin-left:-8px; text-decoration:underline; color:#2F4B5C; position:relative; width:100%; display:block;
+    &.active           { color:white;
+      &:hover          { color:white; }
+    }
+    span               { text-decoration:none; float:right; }
+    &:hover            {  background:#1b2329; color:#6691ac; }
   }
+}
+
+@media only screen and (min-width: 600px) {
+  .downloads             { display:flex;
+    > *                  { margin:0; }
+    .download-btns       { margin-top:20px; }
+    h1                   { font-size:17px; }
+    .right               { margin-left:30px;}
+  }
+  .os-sections         { display:flex;
+    > div              { font-size:14px; margin-bottom:0; }
+    li                 {
+      span             { position:absolute; left:70px; width:160px; font-size:10px; }
+    }
+  }
+  .downloads .download-btns .btn{ min-width: 105px;
+    .icon {width: 25px; padding:2px;}
+  }
+}
+
+@media only screen and (min-width: 680px) {
+  .os-sections  li span  { font-size:12px; }
+}
+
+@media only screen and (min-width: 750px) {
+  .os-sections  li span  { font-size:12px; }
+  .downloads .download-btns .btn {min-width: 165px;
+    .icon {display:table-cell; width: 45px; padding:10px;}
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .downloads             {
+    h1                   { font-size:25px; }
+    .download-btns       { margin-top:40px; }
+    .descript            {  }
+    .left                {  }
+    .right               { margin-left:100px;
+      h1                 { color:#1FFFC2;}
+      .download-btns .btn .details .down-arrow:before   { background:#1FFFC2;}
+    }
+    .download-btns       {
+      .btn               { margin-right:38px;
+        .title           { font-size:15px; }
+        .icon            { }
+        .sub             { font-size:13px; }
+        .details         {
+          .down-arrow    {
+            &:before     {}
+          }
+        }
+      }
+    }
+  }
+  .os-sections           { margin-top:100px; margin-bottom:100px;
+    > div                { padding-right:60px; }
+    h1                   {  }
+    li                   {  }
+    a                    {
+      span               {  }
+      &:hover            {  }
+    }
+  }
+}
+
+@media only screen and (min-width: 930px) {
+  .downloads h1          { font-size:27px;}
 }
