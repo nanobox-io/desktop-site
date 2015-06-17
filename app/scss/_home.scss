@@ -28,7 +28,7 @@ $left-col-px    : 960px * $left;
     .code                        { font-family:$code; font-weight:bold; color:$turquoise; font-size: 21px;
       &:before                   { content:"$\00a0"; display: inline-block; color:#FF7FA8;  }
     }
-    .main-summary                { margin: 0 auto; text-align:center;
+    .main-summary                { margin: 20px auto 0; text-align:center;
       svg#top-mini-stack         { margin: 0 56px 0; display: inline-block;  @include transform(translateY(18%)); }
       .info                      { display: inline-block; padding:40px 53px 30px; border-left:1px solid #263A47; text-align:left;
         .links                   { margin-left:-5px; margin-top:10px;
@@ -73,7 +73,7 @@ $left-col-px    : 960px * $left;
         }
       }
     }
-    .overview                    { margin:60px 0; text-align:center;
+    .overview                    { margin:50px 0; text-align:center;
       a.fork-me                  { cursor:pointer; padding-left: 9px;
         .holder                  { margin-top: 49px;
           &:hover                {
