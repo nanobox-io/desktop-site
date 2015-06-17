@@ -17,9 +17,13 @@
       }
       .sub             { }
       .details         { display:table-cell; vertical-align:middle; position:relative; padding:10px;}
-      .down-arrow      { color:#355369; position:absolute; right:-20px; bottom:-20px; font-size:10px; text-align:center;
+      .down-arrow      { color:#3d637e; position:absolute; right:-16px; bottom:-39px; font-size:10px; text-align:center;
+        p              { margin-top:4px; margin-left:-1px; }
         &:before       { content:""; padding-top:20px; display:block; width:28px; height:28px; text-align:center; background:#FFF5AD; border-radius:50%; }
         svg            { position:absolute; top:6px; left:5px; }
+      }
+      .vers            { color:red; position:absolute; margin-left:8px; top:-14px; color:#2d4b60; font-size:10px;
+        &:before       { content:"v"; }
       }
       $btn-hover : #5dbbf5;
       &:hover          { background:#3d8abd;

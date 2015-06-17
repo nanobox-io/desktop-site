@@ -55,11 +55,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -77,11 +77,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -99,11 +99,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     }
@@ -126,11 +126,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -148,11 +148,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -170,11 +170,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     }
@@ -197,11 +197,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -219,11 +219,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -241,11 +241,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     }
@@ -268,11 +268,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -290,11 +290,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     },
@@ -312,11 +312,11 @@ releases = {
       nano: {
         "32": {
           url: "#",
-          mb: 845
+          mb: 24
         },
         "64": {
           url: "#",
-          mb: 845
+          mb: 24
         }
       }
     }
@@ -327,6 +327,11 @@ switchActiveDownloads = (function(_this) {
   return function(os, release) {
     $(".btn .title").html(meta[os].title);
     $(".btn .icon").html("<img class='shadow-icon' data-src='" + os + "' scalable='true' />");
+    $(".btn .vers").html(release);
+    $(".btn[bit='32'][kind='nano'] .down-arrow p").text(releases[release][os]['nano']['32']['mb'] + "MB");
+    $(".btn[bit='64'][kind='nano'] .down-arrow p").text(releases[release][os]['nano']['64']['mb'] + "MB");
+    $(".btn[bit='32'][kind='full'] .down-arrow p").text(releases[release][os]['full']['32']['mb'] + "MB");
+    $(".btn[bit='64'][kind='full'] .down-arrow p").text(releases[release][os]['full']['64']['mb'] + "MB");
     downloads.activeOs = os;
     downloads.activeRelease = release;
     return shadowIconsInstance.svgReplaceWithString(pxSvgIconString, $(".btn"));

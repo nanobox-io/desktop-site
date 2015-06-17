@@ -17,66 +17,73 @@ releases = {
     mac    : {
       meta : { title:"Some other title" }
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     win    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     lnx    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
   }
   "1.3.9": {
     meta   : { stability:'beta'}
     mac    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     win    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     lnx    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
   }
   "1.3.4": {
     meta   : { stability:'current stable build'}
     mac    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     win    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     lnx    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
   }
   "1.1.9": {
     meta   : { stability:'deprecated'}
     mac    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     win    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
     lnx    : {
       full : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
-      nano : { "32":{ url:"#", mb:845 }, "64":{ url:"#", mb:845 } }
+      nano : { "32":{ url:"#", mb:24 },  "64":{ url:"#", mb:24 } }
     }
   }
 }
 switchActiveDownloads = (os, release) =>
   $(".btn .title").html meta[os].title
   $(".btn .icon").html  "<img class='shadow-icon' data-src='#{os}' scalable='true' />"
+  $(".btn .vers").html release
+
+  $(".btn[bit='32'][kind='nano'] .down-arrow p").text releases[release][os]['nano']['32']['mb'] + "MB"
+  $(".btn[bit='64'][kind='nano'] .down-arrow p").text releases[release][os]['nano']['64']['mb'] + "MB"
+  $(".btn[bit='32'][kind='full'] .down-arrow p").text releases[release][os]['full']['32']['mb'] + "MB"
+  $(".btn[bit='64'][kind='full'] .down-arrow p").text releases[release][os]['full']['64']['mb'] + "MB"
+
   downloads.activeOs      = os
   downloads.activeRelease = release
   shadowIconsInstance.svgReplaceWithString pxSvgIconString, $(".btn")
