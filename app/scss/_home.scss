@@ -29,10 +29,26 @@ $left-col-px    : 960px * $left;
       &:before                   { content:"$\00a0"; display: inline-block; color:#FF7FA8;  }
     }
     .main-summary                { margin: 0 auto; text-align:center;
-      svg                        { margin: 0 56px 0; display: inline-block;  @include transform(translateY(29%)); }
+      svg#top-mini-stack         { margin: 0 56px 0; display: inline-block;  @include transform(translateY(18%)); }
       .info                      { display: inline-block; padding:40px 53px 30px; border-left:1px solid #263A47; text-align:left;
-        h1                       { font-weight:400; color: $turquoise; margin:0; }
-        h4                       { font-weight:400; font-style:italic; font-size:19px; margin-top:6px;}
+        .links                   { margin-left:-5px; margin-top:10px;
+          a                      { display:inline-block;
+            &:hover              {
+              p                  { color:white !important; }
+              svg                {
+                #git path        { fill:white; }
+                circle           { fill:white; }
+              }
+            }
+            &.github             { margin-right:45px; }
+            &.github p           { color:#FFF5AD; margin-left:6px;}
+            &.download p         { color:#3ACFCF; margin-left:6px; }
+            *                    { display:inline-block; }
+            svg                  { margin:0;  @include transform(translateY(29%)); }
+          }
+        }
+        h1                       { padding-bottom: 12px; font-weight:400; color: $turquoise; margin:0; }
+        h4                       { font-weight:400; font-style:italic; font-size:19px; margin-top:6px; margin-bottom:0; }
       }
     }
     .video                       { margin:60px 0;
