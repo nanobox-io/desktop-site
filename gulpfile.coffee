@@ -24,9 +24,12 @@ usemin       = require 'gulp-usemin'
 watch        = require 'gulp-watch'
 wrap         = require 'gulp-wrap'
 
+# new
+inject       = require 'gulp-inject'
+foreach      = require 'gulp-foreach'
 # Paths to source files
 
-jadeStagePath     = 'stage/*.jade'
+jadeStagePath     = ['stage/*.jade', '!stage/_*.jade',]
 jadePath          = 'app/jade/**/*.jade'
 cssPath           = 'app/scss/**/*.scss'
 cssStagePath      = 'stage/stage.scss'
@@ -107,16 +110,24 @@ bumpBowerVersion = ->
     .pipe bump( {type:'patch'} )
     .pipe(gulp.dest('./'));
 
+# minifyAndJoin = () ->
+#   gulp.src './server/index.html'
+#     .pipe usemin
+#       css : [ minifyCss(), 'concat'],
+#       html: [ minifyHtml({empty: true})],
+#       js  : [ uglify(), rev()],
+#       js2 : [ uglify(), rev()]
+#     .pipe(gulp.dest('rel/'));
+
 minifyAndJoin = () ->
-  gulp.src './server/index.html'
-    .pipe usemin
-      css : [ minifyCss(), 'concat'],
-      html: [ minifyHtml({empty: true})],
-      js  : [ uglify(), rev()],
-      js2 : [ uglify(), rev()]
-    .pipe(gulp.dest('rel/'));
-
-
+  gulp.src('./server/*.html').pipe foreach((stream, file) ->
+    stream.pipe(
+      usemin
+        css : [ minifyCss(), 'concat']
+        html: [ minifyHtml({empty: true})]
+        js  : [ uglify()]
+    ).pipe gulp.dest('rel/')
+  )
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Livereload Server
