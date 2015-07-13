@@ -126,6 +126,9 @@ initializeMainDownloadBtns = () =>
     url  = releases[downloads.activeRelease][downloads.activeOs][kind][bit]["url"]
     window.open(url+"?download")
 
+temporarilyHideInactiveFeatures = () ->
+  $(".os-sections").css   display:'none'
+  $(".btn[bit='32']").css display:'none'
 
 
 shadowIcons = new pxicons.ShadowIcons()
@@ -134,3 +137,4 @@ shadowIconsInstance.svgReplaceWithString pxSvgIconString, $("body")
 buildOsDownloadLinks()
 initializeMainDownloadBtns()
 detectOs()
+temporarilyHideInactiveFeatures()
