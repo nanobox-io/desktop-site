@@ -24,7 +24,7 @@
         p Focus on coding rather than configuring a local dev environment 
       .blurb.engine
         h2 <span>2 </span>Language Engine
-        p The engine detects your app type and specifies what services your app needs (ruby, mongo, etc) and how they should be configured.
+        p The Engine detects your app type and specifies what services your app needs (ruby, mongo, etc) and how they should be configured.
       .blurb.docker
         h2 <span>3 </span>Docker Containers 
         p Containers are configured and initialized. Your code is then built and installed. 
@@ -65,49 +65,42 @@
   
   .row
     .descript
-      h2 <span>4</span>Each language engine sniffs the code looking for a positive match to determine which language your app is written in
-      p A registry of build engines sniff your code base to find a familiar match. Each engine looks for indicators within your code, such as file extensions or known files, to help identify language and runtime compatibility such as ruby, python, nodejs, etc.
+      h2 <span>4</span>Each Engine sniffs the code looking for a positive match to determine which language / framework your app is written in
+      p A registry of Engines sniff your code to determine if you are using a known framework. The build process is custom-tailored to optimally configure the environment for that framework. eg: install and configure runtimes and services such as ruby, node.js, PostgreSQL, MySQL, etc..
     .visual.engine-sniff
-      img.shadow-icon(data-src="engine-sniff"  scalable="true")
+      img.shadow-icon(data-src="framework-sniff"  scalable="true")
   
   .row
     .descript
-      h2 <span>5</span>Each of the matched engine’s plug-ins sniffs your code to determine which framework the app is using
-      p With the language determined and the engine selected, a registry of engine plugins sniff your code to determine if you are using a known framework. If a plugin is able to identify a known framework, the build process is custom-tailored to optimally configure the environment for that framework.
-    .visual.framework-sniff
-      img.shadow-icon(data-src="framework-sniff" scalable="true")
-  
-  .row
-    .descript
-      h2 <span>6</span>The matched engine and plugin generate a Boxfile defining the services your app needs to run and how each should be configured
-      p The engine and engine plugin work together to determine which services your app depends on. The plugin can analyze the codebase to determine dependencies, or it might already know what is needed. As service dependencies are determined, a Boxfile is generated that informs Nanobox which services to launch and how to configure them. These services might include redis, postgres, memcache, mysql, or other data-specific services.
+      h2 <span>5</span>The matched Engine generates a Boxfile defining the services your app needs to run and how each should be configured
+      p The Engine determines which services your app depends on. It can analyze the codebase to determine dependencies, or it might already know what is needed. As service dependencies are determined, a Boxfile is generated that informs Nanobox which services to launch and how to configure them. These services might include redis, postgres, memcache, mysql, or other data-specific services.
     .visual.boxfile
       img.shadow-icon(data-src="boxfile" scalable="true")
   
   .row
     .descript
-      h2 <span>7</span>Nanobox launches and configures Docker containers specified in the Boxfile
-      p The Boxfile in the codebase and the Boxfile from the engine plugin are merged. Nanobox launches and configures a Docker container for each service specified in the merged Boxfile. Nanobox overlays a private network with custom IP addresses on a native tcp stack through which the containers can communicate.
+      h2 <span>6</span>Nanobox launches and configures Docker containers specified in the Boxfile
+      p The Boxfile in the codebase and the Boxfile from the Engine are merged. Nanobox launches and configures a Docker container for each service specified in the merged Boxfile. Nanobox overlays a private network with custom IP addresses on a native tcp stack through which the containers can communicate.
     .visual.launch-containers
       img.shadow-icon(data-src="docker-containers" scalable="true")
 
   .row
     .descript
-      h2 <span>8</span>Code is built and installed into code containers and the build container is decommissioned
-      p In the build container, your code is compiled and prepared to run. The engine and plugin generate or modify config files that allow your app to communicate with the provisioned services. In some cases, the engine or plugin will modify source code, if necessary, to adjust service connection details or ensure a legacy app is suited for a distributed architecture. With the build complete, the output is dropped into another container which runs your app.
+      h2 <span>7</span>Code is built and installed into code containers and the build container is decommissioned
+      p In the build container, your code is compiled and prepared to run. The Engine generates or modifies config files that allow your app to communicate with the provisioned services. In some cases, the Engine will modify source code, if necessary, to adjust service connection details or ensure a legacy app is suited for a distributed architecture. With the build complete, the output is dropped into another container which runs your app.
     .visual.build-code
       img.shadow-icon(data-src="code-built" scalable="true")
   
   .row
     .descript
-      h2 <span>9</span>A router is launched to proxy localhost requests to your app
-      p A router is launched to proxy requests from your workstation into the container hosting your finalized app. For simplicity, a DNS entry is added to your workstation.  Your app is launched and ready for development iteration.
+      h2 <span>8</span>A router is launched to proxy localhost requests to your app
+      p A router is launched to proxy requests from your workstation into the container hosting your finalized app. For simplicity, a DNS entry is added to your workstation. Your app is launched and ready for development iteration.
     .visual.router
       img.shadow-icon(data-src="proxy-router" scalable="true")
   
   .row
     .descript
-      h2 <span>10</span>If files are watched, local saves will run steps 3-9 automatically
+      h2 <span>9</span>If files are watched, local saves will run steps 3-8 automatically
       p With your development environment up and running, you can refresh the build at any time. If you started your Nanobox with --watch, any file changes within your code will automatically trigger a rebuild. After the initial build, assets are cached between deploys making subsequent builds really quick.
     .visual.watch
       img.shadow-icon(data-src="watched-files" scalable="true")
@@ -120,89 +113,89 @@
     .visual
       img.shadow-icon(data-src="push-pagoda" scalable="true")
 
-  .languages-and-frameworks
-    .section-header
-      img.shadow-icon(data-src="mad-scientist")
-      h1 Language and Framework Developers
-      
-    h1 Plugins : Add support for your framework
-    .row.plugin-overview
-      .graphic
-        img.shadow-icon(data-src="plugin-scripts")
-      .descript
-        h3 It’s your framework, you define the ideal runtime
-        p Plugins customize the environment and launch services. You specify the services your framework needs and how they should be configured so the dev can begin building their app immediately with no need to install or configure anything.
-    .scripts
-      .script
-        h3.required sniff
-        .row
-          p.descript This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, this script should returns true. 
-          .script
-            pre
-              code.language-javascript
-                | #!/bin/sh
-                | if ( match_file( "/mage.php" )) {
-                |   print true;
-                | } else {
-                |   print false;
-                | }
-      .script
-        h3 boxfile
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-yaml
-                | nanobox:
-                |   domain: localhost
-                |   port: 4321
-                |   
-                | web1:
-                |   name: site
-                |   type: ruby
-                |   
-                | database1:
-                |   name: customers
-                |   type: postgresql
-      .script
-        h3 prepare
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-yaml
-                | web1:
-                |   name: site
-                |   type: ruby
-                |   
-                | database1:
-                |   name: customers
-                |   type: postgresql
-      .script
-        h3.required build
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-yaml
-                | web1:
-                |   name: site
-                |   type: ruby
-                |   
-                | database1:
-                |   name: customers
-                |   type: postgresql
-      .script
-        h3 cleanup
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-yaml
-                | web1:
-                |   name: site
-                |   type: ruby
-                |   
-                | database1:
-                |   name: customers
-                |   type: postgresql
+  //- .languages-and-frameworks
+  //-   .section-header
+  //-     img.shadow-icon(data-src="mad-scientist")
+  //-     h1 Language and Framework Developers
+  //-     
+  //-   h1 Plugins : Add support for your framework
+  //-   .row.plugin-overview
+  //-     .graphic
+  //-       img.shadow-icon(data-src="plugin-scripts")
+  //-     .descript
+  //-       h3 It’s your framework, you define the ideal runtime
+  //-       p Plugins customize the environment and launch services. You specify the services your framework needs and how they should be configured so the dev can begin building their app immediately with no need to install or configure anything.
+  //-   .scripts
+  //-     .script
+  //-       h3.required sniff
+  //-       .row
+  //-         p.descript This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, this script should returns true. 
+  //-         .script
+  //-           pre
+  //-             code.language-javascript
+  //-               | #!/bin/sh
+  //-               | if ( match_file( "/mage.php" )) {
+  //-               |   print true;
+  //-               | } else {
+  //-               |   print false;
+  //-               | }
+  //-     .script
+  //-       h3 boxfile
+  //-       .row
+  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+  //-         .script
+  //-           pre
+  //-             code.language-yaml
+  //-               | nanobox:
+  //-               |   domain: localhost
+  //-               |   port: 4321
+  //-               |   
+  //-               | web1:
+  //-               |   name: site
+  //-               |   type: ruby
+  //-               |   
+  //-               | database1:
+  //-               |   name: customers
+  //-               |   type: postgresql
+  //-     .script
+  //-       h3 prepare
+  //-       .row
+  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+  //-         .script
+  //-           pre
+  //-             code.language-yaml
+  //-               | web1:
+  //-               |   name: site
+  //-               |   type: ruby
+  //-               |   
+  //-               | database1:
+  //-               |   name: customers
+  //-               |   type: postgresql
+  //-     .script
+  //-       h3.required build
+  //-       .row
+  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+  //-         .script
+  //-           pre
+  //-             code.language-yaml
+  //-               | web1:
+  //-               |   name: site
+  //-               |   type: ruby
+  //-               |   
+  //-               | database1:
+  //-               |   name: customers
+  //-               |   type: postgresql
+  //-     .script
+  //-       h3 cleanup
+  //-       .row
+  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+  //-         .script
+  //-           pre
+  //-             code.language-yaml
+  //-               | web1:
+  //-               |   name: site
+  //-               |   type: ruby
+  //-               |   
+  //-               | database1:
+  //-               |   name: customers
+  //-               |   type: postgresql
