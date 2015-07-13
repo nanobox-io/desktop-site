@@ -32,19 +32,26 @@ $left-col-px    : 960px * $left;
       svg#top-mini-stack         { margin: 0 56px 0; display: inline-block;  @include transform(translateY(18%)); }
       .info                      { display: inline-block; padding:40px 53px 30px; border-left:1px solid #263A47; text-align:left;
         .links                   { margin-left:-5px; margin-top:10px;
-          a                      { display:inline-block;
+          a                      { display:inline-block; margin-right:40px;
             &:hover              {
               p                  { color:white !important; }
               svg                {
                 #git path        { fill:white; }
                 circle           { fill:white; }
+                polygon          { fill:white; }
               }
             }
-            &.github             { margin-right:45px; }
-            &.github p           { color:#FFF5AD; margin-left:6px;}
-            &.download p         { color:#3ACFCF; margin-left:6px; }
+            p                    { margin-left:6px}
+            &.irc                { margin-right:0;
+              svg                {  }
+            }
+            &.irc p              { color:#62B1DD;
+              span               { color:#486880; }
+            }
+            &.github p           { color:#FFF5AD; }
+            &.download p         { color:#3ACFCF; }
             *                    { display:inline-block; }
-            svg                  { margin:0;  @include transform(translateY(29%)); }
+            svg                  { margin:0; @include transform(translateY(29%)); }
           }
         }
         h1                       { padding-bottom: 12px; font-weight:400; color: $turquoise; margin:0; }
