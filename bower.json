@@ -10,7 +10,8 @@
     "jade": "~1.6.0",
     "prism": "*",
     "prism-langs": "jasperla/prism-langs",
-    "sprint.js": "*"
+    "sprint.js": "*",
+    "history.js": "~1.8.0"
   },
   "ignore": [
     "app",

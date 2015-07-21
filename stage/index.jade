@@ -5,13 +5,15 @@ html(lang="en")
 
   body
     .main-wrapper
-      include ./_top.jade
+      .content-area
+      //- include ./_top.jade
       
     // build:js1 js/libs.js
     script(src="bower-libs/prism/prism.js")
     script(src="bower-libs/prism-langs/prism-yaml.js")
     script(src="js/prism-nanobox.js")
-    // endbuild
+    script(src="bower-libs/pubsub-js/src/pubsub.js")
+    script(src="bower-libs/velocity/velocity.js")
     
     // build:js2 js/shared-libs.js
     script(src="bower-libs/nanobox-svg-library/rel/nanobox.js")
@@ -19,6 +21,8 @@ html(lang="en")
     script(src="bower-libs/shadow-icons-library/rel/app.js")
     script(src="bower-libs/jquery/dist/jquery.js")
     script(src="js/jade-templates.js")
+    script(src="bower-libs/history.js/scripts/uncompressed/history.js")
+    script(src="bower-libs/history.js/scripts/uncompressed/history.adapter.jquery.js")    // endbuild
     // endbuild
     
     script try{Typekit.load();}catch(e){}
