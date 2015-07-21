@@ -7,7 +7,7 @@ $right-col-perc : 100%  * $rght;
 $right-col-px   : 960px * $rght;
 $left-col-px    : 960px * $left;
 
-
+$border-color   : #263A47;
 
 
 // .home             { font-family:$lato;
@@ -86,6 +86,13 @@ $left-col-px    : 960px * $left;
         }
       }
     }
+    .top-blurb                   { font-size:21px; width:570px; line-height:32px; font-weight:normal; padding:0 10px;
+      span                       { font-family:$code-font;
+        &.prompt                 { color:$prompt-color; }
+        &.command                { color:$command-color; }
+        &.param                  { color:$param-color; }
+      }
+    }
     .row                         { display:block; margin:120px 0;
       &.first                    { margin-top:24px;}
       .descript                  { width:$left-col-perc; display:inline-block; vertical-align:middle;
@@ -94,6 +101,14 @@ $left-col-px    : 960px * $left;
         }
       }
       .visual                    { width:$right-col-perc - 1%; display:inline-block; vertical-align:middle;  position: relative; text-align: center; vertical-align:middle;  }
+    }
+    .mini-overview               { display:flex; flex-direction:row; justify-content:space-between; margin-bottom:100px; padding:0 10px;
+      h2                         { border-bottom:solid 1px $border-color; padding-bottom:12px;}
+      .mini                      { width:443px; }
+      pre                        { height:160px; }
+      a                          { float:right; color:#62B1DD; text-decoration:none;
+        &:hover                  { color:white; }
+      }
     }
   }
 
@@ -105,8 +120,9 @@ $left-col-px    : 960px * $left;
     }
     #docker-containers { font-size:12px; }
   }
-  h1                           { font-size:31px; color:#FFF5AD; border-bottom:1px solid #263A47; font-weight:normal; padding-bottom:21px;
-    span                       { color:#837E69; }
+  h1                           { font-size:31px; color:#FFF5AD; border-bottom:1px solid $border-color; font-weight:normal; padding-bottom:21px;
+    span.optional              { color:#9f9982; font-size:24px; font-style:italic;}
+    span.sub                   {  font-size:24px; font-style:italic; }
   }
 
   /*
@@ -247,6 +263,13 @@ $vagrant-gray :#9CB7C5;
 // LARGE
 
 @media only screen and (max-width: 875px) {
+  .main-wrapper                           {
+    .home                                 {
+      .mini-overview                      {
+        .mini                             { width:345px; }
+      }
+    }
+  }
   .overview                         {
     .info                           { position:absolute; left:20px;
       .blurb                        { position:relative; top: initial !important; right: initial !important; left: initial !important; }
@@ -272,6 +295,10 @@ $vagrant-gray :#9CB7C5;
 @media only screen and (max-width: 650px) {
   .main-wrapper                           {
     .home                                 {
+      .mini-overview                      { flex-direction:column;
+        .mini {width:100%}
+      }
+
       .main-summary                       {
         .info                             { border-left:none;}
       }

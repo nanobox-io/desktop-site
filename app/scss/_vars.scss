@@ -4,7 +4,9 @@ $lato       :'Lato', sans-serif;
 $museo      : "museo";
 $code-font  : Consolas, Monaco, 'Andale Mono', monospace;
 
-
+$prompt-color  : #FFF5AD;
+$command-color : #D45959;
+$param-color   : #247191;
 //
 // @mixin transition ($property:all, $duration:0.05s, $timing:linear, $delay:0s) {
 //   @if $property != none {

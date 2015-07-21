@@ -3,4 +3,5 @@ Prism.languages.nanobox = {
   'command'  : /nanobox|rake/g,
   'parameter': /up|enter|test/g,
   'prompt'   : /\$/g,
+  'comment'  : /\#.+/g,
 };

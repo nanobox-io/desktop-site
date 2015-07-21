@@ -201,7 +201,7 @@ pre[data-line] {
 
 
 code.language-nanobox{ color:#3F5A66;
-	.prompt            { color:#FFF5AD; }
-	.command           { color:#D45959;}
-	.parameter         { color:#247191;}
+	.prompt            { color:$prompt-color; }
+	.command           { color:$command-color; }
+	.parameter         { color:$param-color; }
 }

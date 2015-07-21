@@ -46,6 +46,7 @@
             | Launching Vagrant Virtual Machine
             | Installing runtimes in VM
             | etc..
+      a(href="#developing-your-app") How it works
     .mini
       h2 Run Commands
       p Run generators, tests and other runtime specific scripts. 
@@ -55,15 +56,12 @@
             | $ nanobox enter
             |   Entering virtual machine context:
             | > rake test # Run test suite
-    
+      a(href="#developing-your-app") How it works
         
-  h1 How it works
-  .row.first
-    .descript
-      h2 Initialize nanobox 
-      p There is no boilerplate configuration to launch your app within nanobox. With Vagrant and VirtualBox already installed, 'nanobox up' will take care of the rest.
-    .visual.terminal-init
-        .code nanobox up
+  h1#developing-your-app How it works <span class="sub"> - Developing your App</span>
+
+  .top-blurb
+    <span class="prompt">$ </span><span class="command">nanobox</span><span class="param"> up</span> : creates a virtual staging environment and installs everything your code needs to run. As you edit your code, your files are compiled on and copied into your running container. The following is a breakdown of what nanobox is doing behind the scenes:
   
   .row
     .descript
@@ -128,13 +126,25 @@
     .visual.watch
       img.shadow-icon(data-src="watched-files" scalable="true")
 
-  h1 Push to Production <span>(optional)</span>
+  h1 Push to Production <span class="optional">(optional)</span>
   .row.first
     .descript
       h2 Push to Pagoda Box or any other service that supports the nanobox protocol 
       p With your development environment up and running, you can refresh the build at any time. If you started your Nanobox with --watch, any file changes within your code will automatically trigger a rebuild. After the initial build, assets are cached between deploys making subsequent builds really quick.
     .visual
       img.shadow-icon(data-src="push-pagoda" scalable="true")
+  
+  h1#running-commands How it works <span class="sub"> - Running Commands</span>
+
+  .top-blurb
+    <span class="prompt">$ </span><span class="command">nanobox</span><span class="param"> up</span> : creates a virtual staging environment and installs everything your code needs to run. As you edit your code, your files are compiled and copied into your running container. The following is a breakdown of what nanobox is doing behind the scenes:
+  
+  .row
+    .descript
+      h2 <span>1</span>Vagrant initializes
+      p Nanobox uses Vagrant to launch a virtual machine running a custom operating system with all the necessary Docker and Nanobox bits installed and running at boot. The Vagrantfile is configured to mount the code directory inside the virtual machine as a shared directory.
+    .visual.vagrant-init
+      img.shadow-icon(data-src="vagrant-initializes" scalable="true")
 
   .languages-and-frameworks
     .section-header
