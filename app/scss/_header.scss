@@ -5,10 +5,10 @@
       svg                     {
         *                     { @include transition-duration(0); }
         &:hover               {
-          .st155              { fill:lighten(#3B5669,9%); }
-          .st93               { fill:lighten(#2A3D4A,9%); }
-          .st53               { fill:lighten(#567D99,9%); }
-          .st178              { fill:lighten(#446378,9%); }
+          .right *            { fill:lighten(#3B5669,9%); }
+          .left *             { fill:lighten(#2A3D4A,9%); }
+          .top *              { fill:lighten(#567D99,14%); }
+          .logotype *         { fill:lighten(#567D99,9%); }
         }
       }
     }

@@ -23,6 +23,7 @@ uglify       = require 'gulp-uglify'
 usemin       = require 'gulp-usemin'
 watch        = require 'gulp-watch'
 wrap         = require 'gulp-wrap'
+shadow       = require 'gulp-shadow-library'
 
 # new
 inject       = require 'gulp-inject'
@@ -37,7 +38,20 @@ coffeePath        = 'app/coffee/**/*.coffee'
 coffeeStagePath   = 'stage/**/*.coffee'
 assetPath         = 'app/images/*'
 miscJsPath        = 'app/js/*'
+svgPath           = 'app/assets/compiled/*.svg'
 
+parseSVG = ->
+  gulp.src svgPath
+    .pipe shadow {
+      cssDest:'./css/'
+      jsDest:'./js/'
+      cssNamespace:''
+      cssRegex:[
+        { pattern:/Lato-Regular/g, replace:"Lato" }
+        { pattern:/font-family:'Lato-Italic';/g, replace:"font-family:'Lato'; font-style:italic;" }
+      ]
+    }
+    .pipe gulp.dest('./server/')
 
 htmlStage = (cb)->
   gulp.src jadeStagePath
@@ -159,7 +173,7 @@ launch = ->
 # Livereload Server
 watchAndCompileFiles = (cb)->
   count = 0
-  onComplete = ()=> if ++count == 7 then cb()
+  onComplete = ()=> if ++count == 8 then cb()
 
   watch { glob:coffeePath      },  -> js(onComplete).pipe                            livereload()
   watch { glob:cssPath         },  -> css(onComplete).pipe                           livereload()
@@ -169,6 +183,7 @@ watchAndCompileFiles = (cb)->
   watch { glob:cssStagePath    },  -> cssStage(onComplete).pipe                      livereload()
   watch { glob:jadeStagePath   },  -> htmlStage(onComplete).pipe                     livereload()
   watch { glob:assetPath       },  -> copyAssets('server/assets', onComplete).pipe   livereload()
+  watch { glob:svgPath         },  -> parseSVG(onComplete).pipe                      livereload()
 
 # ----------- BUILD (rel) ----------- #
 
