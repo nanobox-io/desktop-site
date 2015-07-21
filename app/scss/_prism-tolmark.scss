@@ -198,3 +198,10 @@ pre[data-line] {
 	content: attr(data-end);
 	top: auto;
 }
+
+
+code.language-nanobox{ color:#3F5A66;
+	.prompt            { color:#FFF5AD; }
+	.command           { color:#D45959;}
+	.parameter         { color:#247191;}
+}

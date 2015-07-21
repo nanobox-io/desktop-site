@@ -29,13 +29,14 @@ inject       = require 'gulp-inject'
 foreach      = require 'gulp-foreach'
 # Paths to source files
 
-jadeStagePath     = ['stage/*.jade', '!stage/_*.jade',]
+jadeStagePath     = ['stage/*.jade']#, '!stage/_*.jade',]
 jadePath          = 'app/jade/**/*.jade'
 cssPath           = 'app/scss/**/*.scss'
 cssStagePath      = 'stage/stage.scss'
 coffeePath        = 'app/coffee/**/*.coffee'
 coffeeStagePath   = 'stage/**/*.coffee'
 assetPath         = 'app/images/*'
+miscJsPath        = 'app/js/*'
 
 
 htmlStage = (cb)->
@@ -82,6 +83,11 @@ jsStage = (cb)->
     .pipe coffee( bare: true ).on('error', gutil.log).on( 'error', gutil.beep )
     .pipe gulp.dest('server/stage/js')
     .on('end', cb)
+
+miscJs = (cb)->
+  gulp.src miscJsPath
+    .pipe gulp.dest('server/js')
+    .on 'end', cb
 
 copyAssets = (destination, cb) ->
   gulp.src assetPath
@@ -153,12 +159,13 @@ launch = ->
 # Livereload Server
 watchAndCompileFiles = (cb)->
   count = 0
-  onComplete = ()=> if ++count == 6 then cb()
+  onComplete = ()=> if ++count == 7 then cb()
 
   watch { glob:coffeePath      },  -> js(onComplete).pipe                            livereload()
   watch { glob:cssPath         },  -> css(onComplete).pipe                           livereload()
   watch { glob:jadePath        },  -> html(onComplete).pipe                          livereload()
   watch { glob:coffeeStagePath },  -> jsStage(onComplete).pipe                       livereload()
+  watch { glob:miscJsPath },       -> miscJs(onComplete).pipe                        livereload()
   watch { glob:cssStagePath    },  -> cssStage(onComplete).pipe                      livereload()
   watch { glob:jadeStagePath   },  -> htmlStage(onComplete).pipe                     livereload()
   watch { glob:assetPath       },  -> copyAssets('server/assets', onComplete).pipe   livereload()

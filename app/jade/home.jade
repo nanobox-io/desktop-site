@@ -16,7 +16,7 @@
         a.irc(href="//webchat.freenode.net/?channels=nanobox", target="_BLANK")
           img.shadow-icon(data-src="irc" )
           p IRC - #nanobox <span>(freenode)</span>
-      
+  
   .overview
     .info
       .blurb.src-code
@@ -33,6 +33,29 @@
         p Your services run in an ultra lightweight Ubuntu virtual machine (30mb RAM).  Requests to localhost are proxied to your app
     .graphic
       img.shadow-icon(data-src="sandwich" scalable="true")
+  
+  .mini-overview
+    .mini
+      h2 Develop your App
+      p Run your code and itterate your app in a fast lightweight VM 
+      .script
+        pre
+          code.language-nanobox
+            | $ nanobox up
+            | Detecting app type
+            | Launching Vagrant Virtual Machine
+            | Installing runtimes in VM
+            | etc..
+    .mini
+      h2 Run Commands
+      p Run generators, tests and other runtime specific scripts. 
+      .script
+        pre
+          code.language-nanobox
+            | $ nanobox enter
+            |   Entering virtual machine context:
+            | > rake test # Run test suite
+    
         
   h1 How it works
   .row.first
@@ -113,89 +136,89 @@
     .visual
       img.shadow-icon(data-src="push-pagoda" scalable="true")
 
-  //- .languages-and-frameworks
-  //-   .section-header
-  //-     img.shadow-icon(data-src="mad-scientist")
-  //-     h1 Language and Framework Developers
-  //-     
-  //-   h1 Plugins : Add support for your framework
-  //-   .row.plugin-overview
-  //-     .graphic
-  //-       img.shadow-icon(data-src="plugin-scripts")
-  //-     .descript
-  //-       h3 It’s your framework, you define the ideal runtime
-  //-       p Plugins customize the environment and launch services. You specify the services your framework needs and how they should be configured so the dev can begin building their app immediately with no need to install or configure anything.
-  //-   .scripts
-  //-     .script
-  //-       h3.required sniff
-  //-       .row
-  //-         p.descript This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, this script should returns true. 
-  //-         .script
-  //-           pre
-  //-             code.language-javascript
-  //-               | #!/bin/sh
-  //-               | if ( match_file( "/mage.php" )) {
-  //-               |   print true;
-  //-               | } else {
-  //-               |   print false;
-  //-               | }
-  //-     .script
-  //-       h3 boxfile
-  //-       .row
-  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-  //-         .script
-  //-           pre
-  //-             code.language-yaml
-  //-               | nanobox:
-  //-               |   domain: localhost
-  //-               |   port: 4321
-  //-               |   
-  //-               | web1:
-  //-               |   name: site
-  //-               |   type: ruby
-  //-               |   
-  //-               | database1:
-  //-               |   name: customers
-  //-               |   type: postgresql
-  //-     .script
-  //-       h3 prepare
-  //-       .row
-  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-  //-         .script
-  //-           pre
-  //-             code.language-yaml
-  //-               | web1:
-  //-               |   name: site
-  //-               |   type: ruby
-  //-               |   
-  //-               | database1:
-  //-               |   name: customers
-  //-               |   type: postgresql
-  //-     .script
-  //-       h3.required build
-  //-       .row
-  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-  //-         .script
-  //-           pre
-  //-             code.language-yaml
-  //-               | web1:
-  //-               |   name: site
-  //-               |   type: ruby
-  //-               |   
-  //-               | database1:
-  //-               |   name: customers
-  //-               |   type: postgresql
-  //-     .script
-  //-       h3 cleanup
-  //-       .row
-  //-         p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-  //-         .script
-  //-           pre
-  //-             code.language-yaml
-  //-               | web1:
-  //-               |   name: site
-  //-               |   type: ruby
-  //-               |   
-  //-               | database1:
-  //-               |   name: customers
-  //-               |   type: postgresql
+  .languages-and-frameworks
+    .section-header
+      img.shadow-icon(data-src="mad-scientist")
+      h1 Language and Framework Developers
+      
+    h1 Plugins : Add support for your framework
+    .row.plugin-overview
+      .graphic
+        img.shadow-icon(data-src="plugin-scripts")
+      .descript
+        h3 It’s your framework, you define the ideal runtime
+        p Plugins customize the environment and launch services. You specify the services your framework needs and how they should be configured so the dev can begin building their app immediately with no need to install or configure anything.
+    .scripts
+      .script
+        h3.required sniff
+        .row
+          p.descript This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, this script should returns true. 
+          .script
+            pre
+              code.language-javascript
+                | #!/bin/sh
+                | if ( match_file( "/mage.php" )) {
+                |   print true;
+                | } else {
+                |   print false;
+                | }
+      .script
+        h3 boxfile
+        .row
+          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+          .script
+            pre
+              code.language-yaml
+                | nanobox:
+                |   domain: localhost
+                |   port: 4321
+                |   
+                | web1:
+                |   name: site
+                |   type: ruby
+                |   
+                | database1:
+                |   name: customers
+                |   type: postgresql
+      .script
+        h3 prepare
+        .row
+          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+          .script
+            pre
+              code.language-yaml
+                | web1:
+                |   name: site
+                |   type: ruby
+                |   
+                | database1:
+                |   name: customers
+                |   type: postgresql
+      .script
+        h3.required build
+        .row
+          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+          .script
+            pre
+              code.language-yaml
+                | web1:
+                |   name: site
+                |   type: ruby
+                |   
+                | database1:
+                |   name: customers
+                |   type: postgresql
+      .script
+        h3 cleanup
+        .row
+          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
+          .script
+            pre
+              code.language-yaml
+                | web1:
+                |   name: site
+                |   type: ruby
+                |   
+                | database1:
+                |   name: customers
+                |   type: postgresql

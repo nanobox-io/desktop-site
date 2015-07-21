@@ -18,7 +18,7 @@
 }
 
 @mixin removeTransitions(){ @include transition(); }
-@mixin selectable($val:none){ 
+@mixin selectable($val:none){
   -moz-user-select: $val;
   -khtml-user-select: $val;
   -webkit-user-select: $val;
@@ -35,3 +35,9 @@
 @mixin center-vertical()   { position:relative; top:50%; @include transform(translateY(-50%)); }
 @mixin center-horizontal() { position:relative; top:50%; @include transform(translateX(-50%)); }
 @mixin circle($size)       { height:$size; width:$size; border-radius:50%; }
+
+@mixin drop-shadow ($xoffset:0px, $yoffset:1px, $blur:33px, $color:#040c14, $radius:0px) {
+  -webkit-box-shadow: $xoffset $yoffset $blur $radius $color;
+  -moz-box-shadow: $xoffset $yoffset $blur $radius $color;
+  box-shadow: $xoffset $yoffset $blur $radius $color;
+}

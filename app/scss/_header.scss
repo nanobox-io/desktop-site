@@ -14,3 +14,10 @@
     }
   }
 }
+
+.nav                    { position:absolute; top:27px; right:0;
+  a                     { color: #51768F; font-family:$lato; text-decoration:none; font-size:13px; padding:5px 10px;
+    &:not(:first-child) { border-left: solid 1px #2a363e; }
+    &:hover             { color:white; }
+  }
+}

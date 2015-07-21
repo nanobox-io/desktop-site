@@ -1,0 +1,21 @@
+.community     { position:fixed; background:#2FC9C9; padding:47px 60px 60px 60px; margin: auto; top: 0; left: 0; bottom: 0; right: 0; width:435px; height:330px; @include drop-shadow();
+  a            { font-size:21px; color:#95FFFF; line-height:0; display:flex; flex-direction:row; align-items:center; padding:20px 0; text-decoration:none; margin:0; cursor:pointer;
+    .icon      { width:50px; text-align:center;
+      svg      { float:left;
+        *      { fill:#95FFFF; }
+      }
+    }
+    &:hover    { color:white;
+      .icon    {
+        svg *  {fill:white;}
+      }
+    }
+  }
+  .close       { position:absolute; right:10px; top:10px; cursor:pointer;
+    &:hover    {
+      svg *    { fill:white; }
+    }
+  }
+}
+
+.hidden        { display:none; }
