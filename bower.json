@@ -10,7 +10,8 @@
     "prism": "*",
     "prism-langs": "jasperla/prism-langs",
     "sprint.js": "*",
-    "history.js": "~1.8.0"
+    "history.js": "~1.8.0",
+    "shadow-icons-library": "https://tolmark12@bitbucket.org/pagodabox-js-libs/shadow-icons-library.git"
   },
   "ignore": [
     "app",
