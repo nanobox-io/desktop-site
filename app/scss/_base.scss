@@ -10,3 +10,4 @@ ul             { list-style-type: none; margin:0; padding:0; }
 h3             { @include bottom-border(); padding-bottom:15px; margin-bottom:21px;  }
 
 .main-wrapper  { max-width:$global-max-width; margin:0 auto; position:relative; }
+.hidden        { display:none; }

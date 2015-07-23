@@ -25,6 +25,19 @@
 
   .asterix {font-weight:normal; font-style:italic; color:#486880; }
 
+  .download-mini-btns    { display:flex; flex-direction:row; justify-content:flex-end;
+    .btn                 { width:39px; height:39px; cursor:pointer; margin:0 5px;
+      &:not(.active) svg                {
+        *                { fill:#304657; }
+        .logo *          { fill:#212C33; }
+        &:hover          {
+          *              { fill:#D45959; }
+          .logo *        { fill:#943E3E; }
+        }
+      }
+    }
+  }
+
   // ------------------------------------ Descriptions
   .break                  { padding-top:15px; }
 
