@@ -14,6 +14,8 @@ class ContentArea
     @$el.animate {opacity:0}, duration:200, complete:()=> @loadPage newPage
 
   loadPage : (page) ->
+    pageData = nbx.Pages.pages[page]
+
     # @fireGoogleAnalyticsEvent page
     # @scrollToTop()
     @currentPage = page
@@ -21,6 +23,10 @@ class ContentArea
 
     $node = $( jadeTemplate[ "pages/"+page ]() )
     @$el.append( $node )
+
+    @currentPageClass?.destroy()
+    if pageData.class?
+      @currentPageClass = new nbx[pageData.class]($node)
 
     shadowIconsInstance.svgReplaceWithString pxSvgIconString, $node
     Prism.highlightAll()

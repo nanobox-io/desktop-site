@@ -1,118 +1,42 @@
-.downloads             { margin-top: 30px;
-  > *                  { margin:0 0 80px; }
-  h1                   { font-size:17px; font-weight:bold; margin:0 0 20px; }
-  .descript            { font-size:13px; }
-  .left                {  }
-  .right               {
-    h1                 { color:#1FFFC2;}
-    .download-btns .btn .down-arrow:before { background:#1FFFC2;}
+.downloads      { font-family:$lato; font-size:14px; padding-bottom:60px;
+
+  // ------------------------------------ Top Downloader
+
+  .row          { display:flex; flex-direction:row; }
+  .downloader   { justify-content:center; margin:70px 0;}
+  .checkbox     { cursor:pointer;
+    &.checked   {
+      svg .check{ opacity:1; }
+    }
+    svg .check{ opacity:0; }
   }
-  .download-btns       { display:flex; margin-top:10px; opacity :0;
-    .btn               { min-width: 165px; color:#212C33; font-size:13px; cursor:pointer; position:relative; background:#3E627A; border-radius:5px; margin-right:28px; @include transition(all, 0s);
-      *                { @include transition(all, 0s); }
-      .icon            { display:table-cell; vertical-align:middle; width: 45px; padding:10px; background:#355369; height:100%; border-radius:5px 0 0 5px; vertical-align:middle;
-        svg            {
-          *            { fill:#212C33; }
-        }
-      }
-      .sub             { }
-      .details         { display:table-cell; vertical-align:middle; position:relative; padding:10px;}
-      .down-arrow      { color:#3d637e; position:absolute; right:-16px; bottom:-39px; font-size:10px; text-align:center;
-        p              { margin-top:4px; margin-left:-1px; }
-        &:before       { content:""; padding-top:20px; display:block; width:28px; height:28px; text-align:center; background:#FFF5AD; border-radius:50%; }
-        svg            { position:absolute; top:6px; left:5px; }
-      }
-      .vers            { color:red; position:absolute; margin-left:8px; top:-14px; color:#2d4b60; font-size:10px;
-        &:before       { content:"v"; }
-      }
-      $btn-hover : #5dbbf5;
-      &:hover          { background:#3d8abd;
-        .icon          { background:$btn-hover;
-          svg *        {  }
-        }
-        .down-arrow    {
-          &:before     { background:white; }
-          // svg *        { fill:white; }
-        }
+  .info         { display:flex; flex-direction:column; justify-content:space-between; height: 97px; margin-top: 22px; padding-left: 50px;
+    .option     { cursor:pointer; padding-top:2px; display:flex; flex-direction:row;  align-content:center; font-style:italic; font-weight:normal;
+      &:hover   { color:#7591a2; }
+      .copy     { line-height: 23px; padding-left:6px;  }
+    }
+    .title      { text-transform:uppercase; letter-spacing:0.08em; font-size:16px; font-weight:normal;}
+    .install    { text-transform:uppercase; letter-spacing:0.08em; color:#F5DA81; cursor:pointer; display:flex; flex-direction:row;  align-content:center;
+      &:hover   { color:white;
+        svg *   { fill:white; }
       }
     }
   }
-}
-.os-sections           { margin-top:70px; margin-bottom:20px;
-  > div                { width:100%; font-size:12px; margin-bottom:40px; }
-  h1                   { font-size:15px; color:#3E627A; font-weight:bold; }
-  li                   { cursor:pointer; padding:4px 0 4px 8px; margin-left:-8px; text-decoration:underline; color:#496B7F; position:relative; width:100%; display:block;
-    &.active           { color:white;
-      &:hover          { color:white; }
-    }
-    span               { text-decoration:none; float:right; }
-    &:hover            {  background:#1b2329; color:#6691ac; }
-  }
-}
 
-@media only screen and (min-width: 600px) {
-  .downloads             { display:flex;
-    > *                  { margin:0; }
-    .download-btns       { margin-top:20px; }
-    h1                   { font-size:17px; }
-    .right               { margin-left:30px;}
-  }
-  .os-sections         { display:flex;
-    > div              { font-size:14px; margin-bottom:0; }
-    li                 {
-      span             { position:absolute; left:70px; width:160px; font-size:10px; }
-    }
-  }
-  .downloads .download-btns .btn{ min-width: 105px;
-    .icon {width: 25px; padding:2px;}
-  }
-}
+  .asterix {font-weight:normal; font-style:italic; color:#486880; }
 
-@media only screen and (min-width: 680px) {
-  .os-sections  li span  { font-size:12px; }
-}
+  // ------------------------------------ Descriptions
+  .break                  { padding-top:15px; }
 
-@media only screen and (min-width: 750px) {
-  .os-sections  li span  { font-size:12px; }
-  .downloads .download-btns .btn {min-width: 165px;
-    .icon {display:table-cell; width: 45px; padding:10px;}
-  }
-}
+  .breakdown              { padding-top:18px; }
 
-@media only screen and (min-width: 900px) {
-  .downloads             {
-    h1                   { font-size:25px; }
-    .download-btns       { margin-top:40px; }
-    .descript            {  }
-    .left                {  }
-    .right               { margin-left:100px;
-      h1                 { color:#1FFFC2;}
-      .download-btns .btn .details .down-arrow:before   { background:#1FFFC2;}
-    }
-    .download-btns       {
-      .btn               { margin-right:38px;
-        .title           { font-size:15px; }
-        .icon            { }
-        .sub             { font-size:13px; }
-        .details         {
-          .down-arrow    {
-            &:before     {}
-          }
-        }
+  .descriptions           {
+    .description          { width:265px;
+      &:not(:last-child)  { margin-bottom:45px; }
+      h4                  { font-family:$museo; color:#6B8DA3; border-bottom:1px solid $border-color; padding-bottom:5px; margin-bottom:-10px;
+        span              { float:right; }
       }
+      p                   { font-style:italic; font-weight:normal; }
     }
   }
-  .os-sections           { margin-top:100px; margin-bottom:100px;
-    > div                { padding-right:60px; }
-    h1                   {  }
-    li                   {  }
-    a                    {
-      span               {  }
-      &:hover            {  }
-    }
-  }
-}
-
-@media only screen and (min-width: 930px) {
-  .downloads h1          { font-size:27px;}
 }

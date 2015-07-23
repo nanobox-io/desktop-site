@@ -1,65 +1,33 @@
 
 .downloads
-  .left
-    h1 Nanobox + Vagrant + Virtual Box
-    .descript All in one installer, everything you need in one conenient shot
-    .download-btns
-      .btn(bit="64", kind="full")
-        .icon
-          img.shadow-icon(data-src="mac" scalable="true")
-        .details
-          .title Mac OSX Intel
-          .sub 64 bit
-        .down-arrow 
-          img.shadow-icon(data-src="download")
-          p 845 MB
-        .vers 1.1.1
-      .btn(bit="32", kind="full")
-        .icon
-          img.shadow-icon(data-src="mac", scalable="true")
-        .details
-          .title Mac OSX Intel
-          .sub 32 bit
-        .down-arrow 
-          img.shadow-icon(data-src="download")
-          p 845 MB
-        .vers 1.1.1
-  .right
-    h1 Nanobox Only
-    .descript Download this if you already have Vagrant &amp; Virtualbox installed
-    .download-btns
-      .btn(bit="64", kind="nano")
-        .icon
-          img.shadow-icon(data-src="lnx", scalable="true")
-        .details
-          .title Mac OSX Intel
-          .sub 64 bit
-        .down-arrow 
-          img.shadow-icon(data-src="download")
-          p 24 MB
-        .vers 1.1.1
-      .btn(bit="32", kind="nano")
-        .icon
-          img.shadow-icon(data-src="win", scalable="true")
-        .details
-          .title Mac OSX Intel
-          .sub 32 bit
-        .down-arrow 
-          img.shadow-icon(data-src="download")
-          p 24 MB
-        .vers 1.1.1
-.os-sections
-  .apple
-    h1 Mac
-    ul
-      //- Links added via Javascript
-  
-  .linux
-    h1 Linux
-    ul
-      //- Links added via Javascript
-      
-  .windows
-    h1 Windows
-    ul
-      //- Links added via Javascript
+  .row.downloader
+    .icon
+      img.shadow-icon(data-src="win")
+    .info
+      .title Mac OSX Intel - 1.4. GB
+      .option
+        .checkbox.checked
+          img.shadow-icon(data-src="checkbox")
+        .copy Install Vagrant &amp; Virtual Box * 
+      .install 
+        | Download Installer
+        img.shadow-icon(data-src="download-big")
+  h3 What's in the installer
+  .row.break
+    .breakdown
+      img.shadow-icon(data-src="download-breakdown")
+    .descriptions
+      .description.ubunto-image
+        h4 Boot-2-docker Ubunto Image <span>1.3 GB</span>
+        p Nanobox installs your app and runtimes (ruby, node, mysql, etc) on a virtual machine running this slim version is Linux. 
+      .description.nanobox
+        h4 Nanobox <span>8 MB</span>
+        p Orchestration layer that configures and runs your app
+      .description.vagrant
+        h4 Vagrant <span>81 MB</span>
+        p Creates / manages the Virtual Machine
+      .description.virtual-box
+        h4 Virtual Box <span>1.3 GB</span>
+        p Does the actual virtualization
+  h3 &nbsp;
+  .row.asterix * Uncheck this box if you already have Vagrant & Virtual box installed, or if you would like to download and install them yourself
