@@ -103,8 +103,8 @@ buildOsDownloadLinks = ()->
       $os.append $node
       $node.on "click", (e)=>
         $('.btn').stop()
-        $('.btn').animate {opacity:0}, duration:60, complete:()->
-          $('.btn').animate {opacity:1}, {duration:300}
+        $('.btn').velocity {opacity:0}, duration:60, complete:()->
+          $('.btn').velocity {opacity:1}, {duration:300}
 
         $("li.active").removeClass  "active"
         $(e.currentTarget).addClass "active"

@@ -11,7 +11,7 @@ class ContentArea
       @loadPage page
 
   unloadCurrentPage : (newPage) ->
-    @$el.animate {opacity:0}, duration:200, complete:()=> @loadPage newPage
+    @$el.velocity {opacity:0}, duration:200, complete:()=> @loadPage newPage
 
   loadPage : (page) ->
     pageData = nbx.Pages.pages[page]
@@ -32,7 +32,7 @@ class ContentArea
     Prism.highlightAll()
 
     @$el.css opacity:0
-    @$el.animate {opacity:1}, duration:400
+    @$el.velocity {opacity:1}, duration:400
 
 
 nbx.ContentArea = ContentArea

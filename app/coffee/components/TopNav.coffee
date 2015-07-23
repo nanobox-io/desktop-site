@@ -5,14 +5,21 @@ class TopNav
     $el.prepend( @$node )
     shadowIconsInstance.svgReplaceWithString pxSvgIconString, @$node
 
-    $("a[data]").on "click", @onLocalNavItemClick
-    $("a.open-community").on "click", (e)=> @showCommunityModal()
+    $("a[data]", @$node).on "click", @onLocalNavItemClick
+    $("a.open-community", @$node).on "click", (e)=> @showCommunityModal()
 
     @addCommunityModal($el)
     @hideCommunityModal()
 
+    PubSub.subscribe 'CHANGE_CONTENT', (msg, data)=> @activateNavItem data.pageId
+
+
   onLocalNavItemClick : (e) =>
     PubSub.publish 'CHANGE_PAGE', { pageId: $(e.currentTarget).attr("data") }
+
+  activateNavItem : (id) ->
+    $("a[data]", @$node).removeClass 'active'
+    $("a[data=#{id}]", @$node).addClass 'active'
 
   # ------------------------------------ Community Modal
 

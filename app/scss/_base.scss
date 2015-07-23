@@ -5,7 +5,7 @@ html           {box-sizing: border-box;}
 *:after        {box-sizing: inherit;}
 
 body           { margin:0; padding:0; font-family: $museo; background:#212C33; color:#496B7F; -webkit-font-smoothing: antialiased; font-weight:bold; }
-// body *         { @include transition(all, 0.15s);}
+body *         { @include transition(all, 0.15s);}
 ul             { list-style-type: none; margin:0; padding:0; }
 h3             { @include bottom-border(); padding-bottom:15px; margin-bottom:21px;  }
 
