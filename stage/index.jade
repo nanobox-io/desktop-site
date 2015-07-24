@@ -1,7 +1,19 @@
 doctype html
 html(lang="en")
   
-  include ./_head.jade
+  head
+    title Nanobox
+    meta( name= "viewport", content= "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" )
+
+    // build:css style.css
+    link(href="stage/css/stage.css", rel="stylesheet")
+    link(href="css/main.css", rel="stylesheet")
+    link(href='css/nanobox.css' rel='stylesheet' type='text/css')
+    // endbuild
+    
+    link(href='http://fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css')
+    link(rel="icon" type="image/png" href="/assets/favicon.png")
+
 
   body
     .main-wrapper
@@ -10,7 +22,6 @@ html(lang="en")
     // build:js1 js/libs.js
     //- SVG library
     script(src="bower-libs/prism/prism.js")
-    script(src="bower-libs/prism-langs/prism-yaml.js")
     script(src="js/prism-nanobox.js")
     script(src="bower-libs/pubsub-js/src/pubsub.js")
     script(src="js/nanobox.js") 

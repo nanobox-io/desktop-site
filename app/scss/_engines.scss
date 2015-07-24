@@ -28,7 +28,7 @@
     svg                         {  }
     .title                      { align-items:center; justify-content:space-between; display:flex; border:solid 1px $border-color; border-right:none; border-left:none; margin-top: 8px;
       .text                     { color:#B2C5D1; text-transform:uppercase; font-size:20px; letter-spacing:0.12em; font-family:$lato; font-weight:normal; padding:24px 0; margin-top:0; border-bottom:none; }
-      .irc-blurb                { display:flex; cursor:pointer;
+      .irc-blurb                { display:flex; cursor:pointer; min-width: 220px;
         svg                     { margin-right:10px; }
         .txt                    { font-weight:normal; font-family:$lato; color:#3E6F96; font-size:13px; }
         &:hover                 {
