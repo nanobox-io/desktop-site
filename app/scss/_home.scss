@@ -101,6 +101,10 @@ $border-color   : #263A47;
         }
       }
       .visual                    { width:$right-col-perc - 1%; display:inline-block; vertical-align:middle;  position: relative; text-align: center; vertical-align:middle;  }
+      &.engine-blurb{
+        .visual     { width:40%;}
+        .descript   { width:50%;}
+      }
     }
     .mini-overview               { display:flex; flex-direction:row; justify-content:space-between; margin-bottom:100px; padding:0 10px;
       h2                         { border-bottom:solid 1px $border-color; padding-bottom:12px;}
@@ -125,46 +129,6 @@ $border-color   : #263A47;
     span.sub                   {  font-size:24px; font-style:italic; }
   }
 
-  /*
-                                                                           #
- #        ##   #    #  ####  #    #   ##    ####  ######  ####          #     ###### #####    ##   #    # ###### #    #  ####  #####  #    #  ####
- #       #  #  ##   # #    # #    #  #  #  #    # #      #             #      #      #    #  #  #  ##  ## #      #    # #    # #    # #   #  #
- #      #    # # #  # #      #    # #    # #      #####   ####        #       #####  #    # #    # # ## # #####  #    # #    # #    # ####    ####
- #      ###### #  # # #  ### #    # ###### #  ### #           #      #        #      #####  ###### #    # #      # ## # #    # #####  #  #        #
- #      #    # #   ## #    # #    # #    # #    # #      #    #     #         #      #   #  #    # #    # #      ##  ## #    # #   #  #   #  #    #
- ###### #    # #    #  ####   ####  #    #  ####  ######  ####     #          #      #    # #    # #    # ###### #    #  ####  #    # #    #  ####
-
-  */
-
-  .languages-and-frameworks       { margin-top:200px;
-    .section-header               { margin-bottom: 90px;
-      svg                         { margin:0 auto; display:block; }
-      h1                          { background:#1E282E; color:#FF7FA8; text-align:center; text-transform:uppercase; font-size:20px; letter-spacing:0.12em; font-family:$lato; font-weight:normal; padding:33px 0; margin-top:0; border-bottom:none; }
-    }
-    h1                            { color: $turquoise; }
-    .row                          { margin:0; }
-    .plugin-overview              { margin:81px 0 58px;
-      .graphic                    { display: inline-block; width: 49%;}
-      .descript                   { vertical-align: top;
-        h3                        { color: #9DC3D6;}
-        p                         { color:#3E6F96; font-size:19px; }
-      }
-    }
-    .scripts                      {
-      .script                     { margin-bottom: 23px;
-        h3                        { color:#FFF5AD; font-family: $code-font; font-size:20px; margin-bottom: 7px; padding-bottom: 5px;
-          &:after                 { content:"optional"; float:right; color:#376182; font-size:17px; }
-          &.required:after        { content:"required"; color:#FFF5AD; }
-        }
-        .row                      {
-          .descript               { width:33%; display:inline-block;  vertical-align: top; font-family:$lato; color:#3E6F96; font-size:16px; line-height:25px; font-weight:normal; padding: 0 50px 0 0; margin:0; }
-          .script                 { width:66%; display:inline-block;
-            *                     { @include selectable(text); }
-          }
-        }
-      }
-    }
-  }
 
   /*
    #     # ####### ######  ###    #        #####  #     # ####### ######  ### #######  #####
@@ -210,7 +174,7 @@ $vagrant-gray :#9CB7C5;
       }
     }
   }
-  .graphic                        { margin-left: -65px;
+  .graphic                       { margin-left: -65px;
     svg#sandwich                 {
       #numbers-staggered         { display:none; }
       #numbers-vertical          { display:none; }

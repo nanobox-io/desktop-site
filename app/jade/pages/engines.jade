@@ -1,15 +1,23 @@
 .languages-and-frameworks
   .section-header
-    img.shadow-icon(data-src="mad-scientist")
-    h1 Language and Framework Developers
+    .science-and-search
+      img.shadow-icon(data-src="mad-scientist")
+      .search
+        input( placeholder="Search Existing Engines" )
+        .search-btn
+          img.shadow-icon(data-src="search")
+    .title
+      .text IT’S YOUR FRAMEWORK, YOU DEFINE THE IDEAL RUNTIME
+      a(href="//webchat.freenode.net/?channels=nanobox").irc-blurb
+        img.shadow-icon(data-src="irc-outline")
+        .txt Join our IRC channel, for <br/> help - #nanobox on freenode
     
-  h1 Plugins : Add support for your framework
   .row.plugin-overview
-    .graphic
-      img.shadow-icon(data-src="plugin-scripts")
     .descript
-      h3 It’s your framework, you define the ideal runtime
-      p Plugins customize the environment and launch services. You specify the services your framework needs and how they should be configured so the dev can begin building their app immediately with no need to install or configure anything.
+      h2 Writing a Custom Engine
+      p Five BASH scripts specify the services your framework needs and how they should be configured so devs can begin building their app immediately with no need to install or configure anything.
+    .graphic
+      img.shadow-icon(data-src="plugin-scripts" scalable="true")
   .scripts
     .script
       h3.required sniff

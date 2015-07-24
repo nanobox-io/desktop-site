@@ -6,7 +6,7 @@ class TopNav
     shadowIconsInstance.svgReplaceWithString pxSvgIconString, @$node
 
     $("a[data]", @$node).on "click", @onLocalNavItemClick
-    $("a.open-community", @$node).on "click", (e)=> @showCommunityModal()
+    $("a.open-community", @$node).on "click", (e)=>  @showCommunityModal()
 
     @addCommunityModal($el)
     @hideCommunityModal()
@@ -29,7 +29,20 @@ class TopNav
     shadowIconsInstance.svgReplaceWithString pxSvgIconString, $el
     $(".close", @$community).on   "click", (e) => @hideCommunityModal()
 
-  showCommunityModal : () -> @$community.removeClass "hidden"
-  hideCommunityModal : () -> @$community.addClass "hidden"
+
+  showCommunityModal : () ->
+    @$community.removeClass "hidden"
+    @listenForClickOutsideModal()
+
+
+  hideCommunityModal : () ->
+    @$community.addClass "hidden"
+
+  listenForClickOutsideModal : () ->
+    $(document).on "mousedown", (e)=>
+      if !@$community.is(e.target) && @$community.has(e.target).length == 0
+        @hideCommunityModal()
+        $(document).off "mousedown"
+
 
 nbx.TopNav = TopNav
