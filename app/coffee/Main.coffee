@@ -14,6 +14,7 @@ class Main
     $('a[data=downloads]', @nav.$node).remove()
     $('a[data=engines]',   @nav.$node).remove()
     $('a.sign-up',         @nav.$node).remove()
+    # Wait until home page loads, then remove the content
     setInterval ()=>
       $(".content-area a.download").remove()
       $(".descript a").remove()
