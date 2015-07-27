@@ -15,6 +15,7 @@ Main = (function() {
   Main.prototype.removeAlphaContent = function() {
     $('a[data=downloads]', this.nav.$node).remove();
     $('a[data=engines]', this.nav.$node).remove();
+    $('a.sign-up', this.nav.$node).remove();
     return setInterval((function(_this) {
       return function() {
         $(".content-area a.download").remove();

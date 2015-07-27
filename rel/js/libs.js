@@ -10242,7 +10242,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 
-buf.push("<div class=\"header\"><div class=\"logo\"><a data=\"home\"><img data-src=\"logo-horizontal\" class=\"shadow-icon\"/></a></div></div><div class=\"nav\"><a data=\"downloads\">Download</a><a class=\"open-community\">Community</a><a data=\"engines\">Engines</a><a href=\"//dashboard.nanobox.io/users/sign_in\">Login / Register</a></div>");;return buf.join("");
+buf.push("<div class=\"header\"><div class=\"logo\"><a data=\"home\"><img data-src=\"logo-horizontal\" class=\"shadow-icon\"/></a></div></div><div class=\"nav\"><a data=\"downloads\">Download</a><a class=\"open-community\">Community</a><a data=\"engines\">Engines</a><a href=\"//dashboard.nanobox.io/users/sign_in\" class=\"sign-up\">Login / Register</a></div>");;return buf.join("");
 };
 
 jadeTemplate['pages/downloads'] = function template(locals) {
