@@ -50,8 +50,8 @@
   .scripts                      {
     .script                     { margin-bottom: 23px;
       h3                        { color:#FFF5AD; font-family: $code-font; font-size:20px; margin-bottom: 7px; padding-bottom: 5px;
-        &:after                 { content:"optional"; float:right; color:#376182; font-size:17px; }
-        &.required:after        { content:"required"; color:#FFF5AD; }
+        // &:after                 { content:"optional"; float:right; color:#376182; font-size:17px; }
+        // &.required:after        { content:"required"; color:#FFF5AD; }
       }
       .row                      {
         .descript               { width:33%; display:inline-block;  vertical-align: top; font-family:$lato; color:#3E6F96; font-size:16px; line-height:25px; font-weight:normal; padding: 0 50px 0 0; margin:0; }

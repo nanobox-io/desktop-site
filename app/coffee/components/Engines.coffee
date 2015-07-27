@@ -4,7 +4,8 @@ class Engines
     $(".search-btn", @$el).on "click", (e)=> @submitSearch()
 
   submitSearch : () ->
-    console.log $(".search input", @$el).val()
+    url = "//dashboard.nanobox.io/?search=#{$(".search input", @$el).val()}"
+    window.location = url
 
   destroy : () ->
 

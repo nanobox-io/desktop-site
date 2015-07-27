@@ -145,12 +145,12 @@
         | Get started
         img.shadow-icon(data-src="right-arrow")
           
-  h1#running-commands How it works <span class="sub"> - Running Commands</span>
+  h1#running-commands.running-commands How it works <span class="sub"> - Running Commands</span>
 
-  .top-blurb
+  .top-blurb.running-commands
     <span class="prompt">$ </span><span class="command">nanobox</span><span class="param"> up</span> : creates a virtual staging environment and installs everything your code needs to run. As you edit your code, your files are compiled and copied into your running container. The following is a breakdown of what nanobox is doing behind the scenes:
   
-  .row
+  .row.running-commands
     .descript
       h2 <span>1</span>Vagrant initializes
       p Nanobox uses Vagrant to launch a virtual machine running a custom operating system with all the necessary Docker and Nanobox bits installed and running at boot. The Vagrantfile is configured to mount the code directory inside the virtual machine as a shared directory.

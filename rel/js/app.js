@@ -8,7 +8,20 @@ Main = (function() {
   Main.prototype.build = function($el) {
     this.nav = new nbx.TopNav($el);
     this.content = new nbx.ContentArea($(".content-area", $el));
-    return this.window = new nbx.Window($el);
+    this.window = new nbx.Window($el);
+    return this.removeAlphaContent();
+  };
+
+  Main.prototype.removeAlphaContent = function() {
+    $('a[data=downloads]', this.nav.$node).remove();
+    $('a[data=engines]', this.nav.$node).remove();
+    return setInterval((function(_this) {
+      return function() {
+        $(".content-area a.download").remove();
+        $(".descript a").remove();
+        return $(".running-commands").remove();
+      };
+    })(this), 200);
   };
 
   return Main;
@@ -224,7 +237,9 @@ Engines = (function() {
   }
 
   Engines.prototype.submitSearch = function() {
-    return console.log($(".search input", this.$el).val());
+    var url;
+    url = "//dashboard.nanobox.io/?search=" + ($(".search input", this.$el).val());
+    return window.location = url;
   };
 
   Engines.prototype.destroy = function() {};
@@ -256,6 +271,10 @@ Pages = (function() {
       id: "downloads",
       title: "Nanobox - Downloads",
       "class": 'Downloads'
+    },
+    legal: {
+      id: "legal",
+      title: "Nanobox - Legal"
     }
   };
 
