@@ -106,8 +106,9 @@ copyAssets = (destination, cb) ->
     .pipe gulp.dest(destination)
     .on('end', cb)
 
-copyBowerLibs = ()->
-  bower().pipe gulp.dest('./server/bower-libs/')
+copyBowerLibs = (cb)->
+  bower()
+    .pipe gulp.dest('./server/bower-libs/')
 
 copyFilesToBuild = ->
   gulp.src( './server/js/*' ).pipe gulp.dest('./rel/')
@@ -195,17 +196,17 @@ compileFiles = (doWatch=false, cb) ->
 
 # ----------- MAIN ----------- #
 
-gulp.task 'clean',                  (cb) -> rimraf './server/*', cb
-gulp.task 'bowerLibs', ['clean'],   ()   -> copyBowerLibs()
+gulp.task 'clean',                  (cb) -> rimraf './server', cb
+gulp.task 'bowerLibs', ['clean'],   () -> copyBowerLibs()
 gulp.task 'compile', ['bowerLibs'], (cb) -> compileFiles(true, cb)
 gulp.task 'server', ['compile'],    (cb) -> server(); launch();
 gulp.task 'default', ['server']
 
 # ----------- BUILD (rel) ----------- #
 
-gulp.task 'rel:clean',                                (cb)  -> rimraf('./rel', cb); console.log "!! IMPORTANT !! If you haven't already, make sure you run 'gulp' before 'gulp rel'"
-gulp.task 'bumpVersion',                              ()    -> bumpBowerVersion()
-gulp.task 'copyStatics', ['rel:clean', 'bowerLibs'],  ()    -> copyAssets('rel/assets', ->)
-gulp.task 'releaseCompile', ['copyStatics'],           (cb) -> compileFiles(false, cb)
-gulp.task 'minify',['releaseCompile'],                 ()   -> minifyAndJoin();
-gulp.task 'rel', ['rel:clean', 'bumpVersion', 'minify'],    -> #pushViaGit()
+gulp.task 'rel:clean',                                 (cb)  -> rimraf './rel', cb
+gulp.task 'bumpVersion',                               ()    -> bumpBowerVersion()
+gulp.task 'copyStatics', ['bowerLibs'],                ()    -> copyAssets('rel/assets', ->)
+gulp.task 'releaseCompile', ['copyStatics'],           (cb)  -> compileFiles(false, cb)
+gulp.task 'minify',['releaseCompile'],                 ()    -> minifyAndJoin();
+gulp.task 'rel', ['rel:clean', 'bumpVersion', 'minify'],     -> #pushViaGit()
