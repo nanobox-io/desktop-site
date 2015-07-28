@@ -37,7 +37,7 @@ assetPath         = 'app/images/*'
 miscJsPath        = 'app/js/*'
 svgPath           = 'app/assets/compiled/*.svg'
 
-parseSVG = ->
+parseSVG = (cb)->
   gulp.src svgPath
     .pipe shadow {
       cssDest:'./css/'
@@ -49,6 +49,7 @@ parseSVG = ->
       ]
     }
     .pipe gulp.dest('./server/')
+    .on('end', cb)
 
 htmlStage = (cb)->
   gulp.src jadeStagePath
@@ -167,34 +168,44 @@ launch = ->
       app: "google chrome"
     ))
 
-# Livereload Server
-watchAndCompileFiles = (cb)->
-  count = 0
-  onComplete = ()=> if ++count == 8 then cb()
+compileFiles = (doWatch=false, cb) ->
+  count       = 0
+  onComplete = ()=> if ++count == ar.length then cb()
+  ar         = [
+    {meth:js,         glob:coffeePath}
+    {meth:css,        glob:cssPath}
+    {meth:html,       glob:jadePath}
+    {meth:jsStage,    glob:coffeeStagePath}
+    {meth:miscJs,     glob:miscJsPath}
+    {meth:cssStage,   glob:cssStagePath}
+    {meth:htmlStage,  glob:jadeStagePath}
+    {meth:parseSVG,   glob:assetPath}
+    {meth:copyAssets, glob:svgPath, params:['server/assets', onComplete]}
+  ]
 
-  watch { glob:coffeePath      },  -> js(onComplete).pipe                            livereload()
-  watch { glob:cssPath         },  -> css(onComplete).pipe                           livereload()
-  watch { glob:jadePath        },  -> html(onComplete).pipe                          livereload()
-  watch { glob:coffeeStagePath },  -> jsStage(onComplete).pipe                       livereload()
-  watch { glob:miscJsPath },       -> miscJs(onComplete).pipe                        livereload()
-  watch { glob:cssStagePath    },  -> cssStage(onComplete).pipe                      livereload()
-  watch { glob:jadeStagePath   },  -> htmlStage(onComplete).pipe                     livereload()
-  watch { glob:assetPath       },  -> copyAssets('server/assets', onComplete).pipe   livereload()
-  watch { glob:svgPath         },  -> parseSVG(onComplete).pipe                      livereload()
+  createWatcher = (item, params)-> watch( { glob:item.glob }, => item.meth.apply(null, params).pipe( livereload() ) )
 
-# ----------- BUILD (rel) ----------- #
-
-gulp.task 'rel:clean',              (cb) -> rimraf('./rel', cb); console.log "!! IMPORTANT !! If you haven't already, make sure you run 'gulp' before 'gulp rel'"
-gulp.task 'bumpVersion',            ()   -> bumpBowerVersion()
-gulp.task 'copyAssets',             ()   -> copyAssets('rel/assets', ->)
-gulp.task 'minify',['copyAssets'],  ()   -> minifyAndJoin();
-gulp.task 'rel', ['rel:clean', 'bumpVersion', 'minify'], -> #pushViaGit()
+  for item in ar
+    params = if item.params? then item.params else [onComplete]
+    if doWatch
+      createWatcher(item, params)
+    else
+      item.meth.apply null, params
 
 
 # ----------- MAIN ----------- #
 
 gulp.task 'clean',                  (cb) -> rimraf './server/*', cb
 gulp.task 'bowerLibs', ['clean'],   ()   -> copyBowerLibs()
-gulp.task 'compile', ['bowerLibs'], (cb) -> watchAndCompileFiles(cb)
+gulp.task 'compile', ['bowerLibs'], (cb) -> compileFiles(true, cb)
 gulp.task 'server', ['compile'],    (cb) -> server(); launch();
 gulp.task 'default', ['server']
+
+# ----------- BUILD (rel) ----------- #
+
+gulp.task 'rel:clean',                                (cb)  -> rimraf('./rel', cb); console.log "!! IMPORTANT !! If you haven't already, make sure you run 'gulp' before 'gulp rel'"
+gulp.task 'bumpVersion',                              ()    -> bumpBowerVersion()
+gulp.task 'copyStatics', ['rel:clean', 'bowerLibs'],  ()    -> copyAssets('rel/assets', ->)
+gulp.task 'releaseCompile', ['copyStatics'],           (cb) -> compileFiles(false, cb)
+gulp.task 'minify',['releaseCompile'],                 ()   -> minifyAndJoin();
+gulp.task 'rel', ['rel:clean', 'bumpVersion', 'minify'],    -> #pushViaGit()
