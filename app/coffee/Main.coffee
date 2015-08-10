@@ -7,7 +7,7 @@ class Main
     @nav      = new nbx.TopNav $el
     @content  = new nbx.ContentArea $(".content-area", $el)
     @window   = new nbx.Window $el
-    @removeAlphaContent()
+    # @removeAlphaContent()
 
   # Quick way of pulling out conetnt that's not ready for prime time
   removeAlphaContent : () ->

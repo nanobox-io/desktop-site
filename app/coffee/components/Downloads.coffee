@@ -8,6 +8,7 @@ class Downloads
     $(".install", @$el).on    "click", (e)=> @startDownload()
     $(".btn", @$miniBtns).on  "click", (e)=> @osBtnClick  e.currentTarget.getAttribute('data')
     @osBtnClick @detectOs()
+    # @getSizeOfDownload "https://s3.amazonaws.com/tools.nanobox.io/cli/darwin/amd64/nanobox", (size)-> console.log "The size is #{size.toFixed(1)}MB"
 
   # ------------------------------------ API
 
@@ -23,20 +24,31 @@ class Downloads
 
 
   startDownload : () ->
-    console.log "download the #{@os} installer"
     downloadPath = if @checked then @OSinfo[ @os ].fullInstaller else @OSinfo[ @os ].partialInstaller
-    console.log downloadPath
+    window.location = downloadPath
 
 
   toggleCheckbox : () ->
     if @checked
       $(".checkbox", @$el).removeClass "checked"
       @checked = false
+      @updateSize()
     else
       $(".checkbox", @$el).addClass "checked"
       @checked = true
+      @updateSize()
 
   # ------------------------------------ Methods
+
+  getSizeOfDownload : (url, cb) ->
+    xhr = new XMLHttpRequest()
+    xhr.open "HEAD", url, true
+
+    xhr.onreadystatechange = ()->
+      if (this.readyState == this.DONE)
+        cb parseInt(xhr.getResponseHeader("Content-Length"))/1024/1024
+
+    xhr.send()
 
   switchOs : ( os ) ->
     if os == @os
@@ -45,18 +57,27 @@ class Downloads
     @os = os
     osData = @OSinfo[ @os ]
     $downloader  = $ '.downloader', @$el
-    $descriptions = $ 'descriptions', @$el
 
     # Title & Icon
     $('.title', $downloader).html osData.title
     $('.icon', $downloader).html "<img class='shadow-icon' data-src='#{@os}' />"
-    shadowIconsInstance.svgReplaceWithString pxSvgIconString, $downloader
-    # Component sizes
-    $('.ubunto-image span', $descriptions).html osData.downloadSizes.ubunto
-    $('.nanobox span',      $descriptions).html osData.downloadSizes.nano
-    $('.vagrant span',      $descriptions).html osData.downloadSizes.vagrant
-    $('.virtual-box span',  $descriptions).html osData.downloadSizes.virtualBox
 
+    @updateSize $downloader
+
+    shadowIconsInstance.svgReplaceWithString pxSvgIconString, $downloader
+
+  updateSize : ($downloader) ->
+    installer     = if @checked then 'fullInstaller' else 'partialInstaller'
+    osData        = @OSinfo[ @os ]
+    $descriptions = $ '.descriptions', @$el
+
+    @getSizeOfDownload osData[ installer ], (size)->
+      $('.title', $downloader).html osData.title + ' - ' + size.toFixed(1) + "MB"
+      # Component sizes
+      $('.ubunto-image span', $descriptions).html osData.downloadSizes.ubunto
+      $('.nanobox span',      $descriptions).html osData.downloadSizes.nano
+      $('.vagrant span',      $descriptions).html osData.downloadSizes.vagrant
+      $('.virtual-box span',  $descriptions).html osData.downloadSizes.virtualBox
 
   detectOs : () ->
     os = "Unknown OS"
@@ -66,21 +87,27 @@ class Downloads
     else if ( navigator.appVersion.indexOf("Linux") !=-1 ) then os = "lnx"
     os
 
+
+
+
+
+
+
   OSinfo : {
     mac:
-      title            : "Mac OSX Intel - 1.4 GB"
-      fullInstaller    : "/some/path/to/an/installler/mac"
-      partialInstaller : "/some/path/to/the/partial/installer"
+      title            : "Mac OSX Intel"
+      partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox.dmg"
+      fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox-bundle.dmg"
       downloadSizes    :
         ubunto      : "1.3 GB"
         nano        : "8 GB"
         vagrant     : "81 GB"
-        virtualBox  : "81 MB"
+        virtualBox  : "76 MB"
 
     win:
-      title            : "Windows - 1.4 GB"
-      fullInstaller    : "/some/path/to/an/installler/win"
-      partialInstaller : "/some/path/to/the/partial/installer"
+      title            : "Windows"
+      fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox-bundle.exe"
+      partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox.msi"
       downloadSizes    :
         ubunto      : "1.3 GB"
         nano        : "8 GB"
@@ -88,9 +115,9 @@ class Downloads
         virtualBox  : "81 MB"
 
     lnx:
-      title            : "Linux - 1.4 GB"
-      fullInstaller    : "/some/path/to/an/installler/lnx"
-      partialInstaller : "/some/path/to/the/partial/installer"
+      title            : "Linux"
+      partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox.deb"
+      fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox-bundle.deb"
       downloadSizes    :
         ubunto      : "1.3 GB"
         nano        : "8 GB"
