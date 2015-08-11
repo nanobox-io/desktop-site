@@ -180,8 +180,8 @@ compileFiles = (doWatch=false, cb) ->
     {meth:miscJs,     glob:miscJsPath}
     {meth:cssStage,   glob:cssStagePath}
     {meth:htmlStage,  glob:jadeStagePath}
-    {meth:parseSVG,   glob:assetPath}
-    {meth:copyAssets, glob:svgPath, params:['server/assets', onComplete]}
+    {meth:parseSVG,   glob:svgPath}
+    {meth:copyAssets, glob:assetPath, params:['server/assets', onComplete]}
   ]
 
   createWatcher = (item, params)-> watch( { glob:item.glob }, => item.meth.apply(null, params).pipe( livereload() ) )
@@ -197,7 +197,7 @@ compileFiles = (doWatch=false, cb) ->
 # ----------- MAIN ----------- #
 
 gulp.task 'clean',                  (cb) -> rimraf './server', cb
-gulp.task 'bowerLibs', ['clean'],   () -> copyBowerLibs()
+gulp.task 'bowerLibs', ['clean'],   ()   -> copyBowerLibs()
 gulp.task 'compile', ['bowerLibs'], (cb) -> compileFiles(true, cb)
 gulp.task 'server', ['compile'],    (cb) -> server(); launch();
 gulp.task 'default', ['server']

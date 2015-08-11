@@ -39,9 +39,14 @@
   }
 
   // ------------------------------------ Descriptions
-  .break                  { padding-top:15px; }
+  .break                  { padding-top:15px; justify-content:center;
+    &.partial-download    {
+      .vagrant,
+      .virtual-box        { display:none; }
+    }
+  }
 
-  .breakdown              { padding-top:18px; }
+  .breakdown              { padding-top:24px; }
 
   .descriptions           {
     .description          { width:265px;

@@ -57,6 +57,7 @@ class Downloads
     @os = os
     osData = @OSinfo[ @os ]
     $downloader  = $ '.downloader', @$el
+    @$graphic    = $ '.break', @$el
 
     # Title & Icon
     $('.title', $downloader).html osData.title
@@ -79,6 +80,12 @@ class Downloads
       $('.vagrant span',      $descriptions).html osData.downloadSizes.vagrant
       $('.virtual-box span',  $descriptions).html osData.downloadSizes.virtualBox
 
+    if @checked
+      @$graphic.removeClass 'partial-download'
+    else
+      @$graphic.addClass 'partial-download'
+
+
   detectOs : () ->
     os = "Unknown OS"
     if      ( navigator.appVersion.indexOf("Win")   !=-1 ) then os = "win"
@@ -93,35 +100,36 @@ class Downloads
 
 
 
+
   OSinfo : {
     mac:
       title            : "Mac OSX Intel"
       partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox.dmg"
       fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox-bundle.dmg"
       downloadSizes    :
-        ubunto      : "1.3 GB"
-        nano        : "8 GB"
-        vagrant     : "81 GB"
-        virtualBox  : "76 MB"
+        ubunto      : "392 MB"
+        nano        : "8 MB"
+        vagrant     : "81 MB"
+        virtualBox  : "87 MB"
 
     win:
       title            : "Windows"
       fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox-bundle.exe"
       partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox.msi"
       downloadSizes    :
-        ubunto      : "1.3 GB"
-        nano        : "8 GB"
-        vagrant     : "81 GB"
-        virtualBox  : "81 MB"
+        ubunto      : "392 MB"
+        nano        : "8 MB"
+        vagrant     : "68 MB"
+        virtualBox  : "63 MB"
 
     lnx:
       title            : "Linux"
       partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox.deb"
       fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox-bundle.deb"
       downloadSizes    :
-        ubunto      : "1.3 GB"
-        nano        : "8 GB"
-        vagrant     : "81 GB"
-        virtualBox  : "81 MB"
+        ubunto      : "392 MB"
+        nano        : "8 MB"
+        vagrant     : "163 MB"
+        virtualBox  : "112 MB"
   }
 nbx.Downloads = Downloads

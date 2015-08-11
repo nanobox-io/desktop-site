@@ -13,12 +13,10 @@ Main = (function() {
   };
 
   Main.prototype.removeAlphaContent = function() {
-    $('a[data=downloads]', this.nav.$node).remove();
     $('a[data=engines]', this.nav.$node).remove();
     $('a.sign-up', this.nav.$node).remove();
     return setInterval((function(_this) {
       return function() {
-        $(".content-area a.download").remove();
         $(".descript a").remove();
         return $(".running-commands").remove();
       };
@@ -135,37 +133,66 @@ Downloads = (function() {
 
   Downloads.prototype.startDownload = function() {
     var downloadPath;
-    console.log("download the " + this.os + " installer");
     downloadPath = this.checked ? this.OSinfo[this.os].fullInstaller : this.OSinfo[this.os].partialInstaller;
-    return console.log(downloadPath);
+    return window.location = downloadPath;
   };
 
   Downloads.prototype.toggleCheckbox = function() {
     if (this.checked) {
       $(".checkbox", this.$el).removeClass("checked");
-      return this.checked = false;
+      this.checked = false;
+      return this.updateSize();
     } else {
       $(".checkbox", this.$el).addClass("checked");
-      return this.checked = true;
+      this.checked = true;
+      return this.updateSize();
     }
   };
 
+  Downloads.prototype.getSizeOfDownload = function(url, cb) {
+    var xhr;
+    xhr = new XMLHttpRequest();
+    xhr.open("HEAD", url, true);
+    xhr.onreadystatechange = function() {
+      if (this.readyState === this.DONE) {
+        return cb(parseInt(xhr.getResponseHeader("Content-Length")) / 1024 / 1024);
+      }
+    };
+    return xhr.send();
+  };
+
   Downloads.prototype.switchOs = function(os) {
-    var $descriptions, $downloader, osData;
+    var $downloader, osData;
     if (os === this.os) {
       return;
     }
     this.os = os;
     osData = this.OSinfo[this.os];
     $downloader = $('.downloader', this.$el);
-    $descriptions = $('descriptions', this.$el);
+    this.$graphic = $('.break', this.$el);
     $('.title', $downloader).html(osData.title);
     $('.icon', $downloader).html("<img class='shadow-icon' data-src='" + this.os + "' />");
-    shadowIconsInstance.svgReplaceWithString(pxSvgIconString, $downloader);
-    $('.ubunto-image span', $descriptions).html(osData.downloadSizes.ubunto);
-    $('.nanobox span', $descriptions).html(osData.downloadSizes.nano);
-    $('.vagrant span', $descriptions).html(osData.downloadSizes.vagrant);
-    return $('.virtual-box span', $descriptions).html(osData.downloadSizes.virtualBox);
+    this.updateSize($downloader);
+    return shadowIconsInstance.svgReplaceWithString(pxSvgIconString, $downloader);
+  };
+
+  Downloads.prototype.updateSize = function($downloader) {
+    var $descriptions, installer, osData;
+    installer = this.checked ? 'fullInstaller' : 'partialInstaller';
+    osData = this.OSinfo[this.os];
+    $descriptions = $('.descriptions', this.$el);
+    this.getSizeOfDownload(osData[installer], function(size) {
+      $('.title', $downloader).html(osData.title + ' - ' + size.toFixed(1) + "MB");
+      $('.ubunto-image span', $descriptions).html(osData.downloadSizes.ubunto);
+      $('.nanobox span', $descriptions).html(osData.downloadSizes.nano);
+      $('.vagrant span', $descriptions).html(osData.downloadSizes.vagrant);
+      return $('.virtual-box span', $descriptions).html(osData.downloadSizes.virtualBox);
+    });
+    if (this.checked) {
+      return this.$graphic.removeClass('partial-download');
+    } else {
+      return this.$graphic.addClass('partial-download');
+    }
   };
 
   Downloads.prototype.detectOs = function() {
@@ -185,36 +212,36 @@ Downloads = (function() {
 
   Downloads.prototype.OSinfo = {
     mac: {
-      title: "Mac OSX Intel - 1.4 GB",
-      fullInstaller: "/some/path/to/an/installler/mac",
-      partialInstaller: "/some/path/to/the/partial/installer",
+      title: "Mac OSX Intel",
+      partialInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox.dmg",
+      fullInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox-bundle.dmg",
       downloadSizes: {
-        ubunto: "1.3 GB",
-        nano: "8 GB",
-        vagrant: "81 GB",
-        virtualBox: "81 MB"
+        ubunto: "392 MB",
+        nano: "8 MB",
+        vagrant: "81 MB",
+        virtualBox: "87 MB"
       }
     },
     win: {
-      title: "Windows - 1.4 GB",
-      fullInstaller: "/some/path/to/an/installler/win",
-      partialInstaller: "/some/path/to/the/partial/installer",
+      title: "Windows",
+      fullInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox-bundle.exe",
+      partialInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox.msi",
       downloadSizes: {
-        ubunto: "1.3 GB",
-        nano: "8 GB",
-        vagrant: "81 GB",
-        virtualBox: "81 MB"
+        ubunto: "392 MB",
+        nano: "8 MB",
+        vagrant: "68 MB",
+        virtualBox: "63 MB"
       }
     },
     lnx: {
-      title: "Linux - 1.4 GB",
-      fullInstaller: "/some/path/to/an/installler/lnx",
-      partialInstaller: "/some/path/to/the/partial/installer",
+      title: "Linux",
+      partialInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox.deb",
+      fullInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox-bundle.deb",
       downloadSizes: {
-        ubunto: "1.3 GB",
-        nano: "8 GB",
-        vagrant: "81 GB",
-        virtualBox: "81 MB"
+        ubunto: "392 MB",
+        nano: "8 MB",
+        vagrant: "163 MB",
+        virtualBox: "112 MB"
       }
     }
   };
@@ -229,10 +256,26 @@ var Engines;
 
 Engines = (function() {
   function Engines($el) {
+    var $input;
     this.$el = $el;
+    $input = $(".search input", this.$el);
     $(".search-btn", this.$el).on("click", (function(_this) {
       return function(e) {
         return _this.submitSearch();
+      };
+    })(this));
+    $input.on('focus', (function(_this) {
+      return function() {
+        return $input.on("keypress", function(e) {
+          if (e.keyCode === 13) {
+            return _this.submitSearch();
+          }
+        });
+      };
+    })(this));
+    $input.on('focusout', (function(_this) {
+      return function() {
+        return $input.off("keypress");
       };
     })(this));
   }
