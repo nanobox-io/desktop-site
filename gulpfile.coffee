@@ -1,3 +1,4 @@
+autoprefixer = require 'gulp-autoprefixer'
 bower        = require 'gulp-bower'
 bump         = require 'gulp-bump'
 coffee       = require 'gulp-coffee'
@@ -70,6 +71,7 @@ css = (cb)->
   # Stage css - not included in build
   gulp.src( cssPath )
     .pipe sass({errLogToConsole: true})
+    .pipe autoprefixer({ browsers: ['last 2 versions'],cascade: false })
     .pipe gulp.dest('./server/css')
     .on('end', cb)
 
@@ -77,6 +79,7 @@ cssStage = (cb)->
   # Stage css - not included in build
   gulp.src( cssStagePath )
     .pipe sass({errLogToConsole: true})
+    .pipe autoprefixer( {browsers: ['last 2 versions'], cascade: false } )
     .pipe gulp.dest('./server/stage/css')
     .on('end', cb)
 
