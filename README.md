@@ -22,4 +22,4 @@ gulp rel
 - [www.nanobox.io](http://www.nanobox.io)
 
 
-[![Pagodabox Open Source](http://nano-assets.gopagoda.io/open-src/pagoda-open-src.png)](http://pagodabox.io/open-source)
+[![Nanobox Open Source](http://nano-assets.gopagoda.io/open-src/nanobox-open-src.png)](http://pagodabox.io/open-source)
