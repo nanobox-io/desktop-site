@@ -42,7 +42,7 @@
   .break                  { padding-top:15px; justify-content:center;
     &.partial-download    {
       .vagrant,
-      .virtual-box        { display:none; } 
+      .virtual-box        { display:none; }
     }
   }
 
@@ -51,7 +51,7 @@
   .descriptions           {
     .description          { width:265px;
       &:not(:last-child)  { margin-bottom:45px; }
-      h4                  { font-family:$museo; color:#6B8DA3; border-bottom:1px solid $border-color; padding-bottom:5px; margin-bottom:-10px;
+      h4                  { font-family:$lato; font-weight:bold; color:#6B8DA3; border-bottom:1px solid $border-color; padding-bottom:5px; margin-bottom:-10px;
         span              { float:right; }
       }
       p                   { font-style:italic; font-weight:normal; }
