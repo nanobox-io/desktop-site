@@ -71,7 +71,7 @@ css = (cb)->
   # Stage css - not included in build
   gulp.src( cssPath )
     .pipe sass({errLogToConsole: true})
-    .pipe autoprefixer({ browsers: ['last 2 versions'],cascade: false })
+    .pipe autoprefixer( browsers: ['last 1 version'],cascade: false )
     .pipe gulp.dest('./server/css')
     .on('end', cb)
 
@@ -79,7 +79,7 @@ cssStage = (cb)->
   # Stage css - not included in build
   gulp.src( cssStagePath )
     .pipe sass({errLogToConsole: true})
-    .pipe autoprefixer( {browsers: ['last 2 versions'], cascade: false } )
+    .pipe autoprefixer( browsers: ['last 1 version'], cascade: false  )
     .pipe gulp.dest('./server/stage/css')
     .on('end', cb)
 

@@ -42,7 +42,7 @@
   .break                  { padding-top:15px; justify-content:center;
     &.partial-download    {
       .vagrant,
-      .virtual-box        {}
+      .virtual-box        { display:none; } 
     }
   }
 
