@@ -259,6 +259,7 @@ $vagrant-gray :#9CB7C5;
 @media only screen and (max-width: 650px) {
   .main-wrapper                           {
     .home                                 {
+      .top-blurb                          { width:100%}
       .mini-overview                      { flex-direction:column;
         .mini {width:100%}
       }
