@@ -7,7 +7,7 @@ Main = (function() {
   }
 
   Main.prototype.removeAlphaContent = function() {
-    $('a[href="/engines.html"]', this.nav.$node).remove();
+    $('a[href="/engines"]', this.nav.$node).remove();
     $('a.sign-up', this.nav.$node).remove();
     return setInterval((function(_this) {
       return function() {

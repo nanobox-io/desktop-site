@@ -2,9 +2,7 @@ extends templates/base
 
 block js
   script(type="text/javascript").
-    $( document ).ready(function() {
-      downloads = new nbx.Downloads($mainwrapper);
-    });
+    downloads = new nbx.Downloads($mainwrapper);
 
 block content
   .downloads

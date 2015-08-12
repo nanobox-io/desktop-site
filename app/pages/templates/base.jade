@@ -16,7 +16,7 @@ html(lang="en")
 
   body
     //- make transparent for fade in below
-    .main-wrapper()  
+    .main-wrapper(style="opacity:0;")  
       include ../shared/top-nav.jade
       .content-area
         block content
@@ -41,14 +41,12 @@ html(lang="en")
     // endbuild
     
     script(type="text/javascript").
-      $( document ).ready(function() {
-        $mainwrapper = $(".main-wrapper");
-        shadowIcons  = new pxicons.ShadowIcons();
-        main         = new nbx.Main( $mainwrapper );
-        shadowIconsInstance.svgReplaceWithString( pxSvgIconString, $('.main-wrapper') );
-        //- Fade in after page loads to hide icon replace blip
-        $mainwrapper.velocity({opacity:1})
-      });
+      $mainwrapper = $(".main-wrapper");
+      shadowIcons  = new pxicons.ShadowIcons();
+      main         = new nbx.Main( $mainwrapper );
+      shadowIconsInstance.svgReplaceWithString( pxSvgIconString, $('.main-wrapper') );
+      //- Fade in after page loads to hide icon replace blip
+      $mainwrapper.velocity({opacity:1})
     block js
     
     // build:remove 
