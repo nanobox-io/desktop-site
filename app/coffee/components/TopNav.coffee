@@ -1,25 +1,14 @@
 class TopNav
 
-  constructor: ($el) ->
-    @$node = $ jadeTemplate['top-nav']()
-    $el.prepend( @$node )
-    shadowIconsInstance.svgReplaceWithString pxSvgIconString, @$node
+  constructor: (@$nav) ->
+    $("a.open-community", @$nav).on "click", (e)=>  @showCommunityModal()
 
-    $("a[data]", @$node).on "click", @onLocalNavItemClick
-    $("a.open-community", @$node).on "click", (e)=>  @showCommunityModal()
-
-    @addCommunityModal($el)
+    @addCommunityModal(@$nav)
     @hideCommunityModal()
 
-    PubSub.subscribe 'CHANGE_CONTENT', (msg, data)=> @activateNavItem data.pageId
-
-
-  onLocalNavItemClick : (e) =>
-    PubSub.publish 'CHANGE_PAGE', { pageId: $(e.currentTarget).attr("data") }
-
   activateNavItem : (id) ->
-    $("a[data]", @$node).removeClass 'active'
-    $("a[data=#{id}]", @$node).addClass 'active'
+    $("a[data]", @$nav).removeClass 'active'
+    $("a[data=#{id}]", @$nav).addClass 'active'
 
   # ------------------------------------ Community Modal
 

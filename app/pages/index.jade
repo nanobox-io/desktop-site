@@ -1,0 +1,164 @@
+extends templates/base
+
+block js
+  script(src="js/app.js")
+
+block content
+  .home
+    .main-summary
+      img.shadow-icon(data-src="top-mini-stack")
+      .info
+        h1 Vagrant + Docker + Engines
+        h4 Local App Environments -  Automated / Lightweight / Reusable 
+        .links 
+          a.github(href="https://github.com/pagodabox?utf8=%E2%9C%93&query=nanobox")
+            img.shadow-icon(data-src="git" )
+            p Fork me on github
+            
+          a.download(href="/downloads.html")
+            img.shadow-icon(data-src="download-home" )
+            p Download
+        
+          a.irc(href="//webchat.freenode.net/?channels=nanobox", target="_BLANK")
+            img.shadow-icon(data-src="irc" )
+            p IRC - #nanobox <span>(freenode)</span>
+    
+    .overview
+      .info
+        .blurb.src-code
+          h2 <span>1 </span>App Source Code
+          p Focus on coding rather than configuring a local dev environment 
+        .blurb.engine
+          h2 <span>2 </span>Language Engine
+          p The Engine detects your app type and specifies what services your app needs (ruby, mongo, etc) and how they should be configured.
+        .blurb.docker
+          h2 <span>3 </span>Docker Containers 
+          p Containers are configured and initialized. Your code is then built and installed. 
+        .blurb.vagrant
+          h2 <span>4 </span>Vagrant / Virtual Box
+          p Your services run in an ultra lightweight Ubuntu virtual machine (30mb RAM).  Requests to localhost are proxied to your app
+      .graphic
+        img.shadow-icon(data-src="sandwich" scalable="true")
+    
+    .mini-overview
+      .mini
+        h2 Develop your App
+        p Run your code and itterate your app in a fast lightweight VM 
+        .script
+          pre
+            code.language-nanobox
+              | $ nanobox up
+              | Detecting app type
+              | Launching Vagrant Virtual Machine
+              | Installing runtimes in VM
+              | etc..
+        a(href="#developing-your-app") How it works
+      .mini
+        h2 Run Commands
+        p Run generators, tests and other runtime specific scripts. 
+        .script
+          pre
+            code.language-nanobox
+              | $ nanobox enter
+              |   Entering virtual machine context:
+              | > rake test # Run test suite
+        a(href="#developing-your-app") How it works
+          
+    h1#developing-your-app How it works <span class="sub"> - Developing your App</span>
+
+    .top-blurb
+      <span class="prompt">$ </span><span class="command">nanobox</span><span class="param"> up</span> : creates a virtual staging environment and installs everything your code needs to run. As you edit your code, your files are compiled on and copied into your running container. The following is a breakdown of what nanobox is doing behind the scenes:
+    
+    .row
+      .descript
+        h2 <span>1</span>Vagrant initializes
+        p Nanobox uses Vagrant to launch a virtual machine running a custom operating system with all the necessary Docker and Nanobox bits installed and running at boot. The Vagrantfile is configured to mount the code directory inside the virtual machine as a shared directory.
+      .visual.vagrant-init
+        img.shadow-icon(data-src="vagrant-initializes" scalable="true")
+
+    .row
+      .descript
+        h2 <span>2</span>Nanobox daemon initializes
+        p After the virtual machine boots, a Nanobox api daemon is spawned and waits to receive commands from the nanobox client.
+      .visual.nanobox-daemon
+        img.shadow-icon(data-src="nanobox-initializes" scalable="true")
+    
+    .row
+      .descript
+        h2 <span>3</span>A build container is launched and your Code is copied into the container
+        p The client tells the api daemon to start a deploy process which launches a Docker container used to build, prepare, and package your code. Once the container is up and running, the code from your workstation is rsync’d into the container. Copying the code prevents the build process from modifying your codebase directly.
+      .visual.vagrant-init
+        img.shadow-icon(data-src="build-cont-launches" scalable="true")
+    
+    .row
+      .descript
+        h2 <span>4</span>Each Engine sniffs the code looking for a positive match to determine which language / framework your app is written in
+        p A registry of Engines sniff your code to determine if you are using a known framework. The build process is custom-tailored to optimally configure the environment for that framework. eg: install and configure runtimes and services such as ruby, node.js, PostgreSQL, MySQL, etc..
+      .visual.engine-sniff
+        img.shadow-icon(data-src="framework-sniff"  scalable="true")
+    
+    .row
+      .descript
+        h2 <span>5</span>The matched Engine generates a Boxfile defining the services your app needs to run and how each should be configured
+        p The Engine determines which services your app depends on. It can analyze the codebase to determine dependencies, or it might already know what is needed. As service dependencies are determined, a Boxfile is generated that informs Nanobox which services to launch and how to configure them. These services might include redis, postgres, memcache, mysql, or other data-specific services.
+      .visual.boxfile
+        img.shadow-icon(data-src="boxfile" scalable="true")
+    
+    .row
+      .descript
+        h2 <span>6</span>Nanobox launches and configures Docker containers specified in the Boxfile
+        p The Boxfile in the codebase and the Boxfile from the Engine are merged. Nanobox launches and configures a Docker container for each service specified in the merged Boxfile. Nanobox overlays a private network with custom IP addresses on a native tcp stack through which the containers can communicate.
+      .visual.launch-containers
+        img.shadow-icon(data-src="docker-containers" scalable="true")
+
+    .row
+      .descript
+        h2 <span>7</span>Code is built and installed into code containers and the build container is decommissioned
+        p In the build container, your code is compiled and prepared to run. The Engine generates or modifies config files that allow your app to communicate with the provisioned services. In some cases, the Engine will modify source code, if necessary, to adjust service connection details or ensure a legacy app is suited for a distributed architecture. With the build complete, the output is dropped into another container which runs your app.
+      .visual.build-code
+        img.shadow-icon(data-src="code-built" scalable="true")
+    
+    .row
+      .descript
+        h2 <span>8</span>A router is launched to proxy localhost requests to your app
+        p A router is launched to proxy requests from your workstation into the container hosting your finalized app. For simplicity, a DNS entry is added to your workstation. Your app is launched and ready for development iteration.
+      .visual.router
+        img.shadow-icon(data-src="proxy-router" scalable="true")
+    
+    .row
+      .descript
+        h2 <span>9</span>If files are watched, local saves will run steps 3-8 automatically
+        p With your development environment up and running, you can refresh the build at any time. If you started your Nanobox with --watch, any file changes within your code will automatically trigger a rebuild. After the initial build, assets are cached between deploys making subsequent builds really quick.
+      .visual.watch
+        img.shadow-icon(data-src="watched-files" scalable="true")
+
+    //- h1 Push to Production <span class="optional">(optional)</span>
+    //- .row.first
+    //-   .descript
+    //-     h2 Enjoy  parity between your dev environment and your production environment. 
+    //-     p Push to Digital Ocean, AWS, Joyent or Linode.
+    //-   .visual
+    //-     img.shadow-icon(data-src="push-pagoda" scalable="true")
+    
+    h1 Create an engine for your framework
+    .row.first.engine-blurb
+      .visual
+        img.shadow-icon(data-src="mad-scientist-window" scalable="true")
+      .descript
+        h2 It’s your framework, you define the ideal runtime
+        p You specify the services your framework needs and how they should be configured so devs can begin building their app immediately with no need to install or configure anything.
+        a.inline(href="/index.html?page=engines")
+          | Get started
+          img.shadow-icon(data-src="right-arrow")
+            
+    h1#running-commands.running-commands How it works <span class="sub"> - Running Commands</span>
+
+    .top-blurb.running-commands
+      <span class="prompt">$ </span><span class="command">nanobox</span><span class="param"> up</span> : creates a virtual staging environment and installs everything your code needs to run. As you edit your code, your files are compiled and copied into your running container. The following is a breakdown of what nanobox is doing behind the scenes:
+    
+    .row.running-commands
+      .descript
+        h2 <span>1</span>Vagrant initializes
+        p Nanobox uses Vagrant to launch a virtual machine running a custom operating system with all the necessary Docker and Nanobox bits installed and running at boot. The Vagrantfile is configured to mount the code directory inside the virtual machine as a shared directory.
+      .visual.vagrant-init
+        img.shadow-icon(data-src="vagrant-initializes" scalable="true")

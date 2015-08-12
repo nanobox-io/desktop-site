@@ -28,7 +28,8 @@ inject       = require 'gulp-inject'
 foreach      = require 'gulp-foreach'
 # Paths to source files
 
-jadeStagePath     = ['stage/*.jade']#, '!stage/_*.jade',]
+jadeStagePath     = 'app/pages/*.jade'
+jadeWatchPath     = 'app/pages/**/*.jade'
 jadePath          = 'app/jade/**/*.jade'
 cssPath           = 'app/scss/**/*.scss'
 cssStagePath      = 'stage/stage.scss'
@@ -68,19 +69,10 @@ html = (cb)->
     .on('end', cb)
 
 css = (cb)->
-  # Stage css - not included in build
   gulp.src( cssPath )
     .pipe sass({errLogToConsole: true})
     .pipe autoprefixer( browsers: ['last 1 version'],cascade: false )
     .pipe gulp.dest('./server/css')
-    .on('end', cb)
-
-cssStage = (cb)->
-  # Stage css - not included in build
-  gulp.src( cssStagePath )
-    .pipe sass({errLogToConsole: true})
-    .pipe autoprefixer( browsers: ['last 1 version'], cascade: false  )
-    .pipe gulp.dest('./server/stage/css')
     .on('end', cb)
 
 js = (cb)->
@@ -90,13 +82,6 @@ js = (cb)->
     .pipe coffee( bare: true ).on( 'error', gutil.log ) .on( 'error', gutil.beep )
     .pipe concat('app.js')
     .pipe gulp.dest('server/js')
-    .on('end', cb)
-
-jsStage = (cb)->
-  gulp.src coffeeStagePath
-    .pipe plumber()
-    .pipe coffee( bare: true ).on('error', gutil.log).on( 'error', gutil.beep )
-    .pipe gulp.dest('server/stage/js')
     .on('end', cb)
 
 miscJs = (cb)->
@@ -166,7 +151,7 @@ server = ->
 
 # Open in the browser
 launch = ->
-  gulp.src("./stage/index.jade") # An actual file must be specified or gulp will overlook the task.
+  gulp.src("./server/index.html") # An actual file must be specified or gulp will overlook the task.
     .pipe(open("",
       url: "http://localhost:3814/index.html",
       app: "google chrome"
@@ -174,15 +159,13 @@ launch = ->
 
 compileFiles = (doWatch=false, cb) ->
   count       = 0
-  onComplete = ()=> if ++count == ar.length then cb()
+  onComplete = ()=> if ++count == ar.length then cb();
   ar         = [
     {meth:js,         glob:coffeePath}
     {meth:css,        glob:cssPath}
     {meth:html,       glob:jadePath}
-    {meth:jsStage,    glob:coffeeStagePath}
     {meth:miscJs,     glob:miscJsPath}
-    {meth:cssStage,   glob:cssStagePath}
-    {meth:htmlStage,  glob:jadeStagePath}
+    {meth:htmlStage,  glob:[jadeStagePath,jadeWatchPath]}
     {meth:parseSVG,   glob:svgPath}
     {meth:copyAssets, glob:assetPath, params:['server/assets', onComplete]}
   ]
