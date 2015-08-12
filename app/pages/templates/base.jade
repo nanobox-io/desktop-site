@@ -38,16 +38,18 @@ html(lang="en")
 
     // build:js2 /js/app.js
     script(src="/js/app.js")
-    script(type="text/javascript").
-      $mainwrapper = $(".main-wrapper");
-      shadowIcons  = new pxicons.ShadowIcons();
-      main         = new nbx.Main( $mainwrapper );
-      shadowIconsInstance.svgReplaceWithString( pxSvgIconString, $('.main-wrapper') );
-      //- Fade in after page loads to hide icon replace blip
-      $mainwrapper.velocity({opacity:1})
-    block js
-
     // endbuild
+    
+    script(type="text/javascript").
+      $( document ).ready(function() {
+        $mainwrapper = $(".main-wrapper");
+        shadowIcons  = new pxicons.ShadowIcons();
+        main         = new nbx.Main( $mainwrapper );
+        shadowIconsInstance.svgReplaceWithString( pxSvgIconString, $('.main-wrapper') );
+        //- Fade in after page loads to hide icon replace blip
+        $mainwrapper.velocity({opacity:1})
+      });
+    block js
     
     // build:remove 
     script(src="http://localhost:35729/livereload.js")

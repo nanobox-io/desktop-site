@@ -2,7 +2,9 @@ extends templates/base
 
 block js
   script(type="text/javascript").
-    downloads = new nbx.Engines($mainwrapper);
+    $( document ).ready(function() {
+      engines = new nbx.Engines($mainwrapper);
+    });
 
 block content
   .languages-and-frameworks
