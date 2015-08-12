@@ -2,7 +2,7 @@ class Main
 
   constructor : ($el) ->
     @nav = new nbx.TopNav $el
-    # @removeAlphaContent()
+    @removeAlphaContent()
 
   # Quick way of pulling out conetnt that's not ready for prime time
   removeAlphaContent : () ->

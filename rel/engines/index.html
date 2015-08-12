@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang=en><head><title>Nanobox</title><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"><link rel=stylesheet href=/style.css><link href="http://fonts.googleapis.com/css?family=Lato:400,400italic" rel=stylesheet type=text/css><link rel=icon type=image/png href=/assets/favicon.png></head><body><div style=opacity:0 class=main-wrapper><div class=header><div class=logo><a href="/"><img data-src=logo-horizontal class=shadow-icon></a></div></div><div class=nav><a href=/downloads>Download</a><a class=open-community>Community</a><a href=/engines>Engines</a><a href=//dashboard.nanobox.io/users/sign_in class=sign-up>Login / Register</a></div><div class=content-area><div class=languages-and-frameworks><div class=section-header><div class=science-and-search><img data-src=mad-scientist scalable=true class=shadow-icon><div class=search><input placeholder="Search Existing Engines"><div class=search-btn><img data-src=search class=shadow-icon></div></div></div><div class=title><div class=text>IT’S YOUR FRAMEWORK, YOU DEFINE THE IDEAL RUNTIME</div><a href="//webchat.freenode.net/?channels=nanobox" class=irc-blurb><img data-src=irc-outline class=shadow-icon><div class=txt>Join our IRC channel, for<br>help - #nanobox on freenode</div></a></div></div><div class="row plugin-overview"><div class=descript><h2>Writing a Custom Engine</h2><p>Five BASH scripts specify the services your framework needs and how they should be configured so devs can begin building their app immediately with no need to install or configure anything.</p></div><div class=graphic><img data-src=plugin-scripts scalable=true class=shadow-icon></div></div><div class=scripts><div class=script><h3 class=required>sniff</h3><div class=row><p class=descript>This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, this script should returns true.</p><div class=script><pre><code class=language-javascript>#!/bin/sh
+if ( match_file( "/mage.php" )) {
+  print true;
+} else {
+  print false;
+}</code></pre></div></div></div><div class=script><h3>boxfile</h3><div class=row><p class=descript>Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services.</p><div class=script><pre><code class=language-javascript>#!/bin/sh
+if ( match_file( "/mage.php" )) {
+  print true;
+} else {
+  print false;
+}</code></pre></div></div></div><div class=script><h3>prepare</h3><div class=row><p class=descript>Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services.</p><div class=script><pre><code class=language-javascript>#!/bin/sh
+if ( match_file( "/mage.php" )) {
+  print true;
+} else {
+  print false;
+}</code></pre></div></div></div><div class=script><h3 class=required>build</h3><div class=row><p class=descript>Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services.</p><div class=script><pre><code class=language-javascript>#!/bin/sh
+if ( match_file( "/mage.php" )) {
+  print true;
+} else {
+  print false;
+}</code></pre></div></div></div><div class=script><h3>cleanup</h3><div class=row><p class=descript>Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services.</p><div class=script><pre><code class=language-javascript>#!/bin/sh
+if ( match_file( "/mage.php" )) {
+  print true;
+} else {
+  print false;
+}</code></pre></div></div></div></div></div></div></div><script src=js/libs.js></script><script>try{Typekit.load();}catch(e){}</script><script src=/js/app.js></script></body></html>

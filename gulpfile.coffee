@@ -7,6 +7,7 @@ connect      = require 'connect'
 fs           = require 'fs'
 git          = require 'gulp-git'
 gulp         = require 'gulp'
+gulpignore   = require 'gulp-ignore'
 gutil        = require 'gulp-util'
 http         = require 'http'
 jade         = require 'gulp-jade'
@@ -15,7 +16,9 @@ minifyCss    = require 'gulp-minify-css'
 minifyHtml   = require 'gulp-minify-html'
 open         = require "gulp-open"
 plumber      = require 'gulp-plumber'
+rename       = require 'gulp-rename'
 rimraf       = require 'rimraf'
+rimrafgulp   = require 'gulp-rimraf'
 sass         = require 'gulp-sass'
 uglify       = require 'gulp-uglify'
 usemin       = require 'gulp-usemin'
@@ -157,6 +160,18 @@ launch = ->
       app: "google chrome"
     ))
 
+prettyURLS = () ->
+  gulp.src(["./rel/*.html","!./rel/index.html"])
+    .pipe( rename (path)->
+      path.dirname  = "#{path.dirname}/#{path.basename}"
+      path.basename = "index"
+    )
+    .pipe gulp.dest('./rel')
+
+deleteOldHtml = ()->
+  gulp.src(["./rel/*.html","!./rel/index.html"])
+    .pipe rimrafgulp()
+
 compileFiles = (doWatch=false, cb) ->
   count       = 0
   onComplete = ()=> if ++count == ar.length then cb();
@@ -195,4 +210,6 @@ gulp.task 'bumpVersion',                               ()    -> bumpBowerVersion
 gulp.task 'copyStatics', ['bowerLibs'],                ()    -> copyAssets('rel/assets', ->)
 gulp.task 'releaseCompile', ['copyStatics'],           (cb)  -> compileFiles(false, cb)
 gulp.task 'minify',['releaseCompile'],                 ()    -> minifyAndJoin();
-gulp.task 'rel', ['rel:clean', 'bumpVersion', 'minify'],     -> #pushViaGit()
+gulp.task 'pretty',['minify'],                         ()    -> prettyURLS()
+gulp.task 'cleanhtml', ['pretty'],                     ()    -> deleteOldHtml()
+gulp.task 'rel', ['rel:clean', 'bumpVersion', 'cleanhtml'],  -> #pushViaGit()
