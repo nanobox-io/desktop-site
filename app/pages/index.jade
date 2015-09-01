@@ -35,7 +35,7 @@ block content
           p Containers are configured and initialized. Your code is then built and installed. 
         .blurb.vagrant
           h2 <span>4 </span>Vagrant / Virtual Box
-          p Your services run in an ultra lightweight Ubuntu virtual machine (30mb RAM).  Requests to localhost are proxied to your app
+          p Your services run in an ultra lightweight linux virtual machine (30mb RAM).  Requests to localhost are proxied to your app
       .graphic
         img.shadow-icon(data-src="sandwich" scalable="true")
     
@@ -58,7 +58,7 @@ block content
         .script
           pre
             code.language-nanobox
-              | $ nanobox enter
+              | $ nanobox console
               |   Entering virtual machine context:
               | > rake test # Run test suite
         a(href="#developing-your-app") How it works
@@ -126,8 +126,8 @@ block content
     
     .row
       .descript
-        h2 <span>9</span>If files are watched, local saves will run steps 3-8 automatically
-        p With your development environment up and running, you can refresh the build at any time. If you started your Nanobox with --watch, any file changes within your code will automatically trigger a rebuild. After the initial build, assets are cached between deploys making subsequent builds really quick.
+        h2 <span>9</span>If files are watched, incremental builds run automatically
+        p With your development environment up and running, you can refresh the build at any time. If you started your Nanobox with the --watch flag, any file changes within your code will automatically trigger a rebuild. A build will only build the code rather than deploy the environment, so incremental builds are quick.
       .visual.watch
         img.shadow-icon(data-src="watched-files" scalable="true")
 
