@@ -1,64 +1,12 @@
-
-/*
-                                                                         #
-#        ##   #    #  ####  #    #   ##    ####  ######  ####          #     ###### #####    ##   #    # ###### #    #  ####  #####  #    #  ####
-#       #  #  ##   # #    # #    #  #  #  #    # #      #             #      #      #    #  #  #  ##  ## #      #    # #    # #    # #   #  #
-#      #    # # #  # #      #    # #    # #      #####   ####        #       #####  #    # #    # # ## # #####  #    # #    # #    # ####    ####
-#      ###### #  # # #  ### #    # ###### #  ### #           #      #        #      #####  ###### #    # #      # ## # #    # #####  #  #        #
-#      #    # #   ## #    # #    # #    # #    # #      #    #     #         #      #   #  #    # #    # #      ##  ## #    # #   #  #   #  #    #
-###### #    # #    #  ####   ####  #    #  ####  ######  ####     #          #      #    # #    # #    # ###### #    #  ####  #    # #    #  ####
-
-*/
-
-.languages-and-frameworks       { margin-top:20px; font-family:$lato;
-  h2                            { font-weight:normal; font-size:20px; line-height:1.5; color:#7796AA; font-weight:bold; letter-spacing: 0.02em; font-style:italic;}
-  p                             { font-size:13px; line-height: 1.7; color:#5A768A; font-weight:normal; font-style:italic; }
-
-  .section-header               { margin: 90px 0 80px;
-    .science-and-search         { display:flex; flex-direction:row; justify-content:space-between; align-items:flex-end;
-      .search                   { display:block; position:relative;
-        input                   { font-family:$lato; color:#FFF5AD; font-size:16px; background:#223542; border:none; width:250px; height:38px; margin-bottom:20px; padding:10px;
-          &:focus               { outline:none; }
-        }
-        svg                     { position:absolute; right:6px; top:7px; cursor:pointer;
-          &:hover *             { fill:white; }
-        }
-      }
-    }
-    svg                         {  }
-    .title                      { align-items:center; justify-content:space-between; display:flex; border:solid 1px $border-color; border-right:none; border-left:none; margin-top: 8px;
-      .text                     { color:#B2C5D1; text-transform:uppercase; font-size:20px; letter-spacing:0.12em; font-family:$lato; font-weight:normal; padding:24px 0; margin-top:0; border-bottom:none; }
-      .irc-blurb                { display:flex; cursor:pointer; min-width: 220px;
-        svg                     { margin-right:10px; }
-        .txt                    { font-weight:normal; font-family:$lato; color:#3E6F96; font-size:13px; }
-        &:hover                 {
-          svg *                 { stroke:white; }
-          .txt                  { color:white; }
-        }
-      }
-    }
-  }
-  h1                            { color: $turquoise; }
-  .row                          { margin:0; }
-  .plugin-overview              { display:flex; justify-content:space-between; align-content:center; padding:33px 0 40px;
-    .graphic                    { width:50%; padding-top:35px; }
-    .descript                   { width: 420px; vertical-align: top;
-      h2                        { font-weight:normal; margin:0 0 -10px 0; font-size:20px; }
-      p                         { color:#3E6F96; font-size:16px; line-height:23px;}
-    }
-  }
-  .scripts                      {
-    .script                     { margin-bottom: 23px;
-      h3                        { color:#FFF5AD; font-family: $code-font; font-size:20px; margin-bottom: 7px; padding-bottom: 5px;
-        // &:after                 { content:"optional"; float:right; color:#376182; font-size:17px; }
-        // &.required:after        { content:"required"; color:#FFF5AD; }
-      }
-      .row                      {
-        .descript               { width:33%; display:inline-block;  vertical-align: top; font-family:$lato; color:#3E6F96; font-size:16px; line-height:25px; font-weight:normal; padding: 0 50px 0 0; margin:0; }
-        .script                 { width:66%; display:inline-block;
-          *                     { @include selectable(text); }
-        }
-      }
+.engines      { padding-top:30px;
+  .search     { float: right; margin-top: -68px;}
+   h2         { border-bottom:solid 1px $border-color; padding-bottom:12px; font-weight:normal; color:#486880; }
+}
+.languages    { display:flex; flex-wrap:wrap;
+  &:hover     {}
+  .language   { width:85px; text-align:center; font-size:13px; margin:20px 40px 33px; cursor:pointer;
+    &:hover   {
+      .title  { color:white; }
     }
   }
 }

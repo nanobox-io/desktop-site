@@ -8,6 +8,7 @@ body           { margin:0; padding:0; font-family: $lato; background:#212C33; co
 // body *         { @include transition(all, 0.15s);}
 ul             { list-style-type: none; margin:0; padding:0; }
 h3             { @include bottom-border(); padding-bottom:15px; margin-bottom:21px;  }
+h2            { font-size:20px; line-height:1.5; color:#7796AA; font-weight:bold; letter-spacing: 0.02em; font-style:italic;}
 
 .main-wrapper  { max-width:$global-max-width; margin:0 auto; position:relative; }
 .hidden        { display:none; }
