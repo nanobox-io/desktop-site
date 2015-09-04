@@ -1,0 +1,87 @@
+.how-it-works            { max-width:750px; margin:0 auto;
+  .top-blurb             { font-size:21px;  line-height:32px; font-weight:normal; padding:0 10px 0 0; max-width:688px; margin:0 auto;
+    h2                   { text-align:center; font-size:24px; color:#818D96; font-weight:normal;  }
+    .blurb               { border:solid 1px $border-color; border-right:none; border-left:none; padding:20px;
+      span               { font-family:$code-font;
+        &.prompt         { color:$prompt-color; }
+        &.command        { color:$command-color; }
+        &.param          { color:$param-color; }
+      }
+    }
+  }
+  .row                   { display:flex; margin:100px 0;
+    &.first              { margin-top:24px;}
+    .descript            { font-weight:normal; font-size:16px; line-height:24px; width:$left-col-perc; vertical-align:middle;
+      h2                 { color:#818D96;
+        span             { margin-right:8px; color:#D0DEE7; font-style:italic;
+          &:after        { content:"."; margin-left:3px; }
+        }
+      }
+    }
+    .visual              { width:$right-col-perc - 1%; display:inline-block; vertical-align:middle;  position: relative; text-align: center; vertical-align:middle;  }
+    &.engine-blurb       {
+      .visual            { width:40%;}
+      .descript          { width:50%;}
+    }
+  }
+
+  svg                    {
+    text                 {
+      &.st47             { font-family:$lato; }
+      &.st46             { font-family:$lato; }
+      &.st153            { font-family:$lato; }
+    }
+    #docker-containers   { font-size:12px; }
+  }
+}
+
+
+@media only screen and (max-width: $global-max-width) {
+  h1             { margin:0 10px; }
+  .row           {
+    .descript    { padding:0 10px;}
+    .visual      { padding:0 10px;
+      .holder    { }
+    }
+  }
+}
+
+// LARGE
+
+@media only screen and (max-width: 875px) {
+  h1             { margin:0 10px; }
+  .row           {
+    .descript    { padding:0 10px;}
+    .visual      { padding:0 10px;
+      .holder    { }
+    }
+  }
+}
+
+// MEDIUM
+
+@media only screen and (max-width: 650px) {
+  .how-it-works  {
+    h1           { margin:0 10px; }
+    .row         {
+      .descript  { padding:0 10px;}
+      .visual    { padding:0 10px;
+        .holder  { }
+      }
+    }
+  }
+}
+
+// SMALL
+
+@media only screen and (max-width: 500px) {
+  .how-it-works  {
+    h1           { margin:0 10px; }
+    .row         { margin: 21px 0 50px; display:flex; flex-wrap: wrap;
+      .descript  { width:100%; padding:0 10px; display:block; vertical-align:middle; order:2;}
+      .visual    { width:100%; padding:0 10px; display:block; order:1;
+        .holder  { width: 70% !important; }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+extends templates/base
+
+block js
+
+block content
+  .how-it-works
+    .top-blurb
+      h2 How it works
+      .blurb
+        <span class="prompt">$ </span><span class="command">nanobox</span><span class="param"> up</span> : creates a virtual staging environment and installs everything your code needs to run. As you edit your code, your files are compiled on and copied into your running container. The following is a breakdown of what nanobox is doing behind the scenes:
+
+    .row
+      .visual.vagrant-init
+        img.shadow-icon(data-src="vagrant-initializes" scalable="true")
+      .descript
+        h2 <span>1</span>Vagrant initializes
+        p Nanobox uses Vagrant to launch a virtual machine running a custom operating system with all the necessary Docker and Nanobox bits installed and running at boot. The Vagrantfile is configured to mount the code directory inside the virtual machine as a shared directory.
+
+    .row
+      .visual.nanobox-daemon
+        img.shadow-icon(data-src="nanobox-initializes" scalable="true")
+      .descript
+        h2 <span>2</span>Nanobox daemon initializes
+        p After the virtual machine boots, a Nanobox api daemon is spawned and waits to receive commands from the nanobox client.
+
+    .row
+      .visual.vagrant-init
+        img.shadow-icon(data-src="build-cont-launches" scalable="true")
+      .descript
+        h2 <span>3</span>A build container is launched and your Code is copied into the container
+        p The client tells the api daemon to start a deploy process which launches a Docker container used to build, prepare, and package your code. Once the container is up and running, the code from your workstation is rsync’d into the container. Copying the code prevents the build process from modifying your codebase directly.
+
+    .row
+      .visual.engine-sniff
+        img.shadow-icon(data-src="framework-sniff"  scalable="true")
+      .descript
+        h2 <span>4</span>Each Engine sniffs the code looking for a positive match to determine which language / framework your app is written in
+        p A registry of Engines sniff your code to determine if you are using a known framework. The build process is custom-tailored to optimally configure the environment for that framework. eg: install and configure runtimes and services such as ruby, node.js, PostgreSQL, MySQL, etc..
+
+    .row
+      .visual.boxfile
+        img.shadow-icon(data-src="boxfile" scalable="true")
+      .descript
+        h2 <span>5</span>The matched Engine generates a Boxfile defining the services your app needs to run and how each should be configured
+        p The Engine determines which services your app depends on. It can analyze the codebase to determine dependencies, or it might already know what is needed. As service dependencies are determined, a Boxfile is generated that informs Nanobox which services to launch and how to configure them. These services might include redis, postgres, memcache, mysql, or other data-specific services.
+
+    .row
+      .visual.launch-containers
+        img.shadow-icon(data-src="docker-containers" scalable="true")
+      .descript
+        h2 <span>6</span>Nanobox launches and configures Docker containers specified in the Boxfile
+        p The Boxfile in the codebase and the Boxfile from the Engine are merged. Nanobox launches and configures a Docker container for each service specified in the merged Boxfile. Nanobox overlays a private network with custom IP addresses on a native tcp stack through which the containers can communicate.
+
+
+    .row
+      .visual.build-code
+        img.shadow-icon(data-src="code-build" scalable="true")
+      .descript
+        h2 <span>7</span>Code is built and installed into code containers and the build container is decommissioned
+        p In the build container, your code is compiled and prepared to run. The Engine generates or modifies config files that allow your app to communicate with the provisioned services. In some cases, the Engine will modify source code, if necessary, to adjust service connection details or ensure a legacy app is suited for a distributed architecture. With the build complete, the output is dropped into another container which runs your app.
+
+    .row
+      .visual.router
+        img.shadow-icon(data-src="proxy-router" scalable="true")
+      .descript
+        h2 <span>8</span>A router is launched to proxy localhost requests to your app
+        p A router is launched to proxy requests from your workstation into the container hosting your finalized app. For simplicity, a DNS entry is added to your workstation. Your app is launched and ready for development iteration.
+
+    .row
+      .visual.watch
+        img.shadow-icon(data-src="watched-files" scalable="true")
+      .descript
+        h2 <span>9</span>If files are watched, incremental builds run automatically
+        p With your development environment up and running, you can refresh the build at any time. If you started your Nanobox with the --watch flag, any file changes within your code will automatically trigger a rebuild. A build will only build the code rather than deploy the environment, so incremental builds are quick.
