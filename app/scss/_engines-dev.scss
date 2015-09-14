@@ -62,3 +62,10 @@
     }
   }
 }
+
+.row                           { margin: 21px 0 50px; display:flex; flex-wrap: wrap;
+  .descript                    { width:100%; padding:0 10px; display:block; vertical-align:middle; order:2;}
+  .visual                      { width:100%; padding:0 10px; display:block; order:1;
+    .holder                    { width: 70% !important; }
+  }
+}

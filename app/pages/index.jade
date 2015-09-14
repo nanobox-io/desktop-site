@@ -5,7 +5,7 @@ block js
 block content
   .home
     .main-summary
-      img.shadow-icon(data-src="top-mini-stack")
+      img.shadow-icon(data-src="top-mini-stack" lock-to-max="true")
       .info
         h1 Vagrant + Docker + Engines
         h4 Local App Environments -  Automated / Lightweight / Reusable 
@@ -37,7 +37,7 @@ block content
           h2 <span>4 </span>Vagrant / Virtual Box
           p Your services run in an ultra lightweight linux virtual machine (30mb RAM).  Requests to localhost are proxied to your app
       .graphic
-        img.shadow-icon(data-src="sandwich" scalable="true")
+        img.shadow-icon(data-src="sandwich" scalable="true" lock-to-max="true")
     
     .mini-overview
       .mini
@@ -63,5 +63,16 @@ block content
               |   Entering virtual machine context:
               | > rake test # Run test suite
         //- a(href="#developing-your-app") How it works
-    .links
-      a.jump(href="/how-nanobox-works") How it Works
+    .jump-links
+      //- a(href="/how-nanobox-works")
+      //-   .image-wrap
+      //-     .logos
+      //-   .jump Browse Languages &amp; Frameworks
+      //- a(href="/how-nanobox-works")
+      //-   .image-wrap(style="width:147px;")
+      //-     img.shadow-icon(data-src="mad-scientist-window" scalable="true")
+      //-   .jump Develop an Engine for your Framework
+      a(href="/how-nanobox-works"  style="margin:0 auto")
+        .image-wrap(style="width:147px;")
+          img.shadow-icon(data-src="docker-containers" scalable="true")
+        .jump How it Works

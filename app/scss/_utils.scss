@@ -1,3 +1,7 @@
+@mixin sprite($image){ background:url('/assets/sprite.png');
+  @if( $image == "language-logos" ){ width:248px; height:119px; background-position:-0px -0px; }
+}
+
 @mixin bottom-border() {
   border-bottom:solid 1px #2C4354;
 }
