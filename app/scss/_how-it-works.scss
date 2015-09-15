@@ -3,9 +3,9 @@
     h2                   { text-align:center; font-size:24px; color:#818D96; font-weight:normal;  }
     .blurb               { border:solid 1px $border-color; border-right:none; border-left:none; padding:20px;
       span               { font-family:$code-font;
-        &.prompt         { color:$prompt-color; }
+        &.prompt         { color:$prompt-color;  }
         &.command        { color:$command-color; }
-        &.param          { color:$param-color; }
+        &.param          { color:$param-color;   }
       }
     }
   }
