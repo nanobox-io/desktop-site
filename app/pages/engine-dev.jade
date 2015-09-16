@@ -8,7 +8,7 @@ block content
   .languages-and-frameworks
     .section-header
       .science-and-search
-        img.shadow-icon(data-src="mad-scientist" scalable="true")
+        img.shadow-icon(data-src="mad-scientist" )
         .search
           input( placeholder="Search Existing Engines" )
           .search-btn
@@ -21,73 +21,34 @@ block content
       
     .row.plugin-overview
       .descript
-        h2 Writing a Custom Engine
-        p Five BASH scripts specify the services your framework needs and how they should be configured so devs can begin building their app immediately with no need to install or configure anything.
+        h2 Simple Custom Engine Dev
+        p Writing an engine is surprising simple. You have likely setup and configured your dev environment multiple times in the past–an engine simply formalizes this process for consistent sharable environments. Five BASH scripts specify the services your framework needs and how they should be configured so devs can begin building their app immediately without installing or configuring anything.
       .graphic
-        img.shadow-icon(data-src="plugin-scripts" scalable="true")
-    .scripts
-      .script
-        h3.required sniff
-        .row
-          p.descript This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, this script should returns true. 
-          .script
-            pre
-              code.language-javascript
-                | #!/bin/sh
-                | if ( match_file( "/mage.php" )) {
-                |   print true;
-                | } else {
-                |   print false;
-                | }
-      .script
-        h3 boxfile
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-javascript
-                | #!/bin/sh
-                | if ( match_file( "/mage.php" )) {
-                |   print true;
-                | } else {
-                |   print false;
-                | }
-      .script
-        h3 prepare
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-javascript
-                | #!/bin/sh
-                | if ( match_file( "/mage.php" )) {
-                |   print true;
-                | } else {
-                |   print false;
-                | }
-      .script
-        h3.required build
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-javascript
-                | #!/bin/sh
-                | if ( match_file( "/mage.php" )) {
-                |   print true;
-                | } else {
-                |   print false;
-                | }
-      .script
-        h3 cleanup
-        .row
-          p.descript Set any boxfile settings your framework needs such as instantiating webs, databases, and caching services. 
-          .script
-            pre
-              code.language-javascript
-                | #!/bin/sh
-                | if ( match_file( "/mage.php" )) {
-                |   print true;
-                | } else {
-                |   print false;
-                | }
+        img.shadow-icon(data-src="plugin-scripts" )
+    
+    .script-summaries
+      .script 
+        .title sniff
+        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+      .script 
+        .title boxfile
+        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+      .script 
+        .title prepare
+        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+      .script 
+        .title build
+        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+      .script 
+        .title cleanup
+        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+    
+    .buttons
+      a.block-btn(href="#")
+        img.shadow-icon(data-src="git" )
+        .txt View a Sample Engine
+        img.shadow-icon(data-src="right-arrow" )
+      a.block-btn(href="#")
+        img.shadow-icon(data-src="documentation" )
+        .txt Full Documentation
+        img.shadow-icon(data-src="right-arrow" )
