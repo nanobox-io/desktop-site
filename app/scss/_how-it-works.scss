@@ -2,7 +2,7 @@
   .top-blurb             { font-size:21px;  line-height:32px; font-weight:normal; padding:0 10px 0 0; max-width:688px; margin:0 auto;
     h2                   { text-align:center; font-size:24px; color:#818D96; font-weight:normal;  }
     .blurb               { border:solid 1px $border-color; border-right:none; border-left:none; padding:20px;
-      span               { font-family:$code-font;
+      span               { font-family:$code-font; margin-right: 4px;
         &.prompt         { color:$prompt-color;  }
         &.command        { color:$command-color; }
         &.param          { color:$param-color;   }
