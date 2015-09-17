@@ -11,7 +11,7 @@ class Engines
 
 
   submitSearch : () ->
-    url = "//dashboard.nanobox.io/?search=#{$(".search input", @$el).val()}"
+    url = "//engines.nanobox.io/releases?search=#{$(".search input", @$el).val()}"
     window.location = url
 
   destroy : () ->
