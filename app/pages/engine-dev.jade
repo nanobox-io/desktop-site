@@ -22,33 +22,33 @@ block content
     .row.plugin-overview
       .descript
         h2 Simple Custom Engine Dev
-        p Writing an engine is surprising simple. You have likely setup and configured your dev environment multiple times in the past. An engine simply formalizes this process for consistent sharable environments. Five BASH scripts specify the services your framework needs and how they should be configured so devs can begin building their app immediately without manually installing or configuring anything.
+        p Writing an engine is surprising simple. You have likely setup and configured your dev environment multiple times in the past. An engine simply formalizes this process for consistent sharable environments. Five bash scripts specify the services your framework needs and how they should be configured so devs can begin building their app immediately without manually installing or configuring anything.
       .graphic
         img.shadow-icon(data-src="plugin-scripts" scalable="true" lock-to-max="true")
     
     .script-summaries
       .script 
         .title sniff
-        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+        .description The sniff script is executed when Nanobox attempts to determine the most appropriate engine for an app. If a positive match is found, it returns true.
       .script 
         .title boxfile
-        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+        .description This script informs Nanobox of how to run the app. This includes instructions for how to start the webs, workers, and even data services.
       .script 
         .title prepare
-        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+        .description This script is responsible for "preparing" the environment in which the built codebase will run. Install and configure runtimes, etc.
       .script 
         .title build
-        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+        .description The purpose of the build script is to "build" your codebase to be run in an isolated container. Compiling the code and generating config files.
       .script 
         .title cleanup
-        .description This script crawls the user’s code looking for patterns unique to your framework. If a positive match is found, it returns true. 
+        .description This script is responsible for removing any particles or cruft that are unnecessary in the live environment.
     
     .buttons
-      a.block-btn(href="#")
+      a.block-btn(href="https://github.com/pagodabox/nanobox-engine-template")
         img.shadow-icon(data-src="git" )
         .txt View a Sample Engine
         img.shadow-icon(data-src="right-arrow" )
-      a.block-btn(href="#")
+      a.block-btn(href="http://docs.nanobox.io/engines/")
         img.shadow-icon(data-src="documentation" )
         .txt Full Documentation
         img.shadow-icon(data-src="right-arrow" )
