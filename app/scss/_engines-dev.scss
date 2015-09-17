@@ -56,6 +56,7 @@
 
   .buttons                  { display:flex; margin-top:60px;
     a.block-btn             { display:flex; align-items:center; background:#284861; font-weight:normal; font-style:italic; color:#62B1DD; height:46px; margin-right:50px; padding:0 10px 0 4px; min-width:254px;
+      &:hover               { background:#205279; color:white; }
       .txt                  { }
       svg                   {
         &#documentation     { margin-right:7px; }
@@ -88,7 +89,7 @@
       }
       .science-and-search   { flex-direction:column-reverse; align-items:center; }
     }
-    .buttons                { flex-direction:column; margin-top:20px; padding:10px; 
+    .buttons                { flex-direction:column; margin-top:20px; padding:10px;
       a                     { margin:5px 0; }
     }
   }
