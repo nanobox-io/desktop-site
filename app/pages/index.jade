@@ -41,27 +41,27 @@ block content
     
     .mini-overview
       .mini
-        h2 Develop your App
-        p Run your code and iterate your app in a fast lightweight VM 
+        h2 Preview Your App
+        p Build your code and preview your app in a fast lightweight VM 
         .script
           pre
             code.language-nanobox
               | $ nanobox up
-              | Detecting app type
               | Launching Vagrant Virtual Machine
+              | Detecting app type
               | Installing runtimes in VM
               | etc..
         //- a(href="#developing-your-app") How it works
       
       .mini
-        h2 Run Commands
-        p Run generators, tests and other runtime specific scripts. 
+        h2 Develop Your App
+        p Run generators, tests and iterate in an isolated sandbox
         .script
           pre
             code.language-nanobox
               | $ nanobox console
-              |   Entering virtual machine context:
-              | > rake test # Run test suite
+              | Entering virtual machine context:
+              | $ rails s # run development server 
         //- a(href="#developing-your-app") How it works
     .jump-links
       a(href="//engines.nanobox.io")
