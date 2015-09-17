@@ -28,9 +28,9 @@
     svg                   { }
     .title                { align-items:center; justify-content:space-between; display:flex; border:solid 1px $border-color; border-right:none; border-left:none; margin-top: 8px;
       .text               { color:#B2C5D1; text-transform:uppercase; font-size:20px; letter-spacing:0.12em; font-family:$lato; font-weight:normal; padding:24px 0; margin-top:0; border-bottom:none; }
-      .irc-blurb          { display:flex; cursor:pointer; min-width: 220px;
+      .irc-blurb          { display:flex; cursor:pointer; min-width: 220px; align-items:center;
         svg               { margin-right:10px; }
-        .txt              { font-weight:normal; font-family:$lato; color:#3E6F96; font-size:13px; }
+        .txt              { font-weight:normal; font-family:$lato; color:#3E6F96; font-size:13px; width: 165px; }
         &:hover           {
           svg *           { stroke:white; }
           .txt            { color:white; }
@@ -53,6 +53,45 @@
       .description        { color:#3E6F96; font-size:15px; font-weight:normal; font-style:italic;line-height:23px; padding:0 34px 0 0 }
     }
   }
+
+  .buttons                  { display:flex; margin-top:60px;
+    a.block-btn             { display:flex; align-items:center; background:#284861; font-weight:normal; font-style:italic; color:#62B1DD; height:46px; margin-right:50px; padding:0 10px 0 4px; min-width:254px;
+      .txt                  { }
+      svg                   {
+        &#documentation     { margin-right:7px; }
+        &#git *             { fill:#62B1DD; }
+        &#right-arrow       { transform:scale(1.2); margin-left: auto;
+          *                 { fill:#FFF5AD; }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 690px) {
+    .script-summaries       { margin-top:0px; flex-wrap:wrap;
+      .script               { max-width:400px; margin:8px 10px;
+        .title              {
+        }
+        .description        {  }
+      }
+    }
+    .plugin-overview        { flex-direction:column;
+      .graphic              { display:none; }
+      .descript             { width:initial; }
+    }
+    .section-header         { margin:0;
+      .title                { flex-direction:column; align-items:center;  padding:10px 0;
+        .text               { font-size:17px; padding:10px 0; text-align:center;}
+        .irc-blurb          {
+          .txt              {  }
+        }
+      }
+      .science-and-search   { flex-direction:column-reverse; align-items:center; }
+    }
+    .buttons                { flex-direction:column; margin-top:20px; padding:10px; 
+      a                     { margin:5px 0; }
+    }
+  }
 }
 
 // Move these up to other descript
@@ -60,18 +99,5 @@
   .descript               { padding:0 10px 0; display:block; vertical-align:middle; max-width:450px;}
   .visual                 { padding:0 10px; display:block;
     .holder               { width: 70% !important; }
-  }
-}
-
-.buttons                  { display:flex; margin-top:60px;
-  a.block-btn             { display:flex; align-items:center; background:#284861; font-weight:normal; font-style:italic; color:#62B1DD; height:46px; margin-right:50px; padding:0 10px 0 4px; min-width:254px;
-    .txt                  { }
-    svg                   {
-      &#documentation     { margin-right:7px; }
-      &#git *             { fill:#62B1DD; }
-      &#right-arrow       { transform:scale(1.2); margin-left: auto;
-        *                 { fill:#FFF5AD; }
-      }
-    }
   }
 }

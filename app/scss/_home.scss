@@ -233,7 +233,7 @@ $vagrant-gray :#9CB7C5;
   .main-wrapper                           {
     .home                                 {
       .top-blurb                          { width:100%}
-      .mini-overview                      { flex-direction:column;
+      .mini-overview                      { flex-direction:column; margin-bottom:30px;
         .mini {width:100%}
       }
 
@@ -243,7 +243,7 @@ $vagrant-gray :#9CB7C5;
     }
   }
   .overview                        {
-    .graphic                       { width: 70%; margin-left: 34%; margin-right: 0; padding-bottom: 200px; }
+    .graphic                       { width: 70%; margin-left: 34%; margin-right: 0; padding-bottom: 100px; }
   }
   .main-wrapper .home              {
     h1                             { margin:0 10px; }
@@ -316,5 +316,28 @@ $vagrant-gray :#9CB7C5;
   .image-wrap    { min-height:148px; margin:0 auto;
     .logos       { margin:0 auto; @include sprite("language-logos");  }
   }
-  .jump          { cursor:pointer; margin:20px auto 0; font-weight:normal; font-size:16px; color:#2CB2F5; background:#1E282E; display:block; border:1px solid #103E53; border-left:none; border-right:none; padding:10px; text-align:center;}
+  .jump          { cursor:pointer; margin:0 auto 0; font-weight:normal; font-size:16px; color:#2CB2F5; background:#1E282E; display:block; border:1px solid #103E53; border-left:none; border-right:none; padding:10px; text-align:center;}
+}
+
+@media only screen and (max-width: 900px) {
+  .jump-links      {
+    a              { min-width:initial;  }
+    .image-wrap    {
+      .logos       {   }
+    }
+    .jump          { font-size:14px; }
+  }
+}
+
+@media only screen and (max-width: 615px) {
+
+  .jump-links            { flex-direction:column; align-items:center; padding-top:30px;
+    a                    { width:280px;
+      &:not(:last-child) { margin-bottom:50px;}
+    }
+    .image-wrap          {
+      .logos             { }
+    }
+    .jump                { }
+  }
 }
