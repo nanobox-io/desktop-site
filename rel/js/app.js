@@ -209,7 +209,7 @@ Engines = (function() {
 
   Engines.prototype.submitSearch = function() {
     var url;
-    url = "//dashboard.nanobox.io/?search=" + ($(".search input", this.$el).val());
+    url = "//engines.nanobox.io/releases?search=" + ($(".search input", this.$el).val());
     return window.location = url;
   };
 
