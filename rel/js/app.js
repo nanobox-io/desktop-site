@@ -3,12 +3,9 @@ var Main, nbx;
 Main = (function() {
   function Main($el) {
     this.nav = new nbx.TopNav($el);
-    this.removeAlphaContent();
   }
 
   Main.prototype.removeAlphaContent = function() {
-    $('a[href="/engines"]', this.nav.$node).remove();
-    $('a.sign-up', this.nav.$node).remove();
     return setInterval((function(_this) {
       return function() {
         $(".descript a").remove();
