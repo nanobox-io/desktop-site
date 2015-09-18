@@ -1,6 +1,6 @@
 {
   "name": "package",
-  "version": "0.0.156",
+  "version": "0.0.157",
   "dependencies": {
     "jquery": "~2.1.1",
     "jquery.easing": "~1.3.0",
@@ -11,7 +11,8 @@
     "sprint.js": "*",
     "history.js": "~1.8.0",
     "shadow-icons-library": "https://tolmark12@bitbucket.org/pagodabox-js-libs/shadow-icons-library.git",
-    "velocity": "~1.2.2"
+    "velocity": "~1.2.2",
+    "top-nav": "pagodabox/top-nav"
   },
   "ignore": [
     "app",
