@@ -41,6 +41,7 @@ coffeeStagePath   = 'stage/**/*.coffee'
 assetPath         = 'app/images/*'
 miscJsPath        = 'app/js/*'
 svgPath           = 'app/assets/compiled/*.svg'
+htaccessPath      = 'app/misc/.htaccess'
 
 parseSVG = (cb)->
   gulp.src svgPath
@@ -96,6 +97,11 @@ copyAssets = (destination, cb) ->
   gulp.src assetPath
     .pipe gulp.dest(destination)
     .on('end', cb)
+
+copyHtaccess = ()->
+  gulp.src htaccessPath
+    .pipe gulp.dest('./rel')
+    # .on('end', cb)
 
 copyBowerLibs = (cb)->
   bower()
@@ -206,7 +212,8 @@ gulp.task 'default', ['server']
 # ----------- BUILD (rel) ----------- #
 
 gulp.task 'rel:clean',                                 (cb)  -> rimraf './rel', cb
-gulp.task 'bumpVersion',                               ()    -> bumpBowerVersion()
+gulp.task 'copy-htaccess',['rel:clean'],               ()    -> copyHtaccess()
+gulp.task 'bumpVersion', ['copy-htaccess'],            ()    -> bumpBowerVersion()
 gulp.task 'copyStatics', ['bowerLibs'],                ()    -> copyAssets('rel/assets', ->)
 gulp.task 'releaseCompile', ['copyStatics'],           (cb)  -> compileFiles(false, cb)
 gulp.task 'minify',['releaseCompile'],                 ()    -> minifyAndJoin();
