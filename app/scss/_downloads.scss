@@ -1,33 +1,40 @@
-.downloads      { font-family:$lato; font-size:14px; padding-bottom:60px;
+.downloads               { font-family:$lato; font-size:14px; padding-bottom:60px;
 
   // ------------------------------------ Top Downloader
 
-  .row          { display:flex; flex-direction:row; }
-  .downloader   { justify-content:center; margin:70px 0;}
-  .checkbox     { cursor:pointer;
-    &.checked   {
-      svg .check{ opacity:1; }
+  .row                   { display:flex; flex-direction:row; }
+  .downloader            { justify-content:center; margin:70px 0;}
+  .checkbox              { cursor:pointer; margin-right:6px;
+    &.checked            {
+      svg .check         { opacity:1; }
     }
-    svg .check{ opacity:0; }
+    svg .check           { opacity:0; }
   }
-  .info         { display:flex; flex-direction:column; justify-content:space-between; height: 97px; margin-top: 22px; padding-left: 50px;
-    .option     { cursor:pointer; padding-top:2px; display:flex; flex-direction:row;  align-content:center; font-style:italic; font-weight:normal;
-      &:hover   { color:#7591a2; }
-      .copy     { line-height: 23px; padding-left:6px;  }
-    }
-    .title      { text-transform:uppercase; letter-spacing:0.08em; font-size:16px; font-weight:normal;}
-    .install    { text-transform:uppercase; letter-spacing:0.08em; color:#F5DA81; cursor:pointer; display:flex; flex-direction:row;  align-content:center;
-      &:hover   { color:white;
-        svg *   { fill:white; }
+  .installers            { display:flex;
+    .installer           { width:350px; display:flex; flex-direction:column; justify-content:space-between; height: 97px; margin-top: 22px; padding-left: 50px;
+      &.coming           {
+        .install         { color:#6B8DA3; cursor:initial; pointer-events:none; }
+      }
+      &.binary           { border-left:1px solid #31404A; padding-left: 40px; margin-left:20px; }
+      .option            { cursor:pointer; padding-top:2px; display:flex; flex-direction:row;  align-content:center; font-style:italic; font-weight:normal;
+        &:hover          { color:#7591a2; }
+        .copy            { line-height: 23px;   }
+      }
+      .title             { display:flex; align-items:baseline; text-transform:uppercase; letter-spacing:0.08em; font-size:16px; font-weight:normal;}
+      .main              { color:#6B8DA3; font-size:19px; margin-right:8px;  }
+      .install           { text-transform:uppercase; letter-spacing:0.08em; color:#F5DA81; cursor:pointer; display:flex; flex-direction:row;  align-content:center;
+        &:hover          { color:white;
+          svg *          { fill:white; }
+        }
       }
     }
   }
 
-  .asterix {font-weight:normal; font-style:italic; color:#486880; }
+  .asterix               { font-weight:normal; font-style:italic; color:#486880; }
 
   .download-mini-btns    { display:flex; flex-direction:row; justify-content:flex-end;
     .btn                 { width:39px; height:39px; cursor:pointer; margin:0 5px;
-      &:not(.active) svg                {
+      &:not(.active) svg {
         *                { fill:#304657; }
         .logo *          { fill:#212C33; }
         &:hover          {
@@ -39,26 +46,27 @@
   }
 
   // ------------------------------------ Descriptions
-  .break                  { padding-top:15px; justify-content:center;
-    &.partial-download    {
+  .break                 { padding-top:15px; justify-content:center;
+    &.partial-download   {
       .vagrant,
-      .virtual-box        { display:none; }
+      .virtual-box       { display:none; }
     }
   }
 
-  .breakdown              { padding-top:24px; }
+  .breakdown             { padding-top:24px; }
 
-  .descriptions           {
-    .description          { width:265px;
-      &:not(:last-child)  { margin-bottom:45px; }
-      h4                  { font-family:$lato; font-weight:bold; color:#6B8DA3; border-bottom:1px solid $border-color; padding-bottom:5px; margin-bottom:-10px;
-        span              { float:right; }
+  .descriptions          {
+    .description         { width:265px;
+      &:not(:last-child) { margin-bottom:45px; }
+      h4                 { font-family:$lato; font-weight:bold; color:#6B8DA3; border-bottom:1px solid $border-color; padding-bottom:5px; margin-bottom:-10px;
+        span             { float:right; }
       }
-      p                   { font-style:italic; font-weight:normal; }
+      p                  { font-style:italic; font-weight:normal; }
     }
   }
 }
 
-@media only screen and (max-width: 670px) {
-  .break .breakdown {display:none;}
+@media only screen and (max-width: 670px)
+                         {
+  .break .breakdown      { display:none;}
 }

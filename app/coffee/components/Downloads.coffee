@@ -5,7 +5,8 @@ class Downloads
     @$miniBtns = $(".download-mini-btns")
 
     $(".option", @$el).on     "click", (e)=> @toggleCheckbox()
-    $(".install", @$el).on    "click", (e)=> @startDownload()
+    $(".native .install", @$el).on    "click", (e)=> @startDownload()
+    $(".binary .install", @$el).on    "click", (e)=> @startDownload(true)
     $(".btn", @$miniBtns).on  "click", (e)=> @osBtnClick  e.currentTarget.getAttribute('data')
     @osBtnClick @detectOs()
     # @getSizeOfDownload "https://s3.amazonaws.com/tools.nanobox.io/cli/darwin/amd64/nanobox", (size)-> console.log "The size is #{size.toFixed(1)}MB"
@@ -21,12 +22,12 @@ class Downloads
     $(".btn", @$miniBtns).removeClass "active"
     $(".btn[data='#{os}']", @$miniBtns).addClass "active"
 
-
-
-  startDownload : () ->
-    downloadPath = if @checked then @OSinfo[ @os ].fullInstaller else @OSinfo[ @os ].partialInstaller
+  startDownload : (isBinary=false) ->
+    if isBinary
+      downloadPath = @OSinfo[ @os ].binaryUrl
+    else
+      downloadPath = if @checked then @OSinfo[ @os ].fullInstaller else @OSinfo[ @os ].partialInstaller
     window.location = downloadPath
-
 
   toggleCheckbox : () ->
     if @checked
@@ -57,14 +58,15 @@ class Downloads
     @os = os
     osData = @OSinfo[ @os ]
     $downloader  = $ '.downloader', @$el
+    $native      = $ '.native', @$el
     @$graphic    = $ '.break', @$el
 
     # Title & Icon
-    $('.title', $downloader).html osData.title
+    $('.size', $native).html osData.title
     $('.icon', $downloader).html "<img class='shadow-icon' data-src='#{@os}' />"
 
+    console.log "<img class='shadow-icon' data-src='#{@os}' />"
     @updateSize $downloader
-
     shadowIconsInstance.svgReplaceWithString pxSvgIconString, $downloader
 
   updateSize : ($downloader) ->
@@ -73,7 +75,7 @@ class Downloads
     $descriptions = $ '.descriptions', @$el
 
     @getSizeOfDownload osData[ installer ], (size)->
-      $('.title', $downloader).html osData.title + ' - ' + size.toFixed(1) + "MB"
+      $('.size', $downloader).html size.toFixed(1) + "MB"
       # Component sizes
       $('.ubunto-image span', $descriptions).html osData.downloadSizes.ubunto
       $('.nanobox span',      $descriptions).html osData.downloadSizes.nano
@@ -104,6 +106,7 @@ class Downloads
   OSinfo : {
     mac:
       title            : "Mac OSX Intel"
+      binaryUrl        : "https://s3.amazonaws.com/tools.nanobox.io/cli/darwin/amd64/nanobox"
       partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox.dmg"
       fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox-bundle.dmg"
       downloadSizes    :
@@ -114,6 +117,7 @@ class Downloads
 
     win:
       title            : "Windows"
+      binaryUrl        : "https://s3.amazonaws.com/tools.nanobox.io/cli/windows/amd64/nanobox.exe"
       fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox-bundle.exe"
       partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox.msi"
       downloadSizes    :
@@ -124,6 +128,7 @@ class Downloads
 
     lnx:
       title            : "Linux"
+      binaryUrl        : "https://s3.amazonaws.com/tools.nanobox.io/cli/linux/amd64/nanobox"
       partialInstaller : "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox.deb"
       fullInstaller    : "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox-bundle.deb"
       downloadSizes    :
