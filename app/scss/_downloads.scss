@@ -16,7 +16,7 @@
         .install         { color:#6B8DA3; cursor:initial; pointer-events:none; }
       }
       &.binary           { border-left:1px solid #31404A; padding-left: 40px; margin-left:20px; }
-      .option            { cursor:pointer; padding-top:2px; display:flex; flex-direction:row;  align-content:center; font-style:italic; font-weight:normal;
+      .option            { cursor:pointer; padding-top:2px; display:flex; flex-direction:row;  align-content:center; font-style:italic; font-weight:normal; height: 40px; margin-bottom: 20px;
         &:hover          { color:#7591a2; }
         .copy            { line-height: 23px;   }
       }
