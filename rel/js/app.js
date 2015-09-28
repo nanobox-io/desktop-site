@@ -34,9 +34,14 @@ Downloads = (function() {
         return _this.toggleCheckbox();
       };
     })(this));
-    $(".install", this.$el).on("click", (function(_this) {
+    $(".native .install", this.$el).on("click", (function(_this) {
       return function(e) {
         return _this.startDownload();
+      };
+    })(this));
+    $(".binary .install", this.$el).on("click", (function(_this) {
+      return function(e) {
+        return _this.startDownload(true);
       };
     })(this));
     $(".btn", this.$miniBtns).on("click", (function(_this) {
@@ -55,9 +60,16 @@ Downloads = (function() {
     return $(".btn[data='" + os + "']", this.$miniBtns).addClass("active");
   };
 
-  Downloads.prototype.startDownload = function() {
+  Downloads.prototype.startDownload = function(isBinary) {
     var downloadPath;
-    downloadPath = this.checked ? this.OSinfo[this.os].fullInstaller : this.OSinfo[this.os].partialInstaller;
+    if (isBinary == null) {
+      isBinary = false;
+    }
+    if (isBinary) {
+      downloadPath = this.OSinfo[this.os].binaryUrl;
+    } else {
+      downloadPath = this.checked ? this.OSinfo[this.os].fullInstaller : this.OSinfo[this.os].partialInstaller;
+    }
     return window.location = downloadPath;
   };
 
@@ -86,16 +98,18 @@ Downloads = (function() {
   };
 
   Downloads.prototype.switchOs = function(os) {
-    var $downloader, osData;
+    var $downloader, $native, osData;
     if (os === this.os) {
       return;
     }
     this.os = os;
     osData = this.OSinfo[this.os];
     $downloader = $('.downloader', this.$el);
+    $native = $('.native', this.$el);
     this.$graphic = $('.break', this.$el);
-    $('.title', $downloader).html(osData.title);
+    $('.size', $native).html(osData.title);
     $('.icon', $downloader).html("<img class='shadow-icon' data-src='" + this.os + "' />");
+    console.log("<img class='shadow-icon' data-src='" + this.os + "' />");
     this.updateSize($downloader);
     return shadowIconsInstance.svgReplaceWithString(pxSvgIconString, $downloader);
   };
@@ -106,7 +120,7 @@ Downloads = (function() {
     osData = this.OSinfo[this.os];
     $descriptions = $('.descriptions', this.$el);
     this.getSizeOfDownload(osData[installer], function(size) {
-      $('.title', $downloader).html(osData.title + ' - ' + size.toFixed(1) + "MB");
+      $('.size', $downloader).html(size.toFixed(1) + "MB");
       $('.ubunto-image span', $descriptions).html(osData.downloadSizes.ubunto);
       $('.nanobox span', $descriptions).html(osData.downloadSizes.nano);
       $('.vagrant span', $descriptions).html(osData.downloadSizes.vagrant);
@@ -137,6 +151,7 @@ Downloads = (function() {
   Downloads.prototype.OSinfo = {
     mac: {
       title: "Mac OSX Intel",
+      binaryUrl: "https://s3.amazonaws.com/tools.nanobox.io/cli/darwin/amd64/nanobox",
       partialInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox.dmg",
       fullInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/mac/nanobox-bundle.dmg",
       downloadSizes: {
@@ -148,6 +163,7 @@ Downloads = (function() {
     },
     win: {
       title: "Windows",
+      binaryUrl: "https://s3.amazonaws.com/tools.nanobox.io/cli/windows/amd64/nanobox.exe",
       fullInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox-bundle.exe",
       partialInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/windows/nanobox.msi",
       downloadSizes: {
@@ -159,6 +175,7 @@ Downloads = (function() {
     },
     lnx: {
       title: "Linux",
+      binaryUrl: "https://s3.amazonaws.com/tools.nanobox.io/cli/linux/amd64/nanobox",
       partialInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox.deb",
       fullInstaller: "https://s3.amazonaws.com/tools.nanobox.io/installers/linux/nanobox-bundle.deb",
       downloadSizes: {

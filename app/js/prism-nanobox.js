@@ -1,7 +1,7 @@
 Prism.languages.nanobox = {
   // 'comment': /\.*/g
   'command'  : /nanobox|rails/g,
-  'parameter': /up|publish|--server/g,
   'prompt'   : /\$|\>/g,
-  'comment'  : /\#.+/g,
+  'parameter': /\sdev\s|\srun\s|\ss\s/g
+  // 'comment'  : /\#.+/g,
 };
