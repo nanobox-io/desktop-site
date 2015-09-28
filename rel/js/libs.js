@@ -983,7 +983,7 @@ ShadowIcons = (function() {
   };
 
   ShadowIcons.prototype.replacePlaceholdersWithSVGs = function(svg, $jqueryContext) {
-    var $holder, $svg, $targetSvg, box, id, image, images, lockToMax, newNode, rawHtml, scalable, serializer, usesSymbols, _i, _len, _ref, _ref1, _ref2, _ref3, _results;
+    var $holder, $svg, $targetSvg, box, id, image, images, newNode, rawHtml, scalable, serializer, usesSymbols, _i, _len, _ref, _ref1, _results;
     $svg = $(this.buildSvg(svg, "main"));
     images = $("img.shadow-icon", $jqueryContext);
     _results = [];
@@ -991,9 +991,7 @@ ShadowIcons = (function() {
       image = images[_i];
       id = $(image).attr("data-src");
       scalable = ((_ref = $(image).attr("scalable")) != null ? _ref.toUpperCase() : void 0) === 'TRUE';
-      lockToMax = ((_ref1 = $(image).attr("lock-to-max")) != null ? _ref1.toUpperCase() : void 0) === 'TRUE';
-      lockToMax || (lockToMax = ((_ref2 = $(image).attr("data-lock-to-max")) != null ? _ref2.toUpperCase() : void 0) === 'TRUE');
-      scalable || (scalable = ((_ref3 = $(image).attr("data-scalable")) != null ? _ref3.toUpperCase() : void 0) === 'TRUE');
+      scalable || (scalable = ((_ref1 = $(image).attr("data-scalable")) != null ? _ref1.toUpperCase() : void 0) === 'TRUE');
       $targetSvg = $("#" + id, $svg)[0];
       usesSymbols = $("use", $targetSvg).length !== 0;
       if ($targetSvg == null) {
@@ -1014,15 +1012,11 @@ ShadowIcons = (function() {
           newNode.get(0).setAttribute("viewBox", "0 0 " + (box.width + 8) + " " + (box.height + 8));
           $holder = $("<div class='holder'><div>");
           $holder.css({
+            "max-width": "" + (box.width + 8) + "px",
+            "max-height": "" + (box.height + 8) + "px",
             "width": "100%",
             "display": "inline-block"
           });
-          if (lockToMax) {
-            $holder.css({
-              "max-width": "" + (box.width + 8) + "px",
-              "max-height": "" + (box.height + 8) + "px"
-            });
-          }
           $holder.append(newNode);
           _results.push($(image).replaceWith($holder));
         } else {

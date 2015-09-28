@@ -41,12 +41,12 @@ block content
     
     .mini-overview
       .mini
-        h2 Preview Your App
+        h2 Run Your App
         p Build your code and preview your app in a fast lightweight VM 
         .script
           pre
             code.language-nanobox
-              | $ nanobox up
+              | $ nanobox run
               | Launching Vagrant Virtual Machine
               | Detecting app type
               | Installing runtimes in VM
@@ -59,7 +59,7 @@ block content
         .script
           pre
             code.language-nanobox
-              | $ nanobox console
+              | $ nanobox dev
               | Entering virtual machine context:
               | $ rails s # run development server 
         //- a(href="#developing-your-app") How it works
