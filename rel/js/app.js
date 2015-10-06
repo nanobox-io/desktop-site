@@ -29,7 +29,7 @@ Downloads = (function() {
     this.$el = $el;
     this.checked = true;
     this.$miniBtns = $(".download-mini-btns");
-    $(".option", this.$el).on("click", (function(_this) {
+    $(".checker", this.$el).on("click", (function(_this) {
       return function(e) {
         return _this.toggleCheckbox();
       };
@@ -107,8 +107,8 @@ Downloads = (function() {
     $downloader = $('.downloader', this.$el);
     $native = $('.native', this.$el);
     this.$graphic = $('.break', this.$el);
-    $('.size', $native).html(osData.title);
-    $('.icon', $downloader).html("<img class='shadow-icon' data-src='" + this.os + "' />");
+    $('.icon p', $downloader).html(osData.title);
+    $('.icon .img', $downloader).html("<img class='shadow-icon' data-src='" + this.os + "' />");
     console.log("<img class='shadow-icon' data-src='" + this.os + "' />");
     this.updateSize($downloader);
     return shadowIconsInstance.svgReplaceWithString(pxSvgIconString, $downloader);
@@ -120,11 +120,15 @@ Downloads = (function() {
     osData = this.OSinfo[this.os];
     $descriptions = $('.descriptions', this.$el);
     this.getSizeOfDownload(osData[installer], function(size) {
-      $('.size', $downloader).html(size.toFixed(1) + "MB");
+      $('.native .size', $downloader).html(size.toFixed(1) + "MB");
       $('.ubunto-image span', $descriptions).html(osData.downloadSizes.ubunto);
       $('.nanobox span', $descriptions).html(osData.downloadSizes.nano);
       $('.vagrant span', $descriptions).html(osData.downloadSizes.vagrant);
       return $('.virtual-box span', $descriptions).html(osData.downloadSizes.virtualBox);
+    });
+    this.getSizeOfDownload(osData['binaryUrl'], function(size) {
+      console.log(size);
+      return $('.binary .size', $downloader).html(size.toFixed(1) + "MB");
     });
     if (this.checked) {
       return this.$graphic.removeClass('partial-download');

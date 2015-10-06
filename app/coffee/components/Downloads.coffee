@@ -4,7 +4,7 @@ class Downloads
     @checked   = true
     @$miniBtns = $(".download-mini-btns")
 
-    $(".option", @$el).on     "click", (e)=> @toggleCheckbox()
+    $(".checker", @$el).on     "click", (e)=> @toggleCheckbox()
     $(".native .install", @$el).on    "click", (e)=> @startDownload()
     $(".binary .install", @$el).on    "click", (e)=> @startDownload(true)
     $(".btn", @$miniBtns).on  "click", (e)=> @osBtnClick  e.currentTarget.getAttribute('data')
@@ -62,8 +62,8 @@ class Downloads
     @$graphic    = $ '.break', @$el
 
     # Title & Icon
-    $('.size', $native).html osData.title
-    $('.icon', $downloader).html "<img class='shadow-icon' data-src='#{@os}' />"
+    $('.icon p', $downloader).html osData.title
+    $('.icon .img', $downloader).html "<img class='shadow-icon' data-src='#{@os}' />"
 
     console.log "<img class='shadow-icon' data-src='#{@os}' />"
     @updateSize $downloader
@@ -75,12 +75,16 @@ class Downloads
     $descriptions = $ '.descriptions', @$el
 
     @getSizeOfDownload osData[ installer ], (size)->
-      $('.size', $downloader).html size.toFixed(1) + "MB"
+      $('.native .size', $downloader).html size.toFixed(1) + "MB"
       # Component sizes
       $('.ubunto-image span', $descriptions).html osData.downloadSizes.ubunto
       $('.nanobox span',      $descriptions).html osData.downloadSizes.nano
       $('.vagrant span',      $descriptions).html osData.downloadSizes.vagrant
       $('.virtual-box span',  $descriptions).html osData.downloadSizes.virtualBox
+
+    @getSizeOfDownload osData[ 'binaryUrl' ], (size)->
+      console.log size
+      $('.binary .size', $downloader).html size.toFixed(1) + "MB"
 
     if @checked
       @$graphic.removeClass 'partial-download'

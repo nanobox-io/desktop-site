@@ -3,7 +3,8 @@
   // ------------------------------------ Top Downloader
 
   .row                   { display:flex; flex-direction:row; }
-  .downloader            { justify-content:center; margin:70px 0;}
+  .downloader            { justify-content:center; margin:70px 0 51px;}
+  .icon p                { text-align:center; text-transform:uppercase; letter-spacing:0.08em; font-size:12px; }
   .checkbox              { cursor:pointer; margin-right:6px;
     &.checked            {
       svg .check         { opacity:1; }
@@ -16,9 +17,13 @@
         .install         { color:#6B8DA3; cursor:initial; pointer-events:none; }
       }
       &.binary           { border-left:1px solid #31404A; padding-left: 40px; margin-left:20px; }
-      .option            { cursor:pointer; padding-top:2px; display:flex; flex-direction:row;  align-content:center; font-style:italic; font-weight:normal; height: 40px; margin-bottom: 20px;
-        &:hover          { color:#7591a2; }
-        .copy            { line-height: 23px;   }
+      .option            { padding-top:2px; display:flex; flex-direction:row; align-content:center; font-style:italic; font-weight:normal; height: 40px; margin-bottom: 20px; display:flex; flex-direction:column;
+        .copy            { line-height: 23px; display:flex; align-items:center;
+          &.checker      { margin-top:-3px; cursor:pointer;
+            &:hover      { color:#7591a2; }
+            p{margin-top:7px;}
+          }
+        }
       }
       .title             { display:flex; align-items:baseline; text-transform:uppercase; letter-spacing:0.08em; font-size:16px; font-weight:normal;}
       .main              { color:#6B8DA3; font-size:19px; margin-right:8px;  }

@@ -8,23 +8,29 @@ block content
   .downloads
     .row.downloader
       .icon
-        img.shadow-icon(data-src="win")
+        .img
+          img.shadow-icon(data-src="win")
+        p Mac OSX Intel
       .installers
-        .installer.native.coming
+        .installer.native
           .title 
             .main Native Installer
-            //- .size 1.4. GB
+            .size 1.4. GB
           .option
-            .checkbox.checked
-              img.shadow-icon(data-src="checkbox")
-            .copy Include &amp; Install Vagrant + Virtual Box * <br/>
-          .install (Coming Soon)
+            .copy.checker
+              .checkbox.checked
+                img.shadow-icon(data-src="checkbox")
+              p Include &amp; Install Vagrant + Virtual Box * 
+          .install 
+            | Download Installer
+            img.shadow-icon(data-src="download-big")
         .installer.binary
           .title 
-            .main Binary
-            //- .size 1.4. GB
+            .main Raw Binary
+            .size 1.4. GB
           .option
-            .copy Requires Vagrant &amp; Virtual Box<br/>Place binary in your PATH (ex. ~/bin)<br/>
+            .copy + Requires Vagrant &amp; Virtual Box.
+            .copy + Place binary in your PATH (ex. ~/bin)<br/>
           .install 
             | Download Binary
             img.shadow-icon(data-src="download-big")
@@ -36,22 +42,22 @@ block content
       .btn(data="win")
         img.shadow-icon(data-src="win" scalable='true')
         
-    //- h3 What's in the installer
-    //- .row.break
-    //-   .breakdown(style="width:396px;")
-    //-     img.shadow-icon(data-src="download-breakdown" )
-    //-   .descriptions
-    //-     .description.ubunto-image
-    //-       h4 Boot2docker Vagrant Image <span></span>
-    //-       p Nanobox installs your app and runtimes (ruby, node, mysql, etc) on a virtual machine running this slim version of Linux. 
-    //-     .description.nanobox
-    //-       h4 Nanobox <span></span>
-    //-       p Orchestration layer that configures and runs your app
-    //-     .description.vagrant
-    //-       h4 Vagrant <span></span>
-    //-       p Creates / manages the Virtual Machine
-    //-     .description.virtual-box
-    //-       h4 Virtual Box <span></span>
-    //-       p Does the actual virtualization
-    //- h3 &nbsp;
-    //- .row.asterix * Uncheck this box if you already have Vagrant & Virtual box installed, or if you would like to download and install them yourself
+    h3 What's in the installer
+    .row.break
+      .breakdown(style="width:396px;")
+        img.shadow-icon(data-src="download-breakdown" )
+      .descriptions
+        .description.ubunto-image
+          h4 Boot2docker Vagrant Image <span></span>
+          p Nanobox installs your app and runtimes (ruby, node, mysql, etc) on a virtual machine running this slim version of Linux. 
+        .description.nanobox
+          h4 Nanobox <span></span>
+          p Orchestration layer that configures and runs your app
+        .description.vagrant
+          h4 Vagrant <span></span>
+          p Creates / manages the Virtual Machine
+        .description.virtual-box
+          h4 Virtual Box <span></span>
+          p Does the actual virtualization
+    h3 &nbsp;
+    .row.asterix * Uncheck this box if you already have Vagrant & Virtual box installed, or if you would like to download and install them yourself
