@@ -4,24 +4,30 @@ block js
 
 block content
   .home
-    .main-summary
-      img.shadow-icon(data-src="top-mini-stack" lock-to-max="true")
-      .info
-        h1 Vagrant + Docker + Engines
-        h4 Local App Environments -  Automated / Lightweight / Reusable 
-        .links 
-          a.github(href="https://github.com/pagodabox?utf8=%E2%9C%93&query=nanobox")
-            img.shadow-icon(data-src="git" )
-            p Fork me on github
-            
-          a.download(href="/downloads")
-            img.shadow-icon(data-src="download-home" )
-            p Download
+    .actions
+      .title Local Development Done right
+      .buttons
+        a.github(href="https://github.com/pagodabox?utf8=%E2%9C%93&query=nanobox")
+          img.shadow-icon(data-src="git" )
+          p Fork me on github
+        a.download(href="/downloads")
+          p Download
+          img.shadow-icon(data-src="download-home" )
+    .manifesto
+      .point
+        .svg-holder
+          img.shadow-icon(data-src="manifesto-parity" )
+        p Maintain dev<br/>production parity
+      .point
+        .svg-holder
+          img.shadow-icon(data-src="manifesto-automation" )
+        p Automate environment configuration
+      .point
+        .svg-holder
+          img.shadow-icon(data-src="manifesto-virtualization" )
+        p Keep your local machine clean through virtualization
         
-          a.irc(href="//webchat.freenode.net/?channels=nanobox", target="_BLANK")
-            img.shadow-icon(data-src="irc" )
-            p IRC - #nanobox <span>(freenode)</span>
-    
+          
     .overview
       .info
         .blurb.src-code

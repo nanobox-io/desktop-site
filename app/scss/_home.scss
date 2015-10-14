@@ -22,34 +22,24 @@ $left-col-px    : 960px * $left;
     .code                  { font-family:$code; font-weight:bold; color:$turquoise; font-size: 21px;
       &:before             { content:"$\00a0"; display: inline-block; color:#FF7FA8;  }
     }
-    .main-summary          { margin: 20px auto 0; text-align:center;
-      svg#top-mini-stack   { margin: 0 56px 0; display: inline-block;  @include transform(translateY(18%)); }
-      .info                { display: inline-block; padding:20px 53px 10px; border-left:1px solid #263A47; text-align:left; margin:10px 0 20px;
-        .links             { margin-left:-5px;
-          a                { display:inline-block; margin-right:40px;
-            &:hover        {
-              p            { color:white !important; }
-              svg          {
-                #git path  { fill:white; }
-                circle     { fill:white; }
-                polygon    { fill:white; }
-              }
-            }
-            p              { margin-left:6px}
-            &.irc          { margin-right:0;
-              svg          { }
-            }
-            &.irc p        { color:#62B1DD;
-              span         { color:#486880; }
-            }
-            &.github p     { color:#FFF5AD; }
-            &.download p   { color:#3ACFCF; }
-            *              { display:inline-block; }
-            svg            { margin:0; @include transform(translateY(29%)); }
+    .actions               { text-align:center; display:flex; flex-direction:column;
+      .title               { margin:0 auto; font-family: "museo"; font-size:29px; margin:100px 0 30px}
+      .buttons             { display:flex; flex-direction:row; margin:0 auto;
+        a                  { display:flex; align-items:center; background:#1A262B; border-radius:2px; height:45px; padding:0 25px; margin:0 8px;
+          &.github svg     { margin: -3px 5px 0 -10px; }
+          &.download svg   { margin: -2px -7px 0px 14px; }
+          &:hover          { background:#142329;
+            p              { color:#6ECAFD; }
+            svg .hover     { fill:#6ECAFD; }
           }
         }
-        h1                 { padding-bottom: 12px; font-weight:400; color: $turquoise; margin:0; }
-        h4                 { border:1px solid $border-color; font-weight:400; font-style:italic; font-size:19px; margin-top:6px; margin-bottom:0; border-right:none; border-left:none; padding:10px 0; }
+      }
+    }
+    .manifesto             { display:flex; padding:40px 0; margin:80px auto 30px; width:780px;  justify-content:space-between; border: 1px solid #2D3A42; border-right:none; border-left:none;
+      .point               { display:flex; flex-direction:column; align-items:center;
+        .svg-holder        { height:75px; display:flex; align-items:center;
+        }
+        p                  { width:190px; text-align:center; color:#385263; font-weight:bold; }
       }
     }
     .video                 { margin:60px 0;
@@ -88,7 +78,7 @@ $left-col-px    : 960px * $left;
     .mini-overview         { display:flex; flex-direction:row; justify-content:space-between; margin-bottom:100px; padding:0 10px;
       h2                   { border-bottom:solid 1px $border-color; padding-bottom:12px;}
       .mini                { width:443px; position:relative;
-         &.dev             {  z-index:1; }
+         &.dev             { z-index:1; }
          .script           { outline:solid 1px #212C33; }
          #view-demo        { position:absolute; right:-12px; bottom:-40px; cursor:pointer;
            &:hover         {
@@ -240,6 +230,13 @@ $vagrant-gray :#9CB7C5;
 
 // MEDIUM
 
+@media only screen and (max-width: 780px){
+  .main-wrapper .home .manifesto { width:500px;
+    .point p                     { width:150px; }
+  }
+}
+
+
 @media only screen and (max-width: 650px)
                            {
   .main-wrapper            {
@@ -274,6 +271,16 @@ $vagrant-gray :#9CB7C5;
                            {
   .main-wrapper            {
     .home                  {
+      .actions             {
+        .title             { margin:30px 0 ; font-size:23px; }
+      }
+      .manifesto           { margin-top:40px; width:100%; flex-direction:column;
+        .point               { margin-bottom:40px;
+          .svg-holder        { height:40px; margin-bottom:10px; }
+          p { width:150px; }
+          &:last-child     { margin-bottom:0; }
+        }
+      }
       .main-summary        {
         .info              { border-left:none;
           h1               { font-size: 24px; }
@@ -297,6 +304,13 @@ $vagrant-gray :#9CB7C5;
         .holder            { width: 70% !important; }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 350px ){
+  .main-wrapper .home .actions {
+    .title                    { font-size:20px; }
+    .buttons a svg            { display:none;}
   }
 }
 
