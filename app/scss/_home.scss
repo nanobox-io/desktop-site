@@ -29,7 +29,7 @@ $light-header : #93ADBD;
           &.github svg     { margin: -3px 5px 0 -10px; }
           &.download svg   { margin: -2px -7px 0px 14px; }
           &:hover          { background:#142329;
-            p              { color:#6ECAFD;  line-height: 20px; }
+            p              { color:#6ECAFD; }
             svg .hover     { fill:#6ECAFD; }
           }
         }
