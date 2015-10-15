@@ -106,7 +106,7 @@ copyHtaccess = ()->
 copyBowerLibs = (cb)->
   bower()
     .pipe gulp.dest('./server/bower-libs/')
-
+    
 copyFilesToBuild = ->
   gulp.src( './server/js/*' ).pipe gulp.dest('./rel/')
   gulp.src( './server/css/main.css' ).pipe gulp.dest('./rel/')
@@ -204,7 +204,7 @@ compileFiles = (doWatch=false, cb) ->
 # ----------- MAIN ----------- #
 
 gulp.task 'clean',                  (cb) -> rimraf './server', cb
-gulp.task 'bowerLibs', ['clean'],   ()   -> copyBowerLibs()
+gulp.task 'bowerLibs', ['clean'],   (cb) -> copyBowerLibs()
 gulp.task 'compile', ['bowerLibs'], (cb) -> compileFiles(true, cb)
 gulp.task 'server', ['compile'],    (cb) -> server(); launch();
 gulp.task 'default', ['server']
