@@ -7,7 +7,7 @@ $right-col-perc : 100%  * $rght;
 $right-col-px   : 960px * $rght;
 $left-col-px    : 960px * $left;
 
-
+$light-header : #93ADBD;
 // .home             { font-family:$lato;
 //   .row            { display:flex; display: -webkit-flex;
 //     .descript     { width:50%; display:inline-block; }
@@ -17,19 +17,19 @@ $left-col-px    : 960px * $left;
 
 .main-wrapper              { /* max-width:960px; height:300px; margin:0 auto; */
   .home                    { font-family:$lato; padding-bottom:80px;
-    h2                     { font-size:20px; line-height:1.5; color:#7796AA; font-weight:bold; letter-spacing: 0.02em; font-style:italic;}
+    h2                     { font-size:20px; line-height:1.5; color:$light-header; font-weight:bold; letter-spacing: 0.02em; font-style:italic;}
     p                      { font-size:15px; line-height: 1.7; color:#5A768A; font-weight:normal; }
     .code                  { font-family:$code; font-weight:bold; color:$turquoise; font-size: 21px;
       &:before             { content:"$\00a0"; display: inline-block; color:#FF7FA8;  }
     }
     .actions               { text-align:center; display:flex; flex-direction:column;
-      .title               { margin:0 auto; font-family: "museo"; font-size:29px; margin:100px 0 30px}
+      .title               { color:$light-header; margin:0 auto; font-family: "museo"; font-size:29px; margin:100px 0 30px}
       .buttons             { display:flex; flex-direction:row; margin:0 auto;
         a                  { display:flex; align-items:center; background:#1A262B; border-radius:2px; height:45px; padding:0 25px; margin:0 8px;
           &.github svg     { margin: -3px 5px 0 -10px; }
           &.download svg   { margin: -2px -7px 0px 14px; }
           &:hover          { background:#142329;
-            p              { color:#6ECAFD; }
+            p              { color:#6ECAFD;  line-height: 20px; }
             svg .hover     { fill:#6ECAFD; }
           }
         }
