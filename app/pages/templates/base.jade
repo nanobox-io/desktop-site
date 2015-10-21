@@ -17,8 +17,8 @@ html(lang="en")
 
   body
     //- make transparent for fade in below
-    .main-wrapper(style="opacity:0;")  
-      include ../shared/top-nav.jade
+    .main-wrapper(style="opacity:0;") 
+      .nav-holder
       .content-area
         block content
       
@@ -33,6 +33,7 @@ html(lang="en")
     script(src="/bower-libs/jquery/dist/jquery.js")
     script(src="/js/jade-templates.js")
     script(src="/bower-libs/velocity/velocity.js")
+    script(src="/bower-libs/top-nav/rel/js/app.js")
     // endbuild
     
     script(src="https://use.typekit.net/auo7ijn.js")

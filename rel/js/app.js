@@ -2,7 +2,8 @@ var Main, nbx;
 
 Main = (function() {
   function Main($el) {
-    this.nav = new nbx.TopNav($el);
+    var topnav;
+    topnav = new nbx.NanoTopNav($(".nav-holder", $el));
   }
 
   Main.prototype.removeAlphaContent = function() {
@@ -18,7 +19,9 @@ Main = (function() {
 
 })();
 
-nbx = {};
+if (typeof nbx === "undefined" || nbx === null) {
+  nbx = {};
+}
 
 nbx.Main = Main;
 
@@ -273,58 +276,4 @@ Pages = (function() {
 
 nbx.Pages = Pages;
 
-var TopNav;
 
-TopNav = (function() {
-  function TopNav($nav) {
-    this.$nav = $nav;
-    $("a.open-community", this.$nav).on("click", (function(_this) {
-      return function(e) {
-        return _this.showCommunityModal();
-      };
-    })(this));
-    this.addCommunityModal(this.$nav);
-    this.hideCommunityModal();
-  }
-
-  TopNav.prototype.activateNavItem = function(id) {
-    $("a[data]", this.$nav).removeClass('active');
-    return $("a[data=" + id + "]", this.$nav).addClass('active');
-  };
-
-  TopNav.prototype.addCommunityModal = function($el) {
-    this.$community = $(jadeTemplate['community']({}));
-    $el.append(this.$community);
-    shadowIconsInstance.svgReplaceWithString(pxSvgIconString, $el);
-    return $(".close", this.$community).on("click", (function(_this) {
-      return function(e) {
-        return _this.hideCommunityModal();
-      };
-    })(this));
-  };
-
-  TopNav.prototype.showCommunityModal = function() {
-    this.$community.removeClass("hidden");
-    return this.listenForClickOutsideModal();
-  };
-
-  TopNav.prototype.hideCommunityModal = function() {
-    return this.$community.addClass("hidden");
-  };
-
-  TopNav.prototype.listenForClickOutsideModal = function() {
-    return $(document).on("mousedown", (function(_this) {
-      return function(e) {
-        if (!_this.$community.is(e.target) && _this.$community.has(e.target).length === 0) {
-          _this.hideCommunityModal();
-          return $(document).off("mousedown");
-        }
-      };
-    })(this));
-  };
-
-  return TopNav;
-
-})();
-
-nbx.TopNav = TopNav;

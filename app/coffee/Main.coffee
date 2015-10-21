@@ -1,7 +1,9 @@
 class Main
 
   constructor : ($el) ->
-    @nav = new nbx.TopNav $el
+    # @nav = new nbx.TopNav $el
+    topnav       = new nbx.NanoTopNav $(".nav-holder", $el)
+
     # @removeAlphaContent()
 
   # Quick way of pulling out conetnt that's not ready for prime time
@@ -16,5 +18,5 @@ class Main
       $(".running-commands").remove()
     , 200
 
-nbx = {}
+if !nbx? then nbx = {}
 nbx.Main = Main
