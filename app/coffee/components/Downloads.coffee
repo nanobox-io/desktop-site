@@ -62,7 +62,7 @@ class Downloads
     @$graphic    = $ '.break', @$el
 
     # Title & Icon
-    $('.icon p', $downloader).html osData.title
+    $('.icon .os', $downloader).html osData.title
     $('.icon .img', $downloader).html "<img class='shadow-icon' data-src='#{@os}' />"
 
     console.log "<img class='shadow-icon' data-src='#{@os}' />"

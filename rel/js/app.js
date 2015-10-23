@@ -110,7 +110,7 @@ Downloads = (function() {
     $downloader = $('.downloader', this.$el);
     $native = $('.native', this.$el);
     this.$graphic = $('.break', this.$el);
-    $('.icon p', $downloader).html(osData.title);
+    $('.icon .os', $downloader).html(osData.title);
     $('.icon .img', $downloader).html("<img class='shadow-icon' data-src='" + this.os + "' />");
     console.log("<img class='shadow-icon' data-src='" + this.os + "' />");
     this.updateSize($downloader);

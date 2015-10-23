@@ -4,7 +4,15 @@
 
   .row                   { display:flex; flex-direction:row; }
   .downloader            { justify-content:center; margin:70px 0 51px;}
-  .icon p                { text-align:center; text-transform:uppercase; letter-spacing:0.08em; font-size:12px; }
+  .icon                  { color:#486880; font-size:13px; display:flex; flex-direction:column; align-items:center;
+    .os                  { text-transform:uppercase; font-size:12px; letter-spacing:0.08em; }
+    .version             { border:1px solid #294153; width:100%; text-align:center; border-right:none; border-left:none; margin:5px 0; padding: 5px 0;
+      span               { text-transform:uppercase; color:#9a4444; }
+    }
+    .bugs                { color:#36576f;
+      a                  { color:#6B8DA3}
+    }
+  }
   .checkbox              { cursor:pointer; margin-right:6px;
     &.checked            {
       svg .check         { opacity:1; }
@@ -28,6 +36,7 @@
       .title             { display:flex; align-items:baseline; text-transform:uppercase; letter-spacing:0.08em; font-size:16px; font-weight:normal;}
       .main              { color:#6B8DA3; font-size:19px; margin-right:8px;  }
       .install           { text-transform:uppercase; letter-spacing:0.08em; color:#F5DA81; cursor:pointer; display:flex; flex-direction:row;  align-content:center;
+        &:after          { content:"(ALPHA)"; margin-left:5px; color:#9a4444; text-transform:none; font-size:12px; margin-top:4px;}
         &:hover          { color:white;
           svg *          { fill:white; }
         }
