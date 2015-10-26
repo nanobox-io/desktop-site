@@ -148,7 +148,7 @@ Downloads = (function() {
     } else if (navigator.appVersion.indexOf("Mac") !== -1) {
       os = "mac";
     } else if (navigator.appVersion.indexOf("X11") !== -1) {
-      os = "unx";
+      os = "lnx";
     } else if (navigator.appVersion.indexOf("Linux") !== -1) {
       os = "lnx";
     }

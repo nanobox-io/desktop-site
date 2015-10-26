@@ -96,7 +96,7 @@ class Downloads
     os = "Unknown OS"
     if      ( navigator.appVersion.indexOf("Win")   !=-1 ) then os = "win"
     else if ( navigator.appVersion.indexOf("Mac")   !=-1 ) then os = "mac"
-    else if ( navigator.appVersion.indexOf("X11")   !=-1 ) then os = "unx"
+    else if ( navigator.appVersion.indexOf("X11")   !=-1 ) then os = "lnx"
     else if ( navigator.appVersion.indexOf("Linux") !=-1 ) then os = "lnx"
     os
 
