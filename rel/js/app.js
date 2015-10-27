@@ -64,7 +64,7 @@ Downloads = (function() {
   };
 
   Downloads.prototype.startDownload = function(isBinary) {
-    var downloadPath;
+    var downloadPath, kind;
     if (isBinary == null) {
       isBinary = false;
     }
@@ -73,6 +73,13 @@ Downloads = (function() {
     } else {
       downloadPath = this.checked ? this.OSinfo[this.os].fullInstaller : this.OSinfo[this.os].partialInstaller;
     }
+    kind = isBinary != null ? "raw-binary" : "native-installer";
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Downloads',
+      eventAction: 'download',
+      eventLabel: "" + this.os + "+" + kind
+    });
     return window.location = downloadPath;
   };
 
@@ -112,7 +119,6 @@ Downloads = (function() {
     this.$graphic = $('.break', this.$el);
     $('.icon .os', $downloader).html(osData.title);
     $('.icon .img', $downloader).html("<img class='shadow-icon' data-src='" + this.os + "' />");
-    console.log("<img class='shadow-icon' data-src='" + this.os + "' />");
     this.updateSize($downloader);
     return shadowIconsInstance.svgReplaceWithString(pxSvgIconString, $downloader);
   };
@@ -130,7 +136,6 @@ Downloads = (function() {
       return $('.virtual-box span', $descriptions).html(osData.downloadSizes.virtualBox);
     });
     this.getSizeOfDownload(osData['binaryUrl'], function(size) {
-      console.log(size);
       return $('.binary .size', $downloader).html(size.toFixed(1) + "MB");
     });
     if (this.checked) {

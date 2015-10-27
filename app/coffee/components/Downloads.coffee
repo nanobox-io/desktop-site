@@ -27,6 +27,14 @@ class Downloads
       downloadPath = @OSinfo[ @os ].binaryUrl
     else
       downloadPath = if @checked then @OSinfo[ @os ].fullInstaller else @OSinfo[ @os ].partialInstaller
+
+    kind = if isBinary? then "raw-binary" else "native-installer"
+    ga 'send',
+      hitType       : 'event'
+      eventCategory : 'Downloads'
+      eventAction   : 'download'
+      eventLabel    : "#{@os}+#{kind}"
+
     window.location = downloadPath
 
   toggleCheckbox : () ->
@@ -65,7 +73,6 @@ class Downloads
     $('.icon .os', $downloader).html osData.title
     $('.icon .img', $downloader).html "<img class='shadow-icon' data-src='#{@os}' />"
 
-    console.log "<img class='shadow-icon' data-src='#{@os}' />"
     @updateSize $downloader
     shadowIconsInstance.svgReplaceWithString pxSvgIconString, $downloader
 
@@ -83,7 +90,6 @@ class Downloads
       $('.virtual-box span',  $descriptions).html osData.downloadSizes.virtualBox
 
     @getSizeOfDownload osData[ 'binaryUrl' ], (size)->
-      console.log size
       $('.binary .size', $downloader).html size.toFixed(1) + "MB"
 
     if @checked
