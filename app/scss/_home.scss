@@ -42,6 +42,7 @@ $light-header : #93ADBD;
       a                                    { display:flex; align-items:center; background:#1A262B; border-radius:2px; height:45px; padding:0 25px; margin:0 8px;
         &.github svg                       { margin: -3px 5px 0 -10px; }
         &.download svg                     { margin:0 7px 0 -7px; }
+        &.demo-video svg                   { margin:-4px 10px 0 -10px; }
         &:hover                            { background:#142329;
           p                                { color:#6ECAFD; }
           svg .hover                       { fill:#6ECAFD; }
@@ -251,21 +252,21 @@ $vagrant-gray :#9CB7C5;
                                            {
   .main-wrapper                            {
     .home                                  {
-      h1{font-size:30px;}
-      .section-summary                       { max-width:600px;
-        h1                                   { padding:0; margin:0 0 20px 0;}
-        h2                                   { max-width:500px; padding-top:14px; font-size:18px;  }
+      h1                                   { font-size:30px;}
+      .section-summary                     { max-width:600px;
+        h1                                 { padding:0; margin:0 0 20px 0;}
+        h2                                 { max-width:500px; padding-top:14px; font-size:18px;  }
       }
       .manifesto                           { flex-direction:column;
-        .point {
-          .svg-holder { width:140px;
-            svg{margin:0 auto;}
+        .point                             {
+          .svg-holder                      { width:140px;
+            svg                            { margin:0 auto;}
           }
-          p                           { margin-left:10px !important;  }
+          p                                { margin-left:10px !important;  }
         }
       }
-      .buttons{flex-direction:column;
-        a{margin:10px 0;}
+      .buttons                             { flex-direction:column;
+        a                                  { margin:10px 0;}
       }
       .top-blurb                           { width:100%}
       .mini-overview                       { flex-direction:column; margin-bottom:30px;
@@ -298,10 +299,10 @@ $vagrant-gray :#9CB7C5;
                                            {
   .main-wrapper                            {
     .home                                  {
-      h1{font-size:23px;}
-      .section-summary                       { max-width:600px;
-        h1                                   { padding:0; margin:0 0 20px 0;}
-        h2                                   { max-width:500px; padding-top:14px; font-size:18px;  }
+      h1                                   { font-size:23px;}
+      .section-summary                     { max-width:600px;
+        h1                                 { padding:0; margin:0 0 20px 0;}
+        h2                                 { max-width:500px; padding-top:14px; font-size:18px;  }
       }
       .main-summary                        {
         .info                              { border-left:none;
@@ -400,7 +401,7 @@ $vagrant-gray :#9CB7C5;
 
 .modal-overlay                             { display:flex; position:fixed; width:100%; height:100%; background:rgba(#000, 0.7); top:0px; left:0px; z-index:1; align-items:center;
   svg                                      { position:absolute; top:20px; right:20px; cursor:pointer;
-    * {fill:#194e6b;}
+    *                                      { fill:#194e6b;}
     &:hover *                              { fill:white; }
   }
   iframe                                   { display:block; margin:0 auto; }
