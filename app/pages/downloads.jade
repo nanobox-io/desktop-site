@@ -1,6 +1,10 @@
 extends templates/base
 
 block js
+  // build:home /js/downloads.js
+  script(src="/js/Downloads.js")
+  // endbuild
+  
   script(type="text/javascript").
     downloads = new nbx.Downloads($mainwrapper);
 

@@ -39,14 +39,11 @@ html(lang="en")
     script(src="https://use.typekit.net/auo7ijn.js")
     script try{Typekit.load();}catch(e){}
 
-    // build:js2 /js/app.js
-    script(src="/js/app.js")
-    // endbuild
     
     script(type="text/javascript").
       $mainwrapper = $(".main-wrapper");
+      topnav       = new nbx.NanoTopNav( $(".nav-holder", $mainwrapper) );
       shadowIcons  = new pxicons.ShadowIcons();
-      main         = new nbx.Main( $mainwrapper );
       shadowIconsInstance.svgReplaceWithString( pxSvgIconString, $('.main-wrapper') );
       //- Fade in after page loads to hide icon replace blip
       $mainwrapper.velocity({opacity:1})

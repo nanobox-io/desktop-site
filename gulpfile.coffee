@@ -66,9 +66,9 @@ htmlStage = (cb)->
 html = (cb)->
   gulp.src( jadePath )
     .pipe jade(client: true)
-    .pipe wrap("jadeTemplate['<%= file.relative.split('.')[0] %>'] = <%= file.contents %>;\n")
+    .pipe wrap("localJadeTemplates['<%= file.relative.split('.')[0] %>'] = <%= file.contents %>;\n")
     .pipe concat('jade-templates.js')
-    .pipe wrap("jadeTemplate = {};\n<%= file.contents %>")
+    .pipe wrap("localJadeTemplates = {};\n<%= file.contents %>")
     .pipe gulp.dest('./server/js')
     .on('end', cb)
 
@@ -84,7 +84,6 @@ js = (cb)->
   gulp.src( coffeePath )
     .pipe plumber()
     .pipe coffee( bare: true ).on( 'error', gutil.log ) .on( 'error', gutil.beep )
-    .pipe concat('app.js')
     .pipe gulp.dest('server/js')
     .on('end', cb)
 

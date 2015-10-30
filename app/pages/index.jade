@@ -1,34 +1,46 @@
 extends templates/base
 
 block js
+  // build:home /js/home.js
+  script(src="/js/Home.js")
+  // endbuild
+  
+  script(type="text/javascript").
+    downloads = new nbx.Home( $(".home") );
 
 block content
   .home
-    .actions
-      .title Local Development Done Right
+    .section
+      h1 Local Development Done Right
+      .manifesto
+        .point
+          .svg-holder
+            img.shadow-icon(data-src="manifesto-parity" )
+          p Parity between development and production
+        .point.config
+          .svg-holder
+            img.shadow-icon(data-src="manifesto-automation" )
+          p Automated environment configuration
+        .point.clean
+          .svg-holder
+            img.shadow-icon(data-src="manifesto-virtualization" )
+          p Keep your local machine clean via virtualization
       .buttons
+        a.demo-video()
+          img.shadow-icon(data-src="video-play" )
+          p View Demo
         a.github(href="//github.com/nanobox-io?utf8=✓&query=nanobox")
           img.shadow-icon(data-src="git" )
           p Fork me on github
         a.download(href="/downloads")
-          p Download
           img.shadow-icon(data-src="download-home" )
-    .manifesto
-      .point
-        .svg-holder
-          img.shadow-icon(data-src="manifesto-parity" )
-        p Maintain dev<br/>production parity
-      .point
-        .svg-holder
-          img.shadow-icon(data-src="manifesto-automation" )
-        p Automate environment configuration
-      .point
-        .svg-holder
-          img.shadow-icon(data-src="manifesto-virtualization" )
-        p Keep your local machine clean through virtualization
-        
+          p Download
           
-    .overview
+          
+    .section-summary.eliminate-complexity
+      h1 Eliminate Environment Complexity
+      h2 Your app is launched in a lightweight VM that is consistent across local and production machines
+    .overview 
       .info
         .blurb.src-code
           h2 <span>1 </span>App Source Code
@@ -44,11 +56,17 @@ block content
           p Your services run in an ultra lightweight linux virtual machine (30mb RAM).  Requests to localhost are proxied to your app
       .graphic
         img.shadow-icon(data-src="sandwich" scalable="true" lock-to-max="true")
-    
+      a.jumper(href="/how-nanobox-works/") 
+       div How it works
+       img.shadow-icon(data-src="jumper-arrow")
+
+    .section-summary
+      h1 Just Code
+      h2 Nanobox detects your app type and automatically configures the environment and installs everything your app needs to run
     .mini-overview
       .mini
-        h2 Run Your App
-        p Build your code and preview your app in a fast lightweight VM
+        //- h2 Run Your App
+        //- p Build your code and preview your app in a fast lightweight VM
         .script
           pre
             code.language-nanobox
@@ -60,8 +78,8 @@ block content
         //- a(href="#developing-your-app") How it works
       
       .mini
-        h2 Develop Your App
-        p Run generators, tests and iterate in an isolated sandbox
+        //- h2 Develop Your App
+        //- p Run generators, tests and iterate in an isolated sandbox
         .script
           pre
             code.language-nanobox
@@ -72,14 +90,17 @@ block content
         
     .jump-links
       a(href="//engines.nanobox.io")
+        .jumper 
+          div Browse Languages &amp; Frameworks
+          img.shadow-icon(data-src="jumper-arrow")
+          
         .image-wrap
           .logos
-        .jump Browse Languages &amp; Frameworks
       a(href="/engine-dev")
+        .jumper 
+          div Develop an Engine for your Framework
+          img.shadow-icon(data-src="jumper-arrow")
+            
         .image-wrap(style="width:147px;")
           img.shadow-icon(data-src="mad-scientist-window" scalable="true")
-        .jump Develop an Engine for your Framework
-      a(href="/how-nanobox-works")
-        .image-wrap(style="width:147px;")
-          img.shadow-icon(data-src="docker-containers" scalable="true")
-        .jump How it Works
+    

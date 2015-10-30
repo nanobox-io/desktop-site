@@ -1,6 +1,10 @@
 extends templates/base
 
 block js
+  // build:engines /js/engines.js
+  script(src="/js/Engines.js")
+  // endbuild
+  
   script(type="text/javascript").
     engines = new nbx.Engines($mainwrapper);
 
