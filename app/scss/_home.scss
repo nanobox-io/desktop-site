@@ -45,7 +45,7 @@ $light-header : #93ADBD;
         &.demo-video svg                   { margin:-4px 10px 0 -10px; }
         &:hover                            { background:#142329;
           p                                { color:#6ECAFD; }
-          svg .hover                       { fill:#6ECAFD; }
+          svg .hover                       { /*fill:#6ECAFD;*/ }
         }
       }
     }

@@ -42,7 +42,7 @@ html(lang="en")
     
     script(type="text/javascript").
       $mainwrapper = $(".main-wrapper");
-      topnav       = new nbx.NanoTopNav( $(".nav-holder", $mainwrapper) );
+      topnav       = new nbx.NanoTopNav( $(".nav-holder", $mainwrapper), 'desktop' );
       shadowIcons  = new pxicons.ShadowIcons();
       shadowIconsInstance.svgReplaceWithString( pxSvgIconString, $('.main-wrapper') );
       //- Fade in after page loads to hide icon replace blip
