@@ -1192,7 +1192,7 @@ ShadowIcons = (function() {
   };
 
   ShadowIcons.prototype.replacePlaceholdersWithSVGs = function(svg, $jqueryContext) {
-    var $holder, $svg, $targetSvg, box, id, image, images, lockToMax, newNode, rawHtml, scalable, serializer, usesSymbols, _i, _len, _ref, _ref1, _ref2, _ref3, _results;
+    var $holder, $svg, $targetSvg, box, id, image, images, lockToMax, modBox, newNode, rawHtml, scalable, serializer, usesSymbols, _i, _len, _ref, _ref1, _ref2, _ref3, _results;
     $svg = $(this.buildSvg(svg, "main"));
     images = $("img.shadow-icon", $jqueryContext);
     _results = [];
@@ -1217,10 +1217,12 @@ ShadowIcons = (function() {
         }
         $('body').append(newNode);
         box = newNode[0].getBBox();
-        box.width = Math.round(box.width);
-        box.height = Math.round(box.height);
+        modBox = {
+          width: Math.round(box.width),
+          height: Math.round(box.height)
+        };
         if (scalable) {
-          newNode.get(0).setAttribute("viewBox", "0 0 " + (box.width + 8) + " " + (box.height + 8));
+          newNode.get(0).setAttribute("viewBox", "0 0 " + (modBox.width + 8) + " " + (modBox.height + 8));
           $holder = $("<div class='holder'><div>");
           $holder.css({
             "width": "100%",
@@ -1228,16 +1230,16 @@ ShadowIcons = (function() {
           });
           if (lockToMax) {
             $holder.css({
-              "max-width": "" + (box.width + 8) + "px",
-              "max-height": "" + (box.height + 8) + "px"
+              "max-width": "" + (modBox.width + 8) + "px",
+              "max-height": "" + (modBox.height + 8) + "px"
             });
           }
           $holder.append(newNode);
           _results.push($(image).replaceWith($holder));
         } else {
           newNode.attr({
-            width: "" + (box.width + 8) + "px",
-            height: "" + (box.height + 8) + "px"
+            width: "" + (modBox.width + 8) + "px",
+            height: "" + (modBox.height + 8) + "px"
           });
           _results.push($(image).replaceWith(newNode));
         }
