@@ -6,7 +6,7 @@ class Home
   playVideo : () ->
     @$video = $ localJadeTemplates['demo-video']( {} )
     @$el.prepend @$video
-    shadowIconsInstance.svgReplaceWithString pxSvgIconString, @$video
+    castShadows pxSvgIconString, @$video
 
     $(".close-video-modal", @$video).on "click", ()=> @closeVideo()
     @$video.on "click", ()=> @closeVideo()

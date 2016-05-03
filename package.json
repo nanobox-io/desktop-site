@@ -25,7 +25,7 @@
     "gulp-rev": "~1.1.0",
     "gulp-rimraf": "^0.1.1",
     "gulp-sass": "~0.7.2",
-    "gulp-shadow-library": "tolmark12/gulp-shadow-icons",
+    "gulp-shadow-icons": "tolmark12/gulp-shadow-icons",
     "gulp-uglify": "~0.3.1",
     "gulp-usemin": "^0.3.11",
     "gulp-util": "~2.2.20",

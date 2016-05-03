@@ -74,7 +74,7 @@ class Downloads
     $('.icon .img', $downloader).html "<img class='shadow-icon' data-src='#{@os}' />"
 
     @updateSize $downloader
-    shadowIconsInstance.svgReplaceWithString pxSvgIconString, $downloader
+    castShadows $downloader
 
   updateSize : ($downloader) ->
     installer     = if @checked then 'fullInstaller' else 'partialInstaller'

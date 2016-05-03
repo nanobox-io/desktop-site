@@ -15,7 +15,7 @@
 #   addCommunityModal : ($el) ->
 #     @$community = $ jadeTemplate['community']( {} )
 #     $el.append( @$community )
-#     shadowIconsInstance.svgReplaceWithString pxSvgIconString, $el
+#     castShadows pxSvgIconString, $el
 #     $(".close", @$community).on   "click", (e) => @hideCommunityModal()
 #
 #

@@ -24,7 +24,7 @@ uglify       = require 'gulp-uglify'
 usemin       = require 'gulp-usemin'
 watch        = require 'gulp-watch'
 wrap         = require 'gulp-wrap'
-shadow       = require 'gulp-shadow-library'
+shadow       = require 'gulp-shadow-icons'
 
 # new
 inject       = require 'gulp-inject'
